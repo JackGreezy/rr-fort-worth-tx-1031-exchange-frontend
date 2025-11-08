@@ -1,0 +1,16 @@
+{
+  "company": "1031 Exchange Fort Worth",
+  "phone": "",
+  "phoneDigits": "",
+  "mainCity": "Fort Worth",
+  "state": "TX",
+  "services": [],
+  "servicesNav": [],
+  "locationsNav": [],
+  "extraLinks": [
+    {
+      "label": "Contact",
+      "href": "/contact"
+    }
+  ]
+}
