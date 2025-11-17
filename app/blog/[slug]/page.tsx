@@ -6,14 +6,15 @@ import { blogPosts } from "@/data/blog-posts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }> | { slug: string };
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const post = blogPosts.find((article) => article.slug === params.slug);
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const post = blogPosts.find((article) => article.slug === resolvedParams.slug);
   if (!post) return {};
 
   return createPageMetadata({
@@ -23,8 +24,9 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   });
 }
 
-export default function BlogArticle({ params }: { params: Params }) {
-  const post = blogPosts.find((article) => article.slug === params.slug);
+export default async function BlogArticle({ params }: { params: Params }) {
+  const resolvedParams = await params;
+  const post = blogPosts.find((article) => article.slug === resolvedParams.slug);
   if (!post) notFound();
 
   const breadcrumbs = [
@@ -35,7 +37,7 @@ export default function BlogArticle({ params }: { params: Params }) {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-10">
+      <div className="container mx-auto space-y-10">
         <Breadcrumbs items={breadcrumbs} />
         <article className="space-y-4 rounded-2xl border border-outline bg-secondary/40 p-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{post.category}</p>

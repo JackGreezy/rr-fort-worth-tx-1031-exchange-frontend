@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { PropertyTypeItem } from "@/data/types";
 import SearchInput from "@/components/search/SearchInput";

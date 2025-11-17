@@ -19,7 +19,7 @@ export default function TimelineTrackerPage() {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-8">
+      <div className="container mx-auto space-y-8">
         <Breadcrumbs items={breadcrumbs} />
         <header className="space-y-2">
           <h1 className="text-4xl font-semibold text-heading">1031 timeline tracker</h1>

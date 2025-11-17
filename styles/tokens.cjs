@@ -1,11 +1,14 @@
 module.exports = {
-  paper: "#0B0F13",
-  ink: "#E7E9EC",
-  heading: "#FFFFFF",
-  primaryBg: "#0EA5A6",
-  primaryFg: "#0B0F13",
-  secondaryBg: "#111827",
-  secondaryFg: "#F5F7FA",
-  outline: "#334155",
-  panel: "#11151B"
+  paper: "#F9F9F8",
+  ink: "#1A1A1A",
+  heading: "#15223B",
+  primaryBg: "#15223B",
+  primaryFg: "#F9F9F8",
+  secondaryBg: "#E7E3DD",
+  secondaryFg: "#15223B",
+  outline: "#D1C9BA",
+  panel: "#FFFFFF",
+  accent: "#B79349",
+  gold: "#B79349",
+  burgundy: "#0F172A"
 };

@@ -1,35 +1,100 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #0B0F13;
-  --color-ink: #E7E9EC;
-  --color-heading: #FFFFFF;
-  --color-primary: #0EA5A6;
-  --color-primaryfg: #0B0F13;
-  --color-secondary: #111827;
-  --color-secondaryfg: #F5F7FA;
-  --color-outline: #334155;
-  --color-panel: #11151B;
+  --color-paper: #F9F9F8;
+  --color-ink: #1A1A1A;
+  --color-heading: #15223B;
+  --color-primary: #15223B;
+  --color-primaryfg: #F9F9F8;
+  --color-secondary: #E7E3DD;
+  --color-secondaryfg: #15223B;
+  --color-outline: #D1C9BA;
+  --color-panel: #FFFFFF;
+  --color-accent: #B79349;
+  --color-gold: #B79349;
+  --color-burgundy: #0F172A;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
 body {
   height: 100%;
+  font-feature-settings: "kern" 1, "liga" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  font-family: var(--font-inter, "Inter"), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   @apply bg-paper text-ink antialiased;
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(21, 34, 59, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 85% 20%, rgba(183, 147, 73, 0.08) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(231, 227, 221, 0.35), transparent 45%);
+  background-attachment: fixed;
 }
 
 main {
   @apply flex-1;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-playfair, "Playfair Display"), "Times New Roman", serif;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+strong {
+  font-weight: 600;
+}
+
+:where(p, span, li, a, label, button, input, textarea) {
+  font-family: var(--font-inter, "Inter"), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-paper);
+}
+
+a,
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(21, 34, 59, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(21, 34, 59, 0.3);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(21, 34, 59, 0.45);
 }

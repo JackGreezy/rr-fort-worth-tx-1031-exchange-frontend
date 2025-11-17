@@ -22,7 +22,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-10">
+      <div className="container mx-auto space-y-10">
         <Breadcrumbs items={breadcrumbs} />
         <header className="space-y-2">
           <p className="text-xs uppercase tracking-[0.35em] text-ink/60">Contact</p>

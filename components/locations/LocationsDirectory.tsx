@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { LocationItem } from "@/data/types";
 import SearchInput from "@/components/search/SearchInput";
@@ -43,13 +44,26 @@ export default function LocationsDirectory({ locations }: Props) {
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {filtered.map((location) => (
-            <article key={location.slug} className="rounded-2xl border border-outline/60 bg-panel p-5">
-              <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{location.type}</p>
-              <h3 className="mt-2 text-xl font-semibold text-heading">{location.name}</h3>
-              <p className="mt-2 text-sm text-ink/80">{location.description}</p>
-              <Link href={location.route} className="mt-4 inline-flex text-xs uppercase tracking-[0.35em] text-primary">
-                View location
-              </Link>
+            <article key={location.slug} className="group overflow-hidden rounded-2xl border border-outline/60 bg-panel transition hover:border-primary">
+              {location.heroImage && (
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={location.heroImage}
+                    alt={`${location.name} commercial real estate`}
+                    fill
+                    className="object-cover transition group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              )}
+              <div className="p-5">
+                <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{location.type}</p>
+                <h3 className="mt-2 text-xl font-semibold text-heading">{location.name}</h3>
+                <p className="mt-2 text-sm text-ink/80">{location.description}</p>
+                <Link href={location.route} className="mt-4 inline-flex text-xs uppercase tracking-[0.35em] text-primary">
+                  View location
+                </Link>
+              </div>
             </article>
           ))}
         </div>

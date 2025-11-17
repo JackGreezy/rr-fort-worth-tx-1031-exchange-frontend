@@ -2,25 +2,27 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import site from "@/content/site.json";
 import { servicesData } from "@/data/services";
 import type { ServiceItem } from "@/data/types";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ContactForm from "@/app/contact/contact-form";
 import IdentificationRules from "@/components/widgets/IdentificationRules";
+import ScrollToIdButton from "@/components/home/ScrollToIdButton";
 import { createPageMetadata, getBreadcrumbJsonLd, getServiceSchema } from "@/lib/seo";
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from "@/lib/constants";
 import RelatedServices from "@/components/services/RelatedServices";
+import { getServiceBatchData } from "@/lib/batch-data";
 
-type Params = {
-  slug: string;
-};
+type Params = Promise<{ slug: string }> | { slug: string };
 
 export function generateStaticParams() {
   return servicesData.map((service) => ({ slug: service.slug }));
 }
 
-export function generateMetadata({ params }: { params: Params }): Metadata {
-  const service = servicesData.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const service = servicesData.find((item) => item.slug === resolvedParams.slug);
   if (!service) return {};
 
   return createPageMetadata({
@@ -30,10 +32,12 @@ export function generateMetadata({ params }: { params: Params }): Metadata {
   });
 }
 
-export default function ServicePage({ params }: { params: Params }) {
-  const service = servicesData.find((item) => item.slug === params.slug);
+export default async function ServicePage({ params }: { params: Params }) {
+  const resolvedParams = await params;
+  const service = servicesData.find((item) => item.slug === resolvedParams.slug);
   if (!service) notFound();
 
+  const batchData = getServiceBatchData(service.slug);
   const related = getRelatedServices(service);
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -41,61 +45,75 @@ export default function ServicePage({ params }: { params: Params }) {
     { label: service.name, href: `/services/${service.slug}` },
   ];
 
-  const faqs = buildFaqs(service.name);
+  // Use batch FAQs if available, otherwise fallback to generated FAQs
+  const faqs = batchData?.faqs
+    ? batchData.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
+    : buildFaqs(service.name);
   const isTripleNetService = /nnn/i.test(service.slug);
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-10">
+      <div className="container mx-auto space-y-10">
         <Breadcrumbs items={breadcrumbs} />
         <header className="space-y-4 rounded-2xl border border-outline bg-secondary/40 p-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{service.category || "Service"}</p>
           <h1 className="text-4xl font-semibold text-heading">{service.name}</h1>
           <p className="text-base text-ink/85">{service.short}</p>
-          <div className="flex flex-wrap gap-4">
-            <button
-              type="button"
-              className="rounded-full bg-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-primaryfg"
-              onClick={() => {
-                document.getElementById("service-contact-form")?.scrollIntoView({ behavior: "smooth" });
-              }}
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`tel:${site.phoneDigits}`}
+              className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.3em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold"
             >
-              Talk to a specialist
-            </button>
+              Call Now
+            </a>
+            <ScrollToIdButton
+              targetId="service-contact-form"
+              className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:bg-primary/10"
+            >
+              Get In Touch
+            </ScrollToIdButton>
             <Link
-              href={`/contact?projectType=${encodeURIComponent(service.name)}`}
-              className="rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-heading"
+              href={`/contact?projectType=${encodeURIComponent(service.name)}#contact-form`}
+              className="inline-flex items-center justify-center rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-heading transition hover:border-primary hover:bg-primary/5"
             >
-              Contact page
+              Contact Form
             </Link>
           </div>
         </header>
 
-        <section className="grid gap-6 lg:grid-cols-2">
-          <article className="space-y-4 rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading">How we execute</h2>
-            <p className="text-sm text-ink/80">
-              Our team maps every property tour, rent roll pull, and diligence item to the 45 day and 180 day deadlines so you can focus on approvals.
-              Investors in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} receive a weekly digest that records outreach, credit discussions, and escrow updates.
-            </p>
-            <ul className="space-y-3 text-sm text-ink/80">
-              <li>• Dedicated researcher building call sheets across national brokers and developers.</li>
-              <li>• Credit and lease abstract summaries shared with lenders and counsel.</li>
-              <li>• Timeline guardrails that confirm document delivery with your Qualified Intermediary.</li>
+        {batchData?.mainDescription && (
+          <section className="rounded-2xl border border-outline bg-panel p-6">
+            <div
+              className="prose prose-sm max-w-none text-ink/90 prose-headings:text-heading prose-p:text-ink/80 prose-strong:text-heading"
+              dangerouslySetInnerHTML={{ __html: batchData.mainDescription }}
+            />
+          </section>
+        )}
+
+        {batchData?.inclusions && batchData.inclusions.length > 0 && (
+          <section className="rounded-2xl border border-outline bg-panel p-6">
+            <h2 className="text-2xl font-semibold text-heading mb-4">What's included</h2>
+            <ul className="space-y-2 text-sm text-ink/80">
+              {batchData.inclusions.map((inclusion, index) => (
+                <li key={index}>• {inclusion}</li>
+              ))}
             </ul>
-          </article>
-          <article className="space-y-4 rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading">What you receive</h2>
+          </section>
+        )}
+
+        {batchData?.commonSituations && batchData.commonSituations.length > 0 && (
+          <section className="rounded-2xl border border-outline bg-secondary/40 p-6">
+            <h2 className="text-2xl font-semibold text-heading mb-4">Common situations</h2>
             <ul className="space-y-3 text-sm text-ink/80">
-              <li>• Replacement property pipeline with NOI, rent, and weighted average lease term snapshots.</li>
-              <li>• Weekly report that notes lender responses, appraisal timelines, and legal checkpoints.</li>
-              <li>• Secure intake folder for estoppels, PSAs, rent rolls, and Form 8824 data.</li>
+              {batchData.commonSituations.map((situation, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="mr-2 text-primary">•</span>
+                  <span>{situation}</span>
+                </li>
+              ))}
             </ul>
-            <p className="text-sm text-ink/70">
-              We are not a Qualified Intermediary. We coordinate with your QI, tax advisor, and lender so every step stays documented.
-            </p>
-          </article>
-        </section>
+          </section>
+        )}
 
         <RelatedServices services={related} currentService={service.name} />
 
@@ -110,6 +128,52 @@ export default function ServicePage({ params }: { params: Params }) {
             ))}
           </div>
         </section>
+
+        {batchData?.exampleCapability && (
+          <section className="rounded-2xl border border-outline bg-panel p-6">
+            <h2 className="text-2xl font-semibold text-heading mb-4">Example engagement</h2>
+            <div className="space-y-4 text-sm text-ink/80">
+              <p className="text-xs text-ink/60 italic">{batchData.exampleCapability.disclaimer}</p>
+              <div>
+                <p className="font-semibold text-heading">Service Type:</p>
+                <p>{batchData.exampleCapability.serviceType}</p>
+              </div>
+              {batchData.exampleCapability.location && (
+                <div>
+                  <p className="font-semibold text-heading">Location:</p>
+                  <p>{batchData.exampleCapability.location}</p>
+                </div>
+              )}
+              {batchData.exampleCapability.scope && (
+                <div>
+                  <p className="font-semibold text-heading">Scope:</p>
+                  <p>{batchData.exampleCapability.scope}</p>
+                </div>
+              )}
+              {batchData.exampleCapability.clientSituation && (
+                <div>
+                  <p className="font-semibold text-heading">Client Situation:</p>
+                  <p>{batchData.exampleCapability.clientSituation}</p>
+                </div>
+              )}
+              {batchData.exampleCapability.ourApproach && (
+                <div>
+                  <p className="font-semibold text-heading">Our Approach:</p>
+                  <p>{batchData.exampleCapability.ourApproach}</p>
+                </div>
+              )}
+              {batchData.exampleCapability.expectedOutcome && (
+                <div>
+                  <p className="font-semibold text-heading">Expected Outcome:</p>
+                  <p>{batchData.exampleCapability.expectedOutcome}</p>
+                </div>
+              )}
+              {batchData.exampleCapability.contactCTA && (
+                <p className="mt-4 text-base text-ink/90">{batchData.exampleCapability.contactCTA}</p>
+              )}
+            </div>
+          </section>
+        )}
 
         <IdentificationRules />
 
@@ -159,6 +223,12 @@ export default function ServicePage({ params }: { params: Params }) {
           description="Tell us about your relinquished asset, target project type, and lender expectations."
           prefillProjectType={service.name}
         />
+
+        {batchData?.complianceNote && (
+          <div className="rounded-lg border border-outline/60 bg-secondary/30 p-4">
+            <p className="text-xs text-ink/70">{batchData.complianceNote}</p>
+          </div>
+        )}
       </div>
 
       <Script

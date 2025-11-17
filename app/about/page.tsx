@@ -34,7 +34,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-10">
+      <div className="container mx-auto space-y-10">
         <Breadcrumbs items={breadcrumbs} />
         <header className="space-y-4 rounded-2xl border border-outline bg-secondary/40 p-6">
           <p className="text-xs uppercase tracking-[0.35em] text-ink/60">About</p>

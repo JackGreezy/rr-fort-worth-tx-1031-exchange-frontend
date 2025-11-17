@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Script from "next/script";
 import clsx from "clsx";
-import { servicesData } from "@/data/services";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
@@ -46,58 +45,55 @@ type ContactFormProps = {
 
 type FormState = {
   name: string;
-  company: string;
   email: string;
   phone: string;
-  projectType: string;
-  timeline: string;
-  details: string;
+  propertySold: string;
+  estimatedClose: string;
+  city: string;
+  message: string;
 };
 
 const defaultState: FormState = {
   name: "",
-  company: "",
   email: "",
   phone: "",
-  projectType: "",
-  timeline: "",
-  details: "",
+  propertySold: "",
+  estimatedClose: "",
+  city: "",
+  message: "",
 };
 
-const timelineOptions = ["Immediate", "45 days", "180 days", "Planning phase"];
-
-export default function ContactForm({
-  heading = "Tell us about your exchange",
-  description = "Secure intake keeps your documents and project type protected. We route submissions directly to our exchange desk.",
+function ContactFormInner({
+  heading = "Start your Fort Worth 1031 exchange",
+  description = "Share your transaction timeline and we will coordinate a call with our exchange desk.",
   variant = "default",
   formId = "contact-form",
   prefillProjectType,
-}: ContactFormProps) {
+  projectTypeFromParams,
+}: ContactFormProps & { projectTypeFromParams?: string }) {
   const [formState, setFormState] = useState<FormState>(defaultState);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
-  const [typeaheadOpen, setTypeaheadOpen] = useState(false);
   const [captchaToken, setCaptchaToken] = useState("");
   const [captchaReady, setCaptchaReady] = useState(false);
   const [captchaError, setCaptchaError] = useState<string | null>(null);
-  const datalistId = useId();
-  const params = useSearchParams();
   const captchaContainerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<number | null>(null);
 
-  const timezone = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
-  const suggestedProjectTypes = useMemo(
-    () => servicesData.map((service) => service.name).sort(),
-    []
-  );
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-  const projectTypeParam = params?.get("projectType") || prefillProjectType;
+  const contextualNote = projectTypeFromParams || prefillProjectType;
 
   useEffect(() => {
-    if (projectTypeParam) {
-      setFormState((prev) => ({ ...prev, projectType: projectTypeParam }));
+    if (contextualNote) {
+      setFormState((prev) => ({
+        ...prev,
+        message: prev.message
+          ? `${prev.message}\n\nRequested focus: ${contextualNote}`
+          : `Requested focus: ${contextualNote}`,
+      }));
     }
-  }, [projectTypeParam]);
+  }, [contextualNote]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -124,7 +120,7 @@ export default function ContactForm({
       "expired-callback": () => {
         setCaptchaToken("");
       },
-      theme: "dark",
+      theme: "light",
       tabindex: 0,
     });
   }, [captchaReady]);
@@ -145,7 +141,10 @@ export default function ContactForm({
     if (!formState.name.trim()) return "Please add your name.";
     if (!formState.email.trim()) return "Please add a valid email.";
     if (!formState.phone.trim()) return "Please add a phone number.";
-    if (!formState.projectType.trim()) return "Please add your project type.";
+    if (!formState.propertySold.trim()) return "Tell us what property you sold.";
+    if (!formState.estimatedClose.trim()) return "Add your target closing date.";
+    if (!formState.city.trim()) return "Share the city you are investing from.";
+    if (!formState.message.trim()) return "Add a brief message.";
     if (!captchaToken) return "Please complete the CAPTCHA challenge.";
     return null;
   };
@@ -188,19 +187,19 @@ export default function ContactForm({
       <section
         id={formId}
         className={clsx(
-          "rounded-2xl border border-outline bg-secondary/40 p-6 shadow-glow",
+          "rounded-3xl border border-outline/60 bg-panel p-6 shadow-[0_20px_48px_rgba(21,34,59,0.1)]",
           variant === "compact" && "p-5"
         )}
       >
         <header className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.3em] text-ink/70">Secure Intake</p>
-          <h3 className="text-2xl font-semibold text-heading">{heading}</h3>
+          <p className="text-xs uppercase tracking-[0.32em] text-heading/60">Secure Intake</p>
+          <h3 className="font-serif text-2xl font-semibold text-heading">{heading}</h3>
           <p className="text-sm text-ink/80">
-            {description} All submissions show a timestamp for {timezone}.
+            {description} All submissions include a timestamp for {timezone}.
           </p>
         </header>
 
-        <form onSubmit={handleSubmit} className="mt-6 space-y-4" noValidate>
+        <form onSubmit={handleSubmit} className="mt-6 space-y-5" noValidate>
           <div className="grid gap-4 md:grid-cols-2">
             <InputField
               id={FORM_INPUT_IDS.name}
@@ -211,16 +210,6 @@ export default function ContactForm({
               onChange={handleChange("name")}
             />
             <InputField
-              id={FORM_INPUT_IDS.company}
-              label="Company"
-              placeholder="Company or entity"
-              value={formState.company}
-              onChange={handleChange("company")}
-            />
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <InputField
               id={FORM_INPUT_IDS.email}
               label="Email"
               placeholder="you@example.com"
@@ -229,6 +218,9 @@ export default function ContactForm({
               value={formState.email}
               onChange={handleChange("email")}
             />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
             <InputField
               id={FORM_INPUT_IDS.phone}
               label="Phone"
@@ -238,100 +230,80 @@ export default function ContactForm({
               value={formState.phone}
               onChange={handleChange("phone")}
             />
+            <InputField
+              id={FORM_INPUT_IDS.city}
+              label="City"
+              placeholder="City you are investing from"
+              required
+              value={formState.city}
+              onChange={handleChange("city")}
+            />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <div className="relative">
-              <InputField
-                id={FORM_INPUT_IDS.projectType}
-                label="Project Type"
-                placeholder="Service name or asset goal"
-                required
-                value={formState.projectType}
-                onChange={(event) => {
-                  handleChange("projectType")(event);
-                  setTypeaheadOpen(true);
-                }}
-                list={datalistId}
-              />
-              <datalist id={datalistId}>
-                {suggestedProjectTypes.map((option) => (
-                  <option key={option} value={option} />
-                ))}
-              </datalist>
-              {typeaheadOpen && (
-                <button
-                  type="button"
-                  className="absolute right-2 top-9 text-xs text-primary"
-                  onClick={() => setTypeaheadOpen(false)}
-                >
-                  Hide suggestions
-                </button>
-              )}
-            </div>
-
-            <SelectField
-              id={FORM_INPUT_IDS.timeline}
-              label="Timeline"
-              value={formState.timeline}
-              onChange={(event) => setFormState((prev) => ({ ...prev, timeline: event.target.value }))}
-              options={timelineOptions}
+            <InputField
+              id={FORM_INPUT_IDS.propertySold}
+              label="Property sold"
+              placeholder="Asset sold or equity to defer"
+              required
+              value={formState.propertySold}
+              onChange={handleChange("propertySold")}
+            />
+            <InputField
+              id={FORM_INPUT_IDS.estimatedClose}
+              label="Estimated close"
+              placeholder="Target closing date"
+              required
+              value={formState.estimatedClose}
+              onChange={handleChange("estimatedClose")}
             />
           </div>
 
           <div>
-            <label htmlFor={FORM_INPUT_IDS.details} className="mb-2 block text-sm font-semibold text-heading">
-              Details
+            <label htmlFor={FORM_INPUT_IDS.message} className="mb-2 block text-sm font-semibold text-heading">
+              Message
             </label>
             <textarea
-              id={FORM_INPUT_IDS.details}
-              name="details"
-              placeholder="Tell us about the relinquished asset, equity, debt, and what you need to replace."
-              className="min-h-[140px] w-full rounded-xl border border-outline bg-panel/70 p-3 text-sm text-ink focus:border-primary focus:outline-none"
-              value={formState.details}
-              onChange={handleChange("details")}
+              id={FORM_INPUT_IDS.message}
+              name="message"
+              placeholder="Share your 45/180 timeline, property type focus, or questions."
+              className="min-h-[140px] w-full rounded-2xl border border-outline/60 bg-secondary/30 p-3 text-sm text-ink placeholder:text-ink/50 focus:border-accent focus:outline-none"
+              value={formState.message}
+              onChange={handleChange("message")}
             />
           </div>
 
           <div className="mt-4 space-y-2 text-sm">
             <div ref={captchaContainerRef} />
-            {!captchaReady && !siteKeyMissing && (
-              <p className="text-ink/60">Loading security challenge...</p>
-            )}
+            {!captchaReady && !siteKeyMissing && <p className="text-ink/60">Loading security challenge...</p>}
             {siteKeyMissing && (
-              <p className="text-xs text-red-400">
-                Turnstile site key missing. Please set NEXT_PUBLIC_TURNSTILE_SITE_KEY.
-              </p>
+              <p className="text-xs text-red-500">Turnstile site key missing. Please set NEXT_PUBLIC_TURNSTILE_SITE_KEY.</p>
             )}
-            {captchaError && <p className="text-xs text-red-400">{captchaError}</p>}
+            {captchaError && <p className="text-xs text-red-500">{captchaError}</p>}
           </div>
 
-          {error && <p className="text-sm text-red-400">{error}</p>}
+          {error && <p className="text-sm text-red-500">{error}</p>}
 
           <button
             type="submit"
-            className="w-full rounded-full bg-primary px-6 py-3 text-sm font-semibold uppercase tracking-[0.35em] text-primaryfg transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={
-              status === "submitting" || !captchaToken || siteKeyMissing || !captchaReady
-            }
+            className="w-full rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.32em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold disabled:cursor-not-allowed disabled:opacity-60"
+            disabled={status === "submitting" || !captchaToken || siteKeyMissing || !captchaReady}
           >
-            {status === "submitting" ? "Sending..." : "Submit Request"}
+            {status === "submitting" ? "Sending..." : "Start My Exchange"}
           </button>
 
           {status === "success" && (
-            <p className="text-sm text-primary">
-              Thank you. Our team will reach out shortly with a secure intake confirmation.
-            </p>
+            <p className="text-sm text-primary">Thank you. Our team will confirm receipt shortly.</p>
           )}
 
           <div className="text-xs text-ink/60">
             <p>
-              Prefer to talk now? Call{" "}
-              <a className="text-primary underline" href={`tel:${CONTACT_PHONE_DIGITS}`}>
+              Prefer to talk now? Call {" "}
+              <a className="text-accent underline" href={`tel:${CONTACT_PHONE_DIGITS}`}>
                 {CONTACT_PHONE}
               </a>{" "}
-              or email{" "}
-              <a className="text-primary underline" href={`mailto:${CONTACT_EMAIL}`}>
+              or email {" "}
+              <a className="text-accent underline" href={`mailto:${CONTACT_EMAIL}`}>
                 {CONTACT_EMAIL}
               </a>
               .
@@ -343,6 +315,21 @@ export default function ContactForm({
   );
 }
 
+function ContactFormWithSearchParams(props: ContactFormProps) {
+  const params = useSearchParams();
+  const projectTypeFromParams = params?.get("projectType") || undefined;
+
+  return <ContactFormInner {...props} projectTypeFromParams={projectTypeFromParams} />;
+}
+
+export default function ContactForm(props: ContactFormProps) {
+  return (
+    <Suspense fallback={<div className="rounded-3xl border border-outline/60 bg-panel p-6">Loading form...</div>}>
+      <ContactFormWithSearchParams {...props} />
+    </Suspense>
+  );
+}
+
 type InputFieldProps = {
   id: string;
   label: string;
@@ -351,23 +338,13 @@ type InputFieldProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   type?: React.HTMLInputTypeAttribute;
   required?: boolean;
-  list?: string;
 };
 
-function InputField({
-  id,
-  label,
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-  required,
-  list,
-}: InputFieldProps) {
+function InputField({ id, label, placeholder, value, onChange, type = "text", required }: InputFieldProps) {
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor={id} className="text-sm font-semibold text-heading">
-        {label} {required && <span className="text-ink/60">(required)</span>}
+        {label} {required && <span className="text-heading/50">(required)</span>}
       </label>
       <input
         id={id}
@@ -377,41 +354,8 @@ function InputField({
         value={value}
         onChange={onChange}
         required={required}
-        list={list}
-        className="rounded-xl border border-outline bg-panel/70 px-3 py-2 text-sm text-heading placeholder:text-ink/50 focus:border-primary focus:outline-none"
+        className="rounded-full border border-outline/60 bg-panel px-4 py-2.5 text-sm text-ink placeholder:text-ink/50 focus:border-accent focus:outline-none"
       />
-    </div>
-  );
-}
-
-type SelectFieldProps = {
-  id: string;
-  label: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  options: string[];
-};
-
-function SelectField({ id, label, value, onChange, options }: SelectFieldProps) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-sm font-semibold text-heading">
-        {label}
-      </label>
-      <select
-        id={id}
-        name={id}
-        value={value}
-        onChange={onChange}
-        className="appearance-none rounded-xl border border-outline bg-panel/70 px-3 py-2 text-sm text-heading focus:border-primary focus:outline-none"
-      >
-        <option value="">Select timeline</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
     </div>
   );
 }

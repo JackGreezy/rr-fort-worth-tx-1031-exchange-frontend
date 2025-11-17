@@ -13,11 +13,11 @@ export const DATE_LOCALE = "en-US";
 
 export const FORM_INPUT_IDS = {
   name: "contact-name-input",
-  company: "contact-company-input",
   email: "contact-email-input",
   phone: "contact-phone-input",
-  projectType: "contact-project-type-input",
-  timeline: "contact-timeline-input",
-  details: "contact-details-input",
+  propertySold: "contact-property-sold-input",
+  estimatedClose: "contact-estimated-close-input",
+  city: "contact-city-input",
+  message: "contact-message-input",
 };
 

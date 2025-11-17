@@ -1,5 +1,6 @@
 import type { ServiceItem } from "./types";
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from "@/lib/constants";
+import { getMergedServices } from "@/lib/merge-batch-data";
 
 const citySlug = PRIMARY_CITY.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
@@ -208,9 +209,12 @@ const planningServices = planningBlueprint.map((item) =>
   )
 );
 
-export const servicesData: ServiceItem[] = [
+const baseServicesData: ServiceItem[] = [
   ...identificationServices,
   ...timelineServices,
   ...planningServices,
 ];
+
+// Merge with batch data
+export const servicesData: ServiceItem[] = getMergedServices(baseServicesData);
 

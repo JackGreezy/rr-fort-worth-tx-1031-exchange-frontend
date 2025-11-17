@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import type { LocationItem } from "@/data/types";
 import SearchInput from "@/components/search/SearchInput";
@@ -28,9 +29,9 @@ export default function HomeServiceArea({ locations }: Props) {
       />
 
       {filtered.length === 0 ? (
-        <div className="rounded-2xl border border-outline bg-secondary/40 p-6 text-center text-sm text-ink/70">
-          We can help with "{query}".{" "}
-          <Link href="/contact?projectType=Other" className="text-primary hover:underline">
+        <div className="rounded-3xl border border-outline/60 bg-secondary/40 p-6 text-center text-sm text-heading">
+          We can help with "{query}". {" "}
+          <Link href="/contact?projectType=Other" className="text-primary underline">
             Contact us with Other selected
           </Link>
           .
@@ -41,11 +42,24 @@ export default function HomeServiceArea({ locations }: Props) {
             <Link
               key={market.slug}
               href={market.route}
-              className="rounded-2xl border border-outline/60 bg-secondary/40 p-5 transition hover:border-primary"
+              className="group overflow-hidden rounded-3xl border border-outline/60 bg-panel shadow-[0_16px_40px_rgba(21,34,59,0.08)] transition hover:-translate-y-1 hover:border-accent"
             >
-              <p className="text-sm uppercase tracking-[0.35em] text-ink/60">Texas metro</p>
-              <h3 className="mt-2 text-2xl font-semibold text-heading">{market.name}</h3>
-              <p className="mt-2 text-sm text-ink/75">1031 exchange support in {market.name}</p>
+              {market.heroImage && (
+                <div className="relative h-40 w-full">
+                  <Image
+                    src={market.heroImage}
+                    alt={`${market.name} commercial real estate`}
+                    fill
+                    className="object-cover transition group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                </div>
+              )}
+              <div className="p-5">
+                <p className="text-xs uppercase tracking-[0.32em] text-heading/60">Texas metro</p>
+                <h3 className="mt-2 text-xl font-semibold text-heading">{market.name}</h3>
+                <p className="mt-2 text-sm text-ink/80">1031 exchange support in {market.name}</p>
+              </div>
             </Link>
           ))}
         </div>

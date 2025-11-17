@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
@@ -8,14 +8,16 @@ import StickyCta from "@/components/StickyCta";
 import { SITE_URL } from "@/lib/constants";
 import { getContactPointSchema, getWebsiteSchema } from "@/lib/seo";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfair = Playfair_Display({
   subsets: ["latin"],
+  variable: "--font-playfair",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -37,7 +39,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`}>
+      <body className={`${inter.variable} ${playfair.variable} flex min-h-screen flex-col bg-paper text-ink antialiased`}>
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

@@ -19,7 +19,7 @@ export default function PropertyTypesPage() {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-10">
+      <div className="container mx-auto space-y-10">
         <Breadcrumbs items={breadcrumbs} />
         <header className="space-y-4">
           <h1 className="text-4xl font-semibold text-heading">Replacement property types</h1>

@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
   return (
     <div className="bg-panel py-16">
-      <div className="container space-y-8">
+      <div className="container mx-auto space-y-8">
         <Breadcrumbs items={breadcrumbs} />
         <h1 className="text-4xl font-semibold text-heading">Privacy policy</h1>
         <div className="space-y-6 rounded-2xl border border-outline bg-secondary/40 p-6">
