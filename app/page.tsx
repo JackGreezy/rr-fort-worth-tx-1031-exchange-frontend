@@ -26,37 +26,31 @@ const exchangeServices = [
     slug: "forward-exchange",
     name: "Forward Exchange",
     description: "Sell your property first, then acquire replacement property within 180 days.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-1.jpg",
   },
   {
     slug: "reverse-exchange",
     name: "Reverse Exchange",
     description: "Acquire replacement property before selling your relinquished property.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-2.jpg",
   },
   {
     slug: "delayed-exchange",
     name: "Delayed Exchange",
     description: "The most common type - identify replacement property within 45 days of sale.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-3.jpg",
   },
   {
     slug: "improvement-exchange",
     name: "Improvement Exchange",
     description: "Use exchange funds to make improvements on the replacement property.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-4.jpg",
   },
   {
-    slug: "build-to-suit",
+    slug: "build-to-suit-exchange",
     name: "Build-to-Suit Exchange",
     description: "Construct new improvements on land using your exchange proceeds.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-1.jpg",
   },
   {
-    slug: "dst-placement",
+    slug: "dst-placement-readiness",
     name: "DST Placement",
     description: "Invest in institutional-quality Delaware Statutory Trust properties.",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-2.jpg",
   },
 ];
 
@@ -201,23 +195,16 @@ export default function Home() {
                   href={`/services/${service.slug}`}
                   className="group"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/30" />
-                    <span className="absolute right-3 top-3 bg-accent px-2 py-1 text-[9px] font-medium tracking-[0.15em] text-primary">
+                  <div className="border border-outline/30 bg-panel p-5 transition hover:border-primary/30">
+                    <span className="inline-block bg-accent px-2 py-1 text-[9px] font-medium tracking-[0.15em] text-primary mb-3">
                       1031 SERVICE
                     </span>
-                  </div>
-                  <div className="mt-3">
                     <p className="font-serif text-lg text-primary group-hover:text-accent">{service.name}</p>
                     <p className="mt-1 text-xs text-ink/60 line-clamp-2">
                       {service.description}
+                    </p>
+                    <p className="mt-3 text-[10px] font-medium tracking-[0.15em] text-accent">
+                      LEARN MORE &rarr;
                     </p>
                   </div>
                 </Link>
@@ -290,7 +277,7 @@ export default function Home() {
             <div className="flex gap-4">
               <div className="relative mt-10 aspect-[3/4] w-1/2 overflow-hidden">
                 <Image
-                  src="/fort-worth-texas-1031-exchange-homepage-hero-1.jpg"
+                  src="/locations/fort-worth/fort-worth-tx.webp"
                   alt="Fort Worth skyline"
                   fill
                   className="object-cover"
@@ -299,7 +286,7 @@ export default function Home() {
                     </div>
               <div className="relative aspect-[3/4] w-1/2 overflow-hidden">
                 <Image
-                  src="/fort-worth-texas-1031-exchange-homepage-hero-2.jpg"
+                  src="/locations/dallas/dallas-tx.webp"
                   alt="Fort Worth real estate"
                   fill
                   className="object-cover"
@@ -337,7 +324,7 @@ export default function Home() {
         <section className="relative py-20 lg:py-28">
           <div className="absolute inset-0">
             <Image
-              src="/fort-worth-texas-1031-exchange-homepage-hero-3.jpg"
+              src="/locations/arlington/arlington-tx.jpg"
               alt="Fort Worth"
               fill
               className="object-cover"
@@ -350,13 +337,10 @@ export default function Home() {
             <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
               {/* Left: Branding */}
               <div className="text-center lg:text-left">
-                          <Image
-                  src="/1031-exchange-fort-worth-tx-logo.png"
-                  alt="Fort Worth 1031 Exchange"
-                  width={100}
-                  height={100}
-                  className="mx-auto mb-4 h-20 w-auto opacity-60 lg:mx-0"
-                />
+                <div className="mb-4 flex items-baseline gap-2 justify-center lg:justify-start">
+                  <span className="font-serif text-5xl tracking-[0.08em] text-white opacity-60 md:text-6xl" style={{ fontWeight: 300 }}>FW</span>
+                  <span className="font-serif text-2xl tracking-[0.12em] text-white/50 md:text-3xl" style={{ fontWeight: 300 }}>1031</span>
+                </div>
                 <p className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl" style={{ fontWeight: 300 }}>FORT WORTH</p>
                 <p className="font-serif text-xl tracking-[0.15em] text-accent md:text-2xl" style={{ fontWeight: 300 }}>1031 EXCHANGE</p>
               </div>
@@ -429,7 +413,7 @@ export default function Home() {
         <section className="relative py-24 lg:py-36">
           <div className="absolute inset-0">
             <Image
-              src="/fort-worth-texas-1031-exchange-homepage-hero-4.jpg"
+              src="/locations/plano/plano-tx.webp"
               alt="Fort Worth"
               fill
               className="object-cover"

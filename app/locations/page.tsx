@@ -7,35 +7,25 @@ import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "1031 Exchange Service Areas | Fort Worth Focus",
-  description: "Search Fort Worth neighborhoods and nearby districts where we help investors identify 1031 replacement properties.",
+  title: "1031 Exchange Service Areas | Fort Worth Metro",
+  description: "Search Fort Worth neighborhoods and nearby cities where we help investors identify 1031 replacement properties.",
   path: "/locations",
 });
 
 export default function LocationsPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Locations", href: "/locations" },
+    { label: "Neighborhoods", href: "/locations" },
   ];
 
-  const cities = locationsData.filter(l => l.type === "city");
-  const districts = locationsData.filter(l => l.type === "district" || l.type === "suburb");
+  const featured = locationsData.slice(0, 6);
+  const remaining = locationsData.slice(6);
 
   return (
     <div className="bg-paper">
-      {/* Hero Section */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0">
-          <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-3.jpg"
-            alt="Fort Worth"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+      {/* Hero */}
+      <section className="bg-primary py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
           <Breadcrumbs items={breadcrumbs} className="text-white/70" />
           <h1 className="mt-6 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
             SERVICE AREAS
@@ -46,15 +36,15 @@ export default function LocationsPage() {
         </div>
       </section>
 
-      {/* Featured Cities Grid */}
+      {/* Featured Cities - Image Grid */}
       <section className="py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
-          <h2 className="font-serif text-3xl italic text-primary md:text-4xl">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
             FEATURED CITIES
           </h2>
-          
+
           <div className="mt-8 grid grid-cols-1 gap-1 md:grid-cols-3">
-            {cities.slice(0, 6).map((location) => (
+            {featured.map((location) => (
               <Link
                 key={location.slug}
                 href={location.route}
@@ -86,22 +76,40 @@ export default function LocationsPage() {
         </div>
       </section>
 
-      {/* All Locations List */}
-      <section className="bg-secondary/50 py-14 lg:py-20">
+      {/* Remaining Cities */}
+      <section className="border-t border-outline/30 py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
-          <h2 className="font-serif text-3xl italic text-primary md:text-4xl">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
             ALL SERVICE AREAS
           </h2>
-          
-          <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {locationsData.map((location) => (
+
+          <div className="mt-8 grid grid-cols-1 gap-1 md:grid-cols-3">
+            {remaining.map((location) => (
               <Link
                 key={location.slug}
                 href={location.route}
-                className="border-b border-outline/30 py-3 text-sm text-primary transition hover:border-primary hover:text-accent"
+                className="group relative aspect-[4/3] overflow-hidden"
               >
-                {location.name}
-                <span className="ml-2 text-[10px] uppercase text-ink/40">{location.type}</span>
+                {location.heroImage && (
+                  <Image
+                    src={location.heroImage}
+                    alt={location.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h3 className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl" style={{ fontWeight: 300 }}>
+                    {location.name.toUpperCase()}
+                  </h3>
+                  <div className="mt-4 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="border border-white px-4 py-2 text-[10px] tracking-[0.2em] text-white">
+                      EXPLORE
+                    </span>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>

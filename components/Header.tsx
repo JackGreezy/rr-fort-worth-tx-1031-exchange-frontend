@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import clsx from "clsx";
 import site from "@/content/site.json";
 
@@ -12,9 +11,9 @@ const exchangeServices = [
   { slug: "reverse-exchange", name: "Reverse Exchange" },
   { slug: "delayed-exchange", name: "Delayed Exchange" },
   { slug: "improvement-exchange", name: "Improvement Exchange" },
-  { slug: "build-to-suit", name: "Build-to-Suit Exchange" },
-  { slug: "dst-placement", name: "DST Placement" },
-  { slug: "qualified-intermediary", name: "Qualified Intermediary Services" },
+  { slug: "build-to-suit-exchange", name: "Build-to-Suit Exchange" },
+  { slug: "dst-placement-readiness", name: "DST Placement" },
+  { slug: "qualified-intermediary-services", name: "Qualified Intermediary Services" },
   { slug: "property-identification", name: "Property Identification" },
 ];
 
@@ -23,6 +22,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const headerRef = useRef<HTMLElement | null>(null);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
+  const mobileOverlayRef = useRef<HTMLDivElement | null>(null);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const cancelCloseTimeout = () => {
@@ -47,7 +47,9 @@ export default function Header() {
     function handleClick(event: MouseEvent) {
       const target = event.target as Node;
       if (!headerRef.current) return;
+      // Don't close anything if clicking inside the header or the mobile overlay
       if (headerRef.current.contains(target)) return;
+      if (mobileOverlayRef.current && mobileOverlayRef.current.contains(target)) return;
       setMobileMenuOpen(false);
       if (dropdownRef.current && !dropdownRef.current.contains(target)) {
         cancelCloseTimeout();
@@ -72,19 +74,17 @@ export default function Header() {
   };
 
   return (
+    <>
     <header ref={headerRef} className="fixed left-0 right-0 top-0 z-50 bg-paper/90 backdrop-blur-sm">
       <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/1031-exchange-fort-worth-tx-logo.png"
-            alt={site.company}
-            width={120}
-            height={36}
-            className="h-9 w-auto object-contain md:h-10"
-            priority
-            unoptimized
-          />
+        <Link href="/" className="flex items-baseline gap-1.5">
+          <span className="font-serif text-3xl tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+            FW
+          </span>
+          <span className="font-serif text-lg tracking-[0.12em] text-primary/70 md:text-xl" style={{ fontWeight: 300 }}>
+            1031
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -195,10 +195,13 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Full Screen Mobile Menu */}
+    </header>
+
+      {/* Full Screen Mobile Menu - outside header for proper z-stacking */}
       <div
+        ref={mobileOverlayRef}
         className={clsx(
-          "fixed inset-0 top-0 bg-paper transition-all duration-500",
+          "fixed inset-0 z-[60] bg-paper transition-all duration-500",
           mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
         )}
       >
@@ -237,6 +240,13 @@ export default function Header() {
             PROPERTY TYPES
           </Link>
           <Link
+            href="/inventory"
+            className="font-serif text-2xl font-light tracking-[0.1em] text-primary transition hover:text-accent md:text-3xl"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            INVENTORY
+          </Link>
+          <Link
             href="/tools"
             className="font-serif text-2xl font-light tracking-[0.1em] text-primary transition hover:text-accent md:text-3xl"
             onClick={() => setMobileMenuOpen(false)}
@@ -259,6 +269,6 @@ export default function Header() {
           </Link>
         </nav>
       </div>
-    </header>
+    </>
   );
 }

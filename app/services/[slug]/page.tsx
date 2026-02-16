@@ -46,191 +46,245 @@ export default async function ServicePage({ params }: { params: Params }) {
     { label: getShortServiceName(service.slug), href: `/services/${service.slug}` },
   ];
 
-  // Use batch FAQs if available, otherwise fallback to generated FAQs
   const faqs = batchData?.faqs
     ? batchData.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
     : buildFaqs(service.name);
   const isTripleNetService = /nnn/i.test(service.slug);
 
   return (
-    <div className="bg-panel py-16">
-      <div className="container mx-auto space-y-10">
-        <Breadcrumbs items={breadcrumbs} />
-        <header className="space-y-4 rounded-2xl border border-outline bg-secondary/40 p-6">
-          <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{service.category || "Service"}</p>
-          <h1 className="text-4xl font-semibold text-heading">{getShortServiceName(service.slug)}</h1>
-          <p className="text-base text-ink/85">{service.short}</p>
-          <div className="flex flex-wrap gap-3">
+    <div className="bg-paper">
+      {/* Hero */}
+      <section className="bg-primary py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <Breadcrumbs items={breadcrumbs} className="text-white/70" />
+          <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+            {service.category || "1031 Service"}
+          </p>
+          <h1 className="mt-3 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
+            {getShortServiceName(service.slug)}
+          </h1>
+          <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">
+            {service.short}
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
             <a
               href={`tel:${site.phoneDigits}`}
-              className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.3em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold"
+              className="bg-accent px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-accent/90"
             >
-              Call Now
+              CALL NOW
             </a>
             <ScrollToIdButton
               targetId="service-contact-form"
-              className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:bg-primary/10"
+              className="border border-white/50 px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
             >
-              Get In Touch
+              GET IN TOUCH
             </ScrollToIdButton>
-            <Link
-              href={`/contact?projectType=${encodeURIComponent(service.name)}#contact-form`}
-              className="inline-flex items-center justify-center rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-heading transition hover:border-primary hover:bg-primary/5"
-            >
-              Contact Form
-            </Link>
           </div>
-        </header>
+        </div>
+      </section>
 
-        {batchData?.mainDescription && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
+      {/* Main Description */}
+      {batchData?.mainDescription && (
+        <section className="py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
             <div
-              className="prose prose-sm max-w-none text-ink/90 prose-headings:text-heading prose-p:text-ink/80 prose-strong:text-heading"
+              className="prose prose-lg max-w-none text-ink/80 prose-headings:font-serif prose-headings:font-light prose-headings:tracking-wide prose-headings:text-primary prose-p:leading-relaxed prose-strong:text-primary"
               dangerouslySetInnerHTML={{ __html: batchData.mainDescription }}
             />
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        {batchData?.inclusions && batchData.inclusions.length > 0 && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">What's included</h2>
-            <ul className="space-y-2 text-sm text-ink/80">
+      {/* Inclusions */}
+      {batchData?.inclusions && batchData.inclusions.length > 0 && (
+        <section className="border-t border-outline/30 bg-paper py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              WHAT&apos;S INCLUDED
+            </h2>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
               {batchData.inclusions.map((inclusion, index) => (
-                <li key={index}>• {inclusion}</li>
+                <div key={index} className="flex items-start gap-3 border-b border-outline/20 pb-4">
+                  <span className="mt-1 text-accent">&#9656;</span>
+                  <p className="text-sm leading-relaxed text-ink/70">{inclusion}</p>
+                </div>
               ))}
-            </ul>
-          </section>
-        )}
+            </div>
+          </div>
+        </section>
+      )}
 
-        {batchData?.commonSituations && batchData.commonSituations.length > 0 && (
-          <section className="rounded-2xl border border-outline bg-secondary/40 p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">Common situations</h2>
-            <ul className="space-y-3 text-sm text-ink/80">
+      {/* Common Situations */}
+      {batchData?.commonSituations && batchData.commonSituations.length > 0 && (
+        <section className="bg-primary py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl" style={{ fontWeight: 300 }}>
+              COMMON SITUATIONS
+            </h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
               {batchData.commonSituations.map((situation, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="mr-2 text-primary">•</span>
-                  <span>{situation}</span>
-                </li>
+                <div key={index} className="flex items-start gap-3">
+                  <span className="mt-0.5 text-accent">{String(index + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-relaxed text-white/80">{situation}</p>
+                </div>
               ))}
-            </ul>
-          </section>
-        )}
+            </div>
+          </div>
+        </section>
+      )}
 
-        <RelatedServices services={related} currentService={service.name} />
-
-        <section className="rounded-2xl border border-outline bg-secondary/40 p-6">
-          <h2 className="text-2xl font-semibold text-heading">Questions we answer often</h2>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+      {/* FAQs */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+            QUESTIONS WE ANSWER OFTEN
+          </h2>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
             {faqs.map((faq) => (
-              <article key={faq.q} className="rounded-xl border border-outline/60 bg-panel p-4">
-                <h3 className="text-base font-semibold text-heading">{faq.q}</h3>
-                <p className="mt-2 text-sm text-ink/80">{faq.a}</p>
+              <article key={faq.q} className="border-l-2 border-accent pl-5">
+                <h3 className="font-serif text-lg text-primary" style={{ fontWeight: 400 }}>{faq.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/70">{faq.a}</p>
               </article>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {batchData?.exampleCapability && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">Example engagement</h2>
-            <div className="space-y-4 text-sm text-ink/80">
-              <p className="text-xs text-ink/60 italic">{batchData.exampleCapability.disclaimer}</p>
-              <div>
-                <p className="font-semibold text-heading">Service Type:</p>
-                <p>{batchData.exampleCapability.serviceType}</p>
-              </div>
+      {/* Example Engagement */}
+      {batchData?.exampleCapability && (
+        <section className="border-t border-outline/30 bg-paper py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              EXAMPLE ENGAGEMENT
+            </h2>
+            <p className="mt-2 text-xs italic text-ink/50">{batchData.exampleCapability.disclaimer}</p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {batchData.exampleCapability.serviceType && (
+                <div>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Service Type</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.serviceType}</p>
+                </div>
+              )}
               {batchData.exampleCapability.location && (
                 <div>
-                  <p className="font-semibold text-heading">Location:</p>
-                  <p>{batchData.exampleCapability.location}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Location</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.location}</p>
                 </div>
               )}
               {batchData.exampleCapability.scope && (
                 <div>
-                  <p className="font-semibold text-heading">Scope:</p>
-                  <p>{batchData.exampleCapability.scope}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Scope</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.scope}</p>
                 </div>
               )}
               {batchData.exampleCapability.clientSituation && (
                 <div>
-                  <p className="font-semibold text-heading">Client Situation:</p>
-                  <p>{batchData.exampleCapability.clientSituation}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Client Situation</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.clientSituation}</p>
                 </div>
               )}
               {batchData.exampleCapability.ourApproach && (
                 <div>
-                  <p className="font-semibold text-heading">Our Approach:</p>
-                  <p>{batchData.exampleCapability.ourApproach}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Our Approach</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.ourApproach}</p>
                 </div>
               )}
               {batchData.exampleCapability.expectedOutcome && (
                 <div>
-                  <p className="font-semibold text-heading">Expected Outcome:</p>
-                  <p>{batchData.exampleCapability.expectedOutcome}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Expected Outcome</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.expectedOutcome}</p>
                 </div>
               )}
-              {batchData.exampleCapability.contactCTA && (
-                <p className="mt-4 text-base text-ink/90">{batchData.exampleCapability.contactCTA}</p>
-              )}
             </div>
-          </section>
-        )}
+            {batchData.exampleCapability.contactCTA && (
+              <p className="mt-8 text-sm text-ink/80">{batchData.exampleCapability.contactCTA}</p>
+            )}
+          </div>
+        </section>
+      )}
 
-        <IdentificationRules />
+      {/* Related Services */}
+      <section className="border-t border-outline/30 py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <RelatedServices services={related} currentService={service.name} />
+        </div>
+      </section>
 
-        {isTripleNetService && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading">Triple net lease clarity</h2>
-            <p className="text-sm text-ink/80">
+      <IdentificationRules />
+
+      {/* Triple Net Section */}
+      {isTripleNetService && (
+        <section className="bg-primary py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl" style={{ fontWeight: 300 }}>
+              TRIPLE NET LEASE CLARITY
+            </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/80">
               Triple net (NNN) leases let a creditworthy tenant take on taxes, insurance, and maintenance so you can focus on collecting rent.
               We prioritize operators across {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}, and nationwide who need stability without daily property management.
             </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              <article className="rounded-xl border border-outline/60 bg-secondary/30 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-ink/70">Absolute NNN</p>
-                <p className="text-sm text-ink/80">
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              <div className="border-t border-white/20 pt-5">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Absolute NNN</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
                   Corporate-guaranteed, 10–20+ year leases that cede every expense to the tenant. Own the property, collect escalation-protected rent, and sleep easy.
                 </p>
-              </article>
-              <article className="rounded-xl border border-outline/60 bg-secondary/30 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-ink/70">Regular NNN</p>
-                <p className="text-sm text-ink/80">
+              </div>
+              <div className="border-t border-white/20 pt-5">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Regular NNN</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
                   Tenants pay net taxes, insurance, and CAM while you cover limited items like roof or parking when required. The lease still keeps landlord involvement minimal.
                 </p>
-              </article>
-              <article className="rounded-xl border border-outline/60 bg-secondary/30 p-4">
-                <p className="text-xs uppercase tracking-[0.35em] text-ink/70">Ground & sale-leasebacks</p>
-                <p className="text-sm text-ink/80">
+              </div>
+              <div className="border-t border-white/20 pt-5">
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Ground & Sale-Leasebacks</p>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">
                   Fee-simple ground leases lock in 20–99 year land income while corrections build improvements, and sale-leasebacks turn occupier equity into passive cash flow.
                 </p>
-              </article>
+              </div>
             </div>
-            <ul className="mt-6 list-disc space-y-2 pl-5 text-sm text-ink/80">
-              <li>Tenants are chosen for creditworthiness, location strength, and lease duration to stay profitable even during downturns.</li>
-              <li>Steady monthly income with annual escalations, CPI bumps, and documented rent locks cuts owner risk.</li>
-              <li>Passive holdings pair well with 1031 exchange planning, cost segregation, and other tax-deferral plays.</li>
-              <li>Diversify by geography, tenant type, asset class, and cap rate while you remain hands-off.</li>
-            </ul>
-            <p className="mt-4 text-xs text-ink/70">
-              Because the tenant covers the heavy lifting, the only material landlord responsibilities tend to be structural, roof, or parking in select leases.
-              That makes NNN investments one of the most stable, recession-resilient paths we source for exchange investors.
-            </p>
-          </section>
-        )}
-
-        <ContactForm
-          formId="service-contact-form"
-          heading="Share your timeline"
-          description="Tell us about your relinquished asset, target project type, and lender expectations."
-          prefillProjectType={service.name}
-        />
-
-        {batchData?.complianceNote && (
-          <div className="rounded-lg border border-outline/60 bg-secondary/30 p-4">
-            <p className="text-xs text-ink/70">{batchData.complianceNote}</p>
           </div>
-        )}
-      </div>
+        </section>
+      )}
+
+      {/* Contact Form */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <ContactForm
+            formId="service-contact-form"
+            heading="Share your timeline"
+            description="Tell us about your relinquished asset, target project type, and lender expectations."
+            prefillProjectType={service.name}
+          />
+        </div>
+      </section>
+
+      {/* Compliance Note */}
+      {batchData?.complianceNote && (
+        <div className="border-t border-outline/30 py-8">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <p className="text-xs text-ink/50">{batchData.complianceNote}</p>
+          </div>
+        </div>
+      )}
+
+      {/* CTA */}
+      <section className="bg-primary py-14 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
+          <h2 className="font-serif text-3xl text-white md:text-4xl" style={{ fontWeight: 300 }}>
+            Ready to Start Your Exchange?
+          </h2>
+          <p className="mt-4 text-sm text-white/70">
+            Our team is ready to help you navigate the 1031 exchange process with confidence.
+          </p>
+          <Link
+            href="/contact"
+            className="mt-8 inline-block border border-white px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
+          >
+            CONTACT US
+          </Link>
+        </div>
+      </section>
 
       <Script
         type="application/ld+json"
@@ -267,4 +321,3 @@ function buildFaqs(serviceName: string) {
     },
   ];
 }
-

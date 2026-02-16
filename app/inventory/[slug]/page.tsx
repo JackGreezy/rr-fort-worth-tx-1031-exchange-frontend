@@ -12,7 +12,6 @@ import { getInventoryBatchData } from "@/lib/batch-data";
 
 type Params = Promise<{ slug: string }> | { slug: string };
 
-// Combine inventory categories and property types for static params
 export function generateStaticParams() {
   const categorySlugs = inventoryCategories.map((cat) => ({ slug: cat.slug }));
   const propertyTypeSlugs = propertyTypesData.map((pt) => ({ slug: pt.slug }));
@@ -23,7 +22,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const resolvedParams = await params;
   const category = inventoryCategories.find((cat) => cat.slug === resolvedParams.slug);
   const propertyType = propertyTypesData.find((pt) => pt.slug === resolvedParams.slug);
-  
+
   const item = category || propertyType;
   if (!item) return {};
 
@@ -38,7 +37,7 @@ export default async function InventorySlugPage({ params }: { params: Params }) 
   const resolvedParams = await params;
   const category = inventoryCategories.find((cat) => cat.slug === resolvedParams.slug);
   const propertyType = propertyTypesData.find((pt) => pt.slug === resolvedParams.slug);
-  
+
   if (!category && !propertyType) notFound();
 
   const item = category || propertyType!;
@@ -52,10 +51,8 @@ export default async function InventorySlugPage({ params }: { params: Params }) 
     { label: item.name, href: item.route },
   ];
 
-  // Get related property types if this is a category
   const relatedPropertyTypes = isCategory
     ? propertyTypesData.filter((pt) => {
-        // Map category types to property types
         const categoryMap: Record<string, string[]> = {
           nnn: ["pharmacy", "convenience-store-gas", "drive-thru-qsr"],
           retail: ["dollar-store", "coffee-drive-thru", "auto-parts-retail", "telecom-wireless-retail"],
@@ -69,86 +66,115 @@ export default async function InventorySlugPage({ params }: { params: Params }) 
     : [];
 
   return (
-    <div className="bg-panel py-16">
-      <div className="container mx-auto space-y-10">
-        <Breadcrumbs items={breadcrumbs} />
-
-        <header className="relative overflow-hidden rounded-2xl border border-outline bg-secondary/40">
-          {category?.heroImage && (
-            <div className="relative h-64 w-full md:h-80">
+    <div className="bg-paper">
+      {/* Hero */}
+      <section className="relative bg-primary py-20 lg:py-28">
+        {category?.heroImage && (
+          <>
+            <div className="absolute inset-0">
               <Image
                 src={category.heroImage}
                 alt={`${item.name} properties`}
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                sizes="100vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-panel/90 via-panel/50 to-transparent" />
+              <div className="absolute inset-0 bg-black/55" />
             </div>
-          )}
-          <div className="space-y-4 p-6">
-            <h1 className="text-4xl font-semibold text-heading">{item.name}</h1>
-            {category?.note && (
-              <p className="text-base text-ink/80">{category.note}</p>
-            )}
-            {spotlightItem?.copy && (
-              <p className="text-base text-ink/80">{spotlightItem.copy}</p>
-            )}
-            {!category?.note && !spotlightItem?.copy && (
-              <p className="text-base text-ink/80">
-                Browse {item.name.toLowerCase()} properties suitable for 1031 exchange replacement property identification in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} and nationwide.
-              </p>
-            )}
-            <div className="pt-4">
-              <InventoryCTA variant="compact" propertyType={item.name} />
-            </div>
-          </div>
-        </header>
-
-        {spotlightItem?.note && (
-          <div className="rounded-lg border border-outline/60 bg-secondary/30 p-4">
-            <p className="text-xs text-ink/70">{spotlightItem.note}</p>
-          </div>
+          </>
         )}
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <Breadcrumbs items={breadcrumbs} className="text-white/70" />
+          <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+            {isCategory ? "Property Category" : "Property Type"}
+          </p>
+          <h1 className="mt-3 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
+            {item.name}
+          </h1>
+          {category?.note && (
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">{category.note}</p>
+          )}
+          {spotlightItem?.copy && (
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">{spotlightItem.copy}</p>
+          )}
+          {!category?.note && !spotlightItem?.copy && (
+            <p className="mt-4 max-w-2xl text-base leading-relaxed text-white/80">
+              Browse {item.name.toLowerCase()} properties suitable for 1031 exchange replacement property identification in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} and nationwide.
+            </p>
+          )}
+          <div className="mt-8">
+            <InventoryCTA variant="compact" propertyType={item.name} />
+          </div>
+        </div>
+      </section>
 
-        {isCategory && relatedPropertyTypes.length > 0 && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">Property types in this category</h2>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {/* Spotlight Note */}
+      {spotlightItem?.note && (
+        <div className="border-b border-outline/30 py-6">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <p className="text-xs text-ink/50">{spotlightItem.note}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Property Types in Category */}
+      {isCategory && relatedPropertyTypes.length > 0 && (
+        <section className="py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              PROPERTY TYPES
+            </h2>
+            <p className="mt-2 text-sm text-ink/60">Specific property types within this category.</p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {relatedPropertyTypes.map((pt) => (
                 <Link
                   key={pt.slug}
                   href={pt.route}
-                  className="rounded-xl border border-outline/60 bg-secondary/30 p-4 hover:border-primary transition"
+                  className="group border-b border-outline/20 pb-5"
                 >
-                  <h3 className="text-lg font-semibold text-heading">{pt.name}</h3>
-                  <p className="mt-2 text-sm text-ink/80">View {pt.name.toLowerCase()} inventory</p>
+                  <h3 className="font-serif text-lg text-primary group-hover:text-accent" style={{ fontWeight: 400 }}>
+                    {pt.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink/60">View {pt.name.toLowerCase()} inventory</p>
+                  <p className="mt-2 text-[10px] font-medium tracking-[0.15em] text-accent">
+                    BROWSE &rarr;
+                  </p>
                 </Link>
               ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        {!isCategory && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">About {item.name}</h2>
-            <div className="prose prose-sm max-w-none text-ink/80">
+      {/* About This Property Type */}
+      {!isCategory && (
+        <section className="py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              ABOUT {item.name.toUpperCase()}
+            </h2>
+            <div className="mt-6 max-w-3xl space-y-4 text-sm leading-relaxed text-ink/70">
               <p>
-                {item.name} properties offer strong fundamentals for 1031 exchange investors seeking replacement properties. 
+                {item.name} properties offer strong fundamentals for 1031 exchange investors seeking replacement properties.
                 These assets provide stable income streams and long-term lease commitments ideal for tax-deferred exchanges.
               </p>
               <p>
-                Our nationwide property identification network helps investors in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} 
+                Our nationwide property identification network helps investors in {PRIMARY_CITY}, {PRIMARY_STATE_ABBR}{" "}
                 locate {item.name.toLowerCase()} replacement properties that meet IRS like-kind requirements and investment objectives.
               </p>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        <section className="rounded-2xl border border-outline bg-secondary/40 p-6">
-          <h2 className="text-2xl font-semibold text-heading mb-4">Related inventory</h2>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {/* Related Inventory */}
+      <section className="bg-primary py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl" style={{ fontWeight: 300 }}>
+            RELATED INVENTORY
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {inventoryCategories
               .filter((cat) => cat.slug !== resolvedParams.slug)
               .slice(0, 6)
@@ -156,26 +182,39 @@ export default async function InventorySlugPage({ params }: { params: Params }) 
                 <Link
                   key={cat.slug}
                   href={cat.route}
-                  className="rounded-xl border border-outline/60 bg-panel p-4 hover:border-primary transition"
+                  className="group border-t border-white/20 pt-5"
                 >
-                  <h3 className="text-lg font-semibold text-heading">{cat.name}</h3>
-                  {cat.note && <p className="mt-2 text-sm text-ink/80">{cat.note}</p>}
+                  <h3 className="font-serif text-lg text-white group-hover:text-accent" style={{ fontWeight: 400 }}>
+                    {cat.name}
+                  </h3>
+                  {cat.note && <p className="mt-1 text-sm text-white/60 line-clamp-2">{cat.note}</p>}
+                  <p className="mt-2 text-[10px] font-medium tracking-[0.15em] text-accent">
+                    BROWSE &rarr;
+                  </p>
                 </Link>
               ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <InventoryCTA variant="hero" propertyType={item.name} urgency="deadline" />
+      {/* CTA */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <InventoryCTA variant="hero" propertyType={item.name} urgency="deadline" />
+        </div>
+      </section>
 
-        <div className="flex flex-wrap gap-4 justify-center">
+      {/* Back to Inventory */}
+      <section className="border-t border-outline/30 py-10">
+        <div className="mx-auto max-w-7xl px-6 text-center md:px-10 lg:px-14">
           <Link
             href="/inventory"
-            className="rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-heading hover:border-primary hover:bg-primary/10 transition"
+            className="inline-block border border-primary px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-primary hover:text-white"
           >
-            View all inventory
+            VIEW ALL INVENTORY
           </Link>
         </div>
-      </div>
+      </section>
 
       <Script
         id="inventory-slug-breadcrumbs"
@@ -185,4 +224,3 @@ export default async function InventorySlugPage({ params }: { params: Params }) 
     </div>
   );
 }
-

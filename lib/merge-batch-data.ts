@@ -9,51 +9,37 @@ import * as serviceBatches03 from "@/data/batches/services/batch-03";
 import type { LocationItem, ServiceItem } from "@/data/types";
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from "@/lib/constants";
 
-// Mapping of location slugs to their image file extensions
-const locationImageExtensions: Record<string, string> = {
-  'allen': 'jpg',
-  'arlington': 'jpg',
-  'bedford': 'webp',
-  'carrollton': 'jpeg',
-  'colleyville': 'jpeg',
-  'coppell': 'jpg',
-  'dallas': 'jpg',
-  'denton': 'png',
-  'euless': 'jpg',
-  'flower-mound': 'jpg',
-  'fort-worth': 'jpg',
-  'frisco': 'jpeg',
-  'garland': 'jpg',
-  'grand-prairie': 'jpg',
-  'grapevine': 'jpg',
-  'haltom-city': 'jpg',
-  'halton-city': 'jpg', // Handle typo in batch-04
-  'hurst': 'jpg',
-  'irving': 'webp',
-  'keller': 'jpg',
-  'lake-worth': 'jpg',
-  'lewisville': 'png',
-  'mckinney': 'jpeg',
-  'mesquite': 'jpg',
-  'north-richland-hills': 'jpg',
-  'plano': 'jpg',
-  'richardson': 'jpeg',
-  'river-oaks': 'jpg',
-  'saginaw': 'jpg',
-  'sansom-park': 'jpg',
-  'southlake': 'jpg',
-  'watauga': 'jpg',
-  'westworth-village': 'jpg',
-  'white-settlement': 'jpg',
+// Mapping of location slugs to their image file paths inside /locations/{slug}/
+const locationImageFiles: Record<string, string> = {
+  'arlington': 'arlington-tx.jpg',
+  'carrollton': 'carrollton.jpg',
+  'coppell': 'coppell-tx.jpg',
+  'dallas': 'dallas-tx.webp',
+  'denton': 'denton-tx.jpg',
+  'euless': 'euless-tx.jpg',
+  'flower-mound': 'flower-mound-tx.jpeg',
+  'fort-worth': 'fort-worth-tx.webp',
+  'frisco': 'frisco-tx.jpg',
+  'garland': 'garland-tx.jpeg',
+  'grand-prairie': 'grand-prairie-tx.avif',
+  'grapevine': 'grapevine-tx.jpg',
+  'hurst': 'hurst-tx.jpeg',
+  'irving': 'irving-tx.jpg',
+  'keller': 'keller-tx.jpeg',
+  'lewisville': 'lewisville-tx.webp',
+  'mckinney': 'mckinney-tx.webp',
+  'plano': 'plano-tx.webp',
+  'richardson': 'richardson-tx.jpg',
+  'southlake': 'southlake-tx.jpeg',
 };
 
 // Helper to get image path for a location
 function getLocationImagePath(slug: string): string | undefined {
   // Handle typo in batch-04 (halton-city should be haltom-city)
   const normalizedSlug = slug === 'halton-city' ? 'haltom-city' : slug;
-  const ext = locationImageExtensions[normalizedSlug];
-  if (!ext) return undefined;
-  return `/locations/1031-exchange-${normalizedSlug}-tx.${ext}`;
+  const file = locationImageFiles[normalizedSlug];
+  if (!file) return undefined;
+  return `/locations/${normalizedSlug}/${file}`;
 }
 
 // Extract all location slugs from batch files and create LocationItem objects

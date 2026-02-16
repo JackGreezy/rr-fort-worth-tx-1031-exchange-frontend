@@ -1,5 +1,5 @@
 import Script from "next/script";
-import Image from "next/image";
+
 import Link from "next/link";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
@@ -12,63 +12,54 @@ const exchangeServices = [
     name: "Forward Exchange",
     description: "Sell your property first, then acquire replacement property within 180 days. The most straightforward exchange structure.",
     category: "Exchange Types",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-1.jpg",
   },
   {
     slug: "reverse-exchange",
     name: "Reverse Exchange",
     description: "Acquire replacement property before selling your relinquished property. Ideal when timing is critical.",
     category: "Exchange Types",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-2.jpg",
   },
   {
     slug: "delayed-exchange",
     name: "Delayed Exchange",
     description: "The most common type - identify replacement property within 45 days of sale and close within 180 days.",
     category: "Exchange Types",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-3.jpg",
   },
   {
     slug: "improvement-exchange",
     name: "Improvement Exchange",
     description: "Use exchange funds to make improvements on the replacement property before taking title.",
     category: "Exchange Types",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-4.jpg",
   },
   {
-    slug: "build-to-suit",
+    slug: "build-to-suit-exchange",
     name: "Build-to-Suit Exchange",
     description: "Construct new improvements on land using your exchange proceeds. Perfect for custom developments.",
     category: "Exchange Types",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-1.jpg",
   },
   {
-    slug: "dst-placement",
+    slug: "dst-placement-readiness",
     name: "DST Placement",
     description: "Invest in institutional-quality Delaware Statutory Trust properties for passive income.",
     category: "Investment Options",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-2.jpg",
   },
   {
-    slug: "qualified-intermediary",
+    slug: "qualified-intermediary-services",
     name: "Qualified Intermediary Services",
     description: "Expert QI coordination to hold your funds and ensure IRS compliance throughout the exchange.",
     category: "Support Services",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-3.jpg",
   },
   {
     slug: "property-identification",
     name: "Property Identification",
     description: "Strategic guidance on identifying replacement properties within the 45-day window using IRS rules.",
     category: "Support Services",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-4.jpg",
   },
   {
-    slug: "timeline-management",
+    slug: "fort-worth-45-day-sprint",
     name: "Timeline Management",
     description: "Dedicated tracking and reminders to keep your 45-day and 180-day deadlines on schedule.",
     category: "Support Services",
-    image: "/fort-worth-texas-1031-exchange-homepage-hero-1.jpg",
   },
 ];
 
@@ -87,17 +78,7 @@ export default function ServicesPage() {
   return (
     <div className="bg-paper">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0">
-          <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-1.jpg"
-            alt="Fort Worth"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
+      <section className="relative py-20 lg:py-28 bg-primary">
         <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
           <Breadcrumbs items={breadcrumbs} className="text-white/70" />
           <h1 className="mt-6 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
@@ -120,20 +101,10 @@ export default function ServicesPage() {
                 className="group"
               >
                 <article className="overflow-hidden border border-outline/30 bg-panel transition hover:border-primary/30">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={service.image}
-                      alt={service.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-black/20" />
-                    <span className="absolute right-3 top-3 bg-accent px-2 py-1 text-[9px] font-medium tracking-[0.15em] text-primary">
+                  <div className="p-5">
+                    <span className="inline-block bg-accent px-2 py-1 text-[9px] font-medium tracking-[0.15em] text-primary mb-3">
                       {service.category.toUpperCase()}
                     </span>
-                  </div>
-                  <div className="p-5">
                     <h2 className="font-serif text-xl text-primary group-hover:text-accent" style={{ fontWeight: 400 }}>
                       {service.name}
                     </h2>

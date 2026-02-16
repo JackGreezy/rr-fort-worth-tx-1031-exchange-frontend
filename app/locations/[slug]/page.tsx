@@ -38,172 +38,263 @@ export default async function LocationPage({ params }: { params: Params }) {
   const batchData = getLocationBatchData(location.slug);
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Locations", href: "/locations" },
+    { label: "Neighborhoods", href: "/locations" },
     { label: location.name, href: `/locations/${location.slug}` },
   ];
 
-  // Use batch FAQs if available, otherwise fallback to generated FAQs
   const faq = batchData?.faqs
     ? batchData.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
     : buildFaq(location.name);
 
-  // Use popularPaths from batch data if available, otherwise use featured services
   const popularPaths = batchData?.popularPaths || [];
   const featuredServices = servicesData.slice(0, 4);
 
+  const otherLocations = locationsData
+    .filter((l) => l.slug !== location.slug)
+    .slice(0, 6);
+
   return (
-    <div className="bg-panel py-16">
-      <div className="container mx-auto space-y-10">
-        <Breadcrumbs items={breadcrumbs} />
-        <header className="relative overflow-hidden rounded-2xl border border-outline bg-secondary/40">
-          {location.heroImage && (
-            <div className="relative h-64 w-full md:h-80">
-              <Image
-                src={location.heroImage}
-                alt={`${location.name} commercial real estate`}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-panel/90 via-panel/50 to-transparent" />
-            </div>
-          )}
-          <div className="space-y-4 p-6">
-            <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{location.type}</p>
-            <h1 className="text-4xl font-semibold text-heading">{location.name} 1031 exchange support</h1>
-            {batchData?.mainDescription ? (
-              <div
-                className="prose prose-sm max-w-none text-ink/80 prose-headings:text-heading prose-p:text-ink/80 prose-strong:text-heading"
-                dangerouslySetInnerHTML={{ __html: batchData.mainDescription }}
-              />
-            ) : (
-              <p className="text-base text-ink/80">
+    <div className="bg-paper">
+      {/* Hero */}
+      <section className="relative bg-primary py-20 lg:py-28">
+        {location.heroImage && (
+          <div className="absolute inset-0">
+            <Image
+              src={location.heroImage}
+              alt={`${location.name} commercial real estate`}
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-black/55" />
+          </div>
+        )}
+        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <Breadcrumbs items={breadcrumbs} className="text-white/70" />
+          <p className="mt-6 text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+            {location.type || "Service Area"}
+          </p>
+          <h1 className="mt-3 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
+            {location.name.toUpperCase()}
+          </h1>
+          <p className="mt-1 font-serif text-xl text-accent md:text-2xl" style={{ fontWeight: 300 }}>
+            1031 EXCHANGE
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a
+              href={`tel:${site.phoneDigits}`}
+              className="bg-accent px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-accent/90"
+            >
+              CALL NOW
+            </a>
+            <Link
+              href="/contact"
+              className="border border-white/50 px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
+            >
+              GET IN TOUCH
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Description */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          {batchData?.mainDescription ? (
+            <div
+              className="prose prose-lg max-w-none text-ink/80 prose-headings:font-serif prose-headings:font-light prose-headings:tracking-wide prose-headings:text-primary prose-p:leading-relaxed prose-strong:text-primary"
+              dangerouslySetInnerHTML={{ __html: batchData.mainDescription }}
+            />
+          ) : (
+            <div className="max-w-3xl space-y-4 text-sm leading-relaxed text-ink/70">
+              <p>
                 We keep investors in {location.name} plugged into replacement property inventory from {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} to all 50 states.
                 Timeline management, underwriting, and sourcing updates deliver weekly so you stay ahead of the 45 day clock.
               </p>
-            )}
-          </div>
-        </header>
+            </div>
+          )}
+        </div>
+      </section>
 
-        {batchData?.popularPaths && batchData.popularPaths.length > 0 ? (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading">Popular paths for {location.name} investors</h2>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              {batchData.popularPaths.map((path) => {
+      {/* Popular Paths / Featured Services */}
+      {popularPaths.length > 0 ? (
+        <section className="bg-primary py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl" style={{ fontWeight: 300 }}>
+              POPULAR PATHS FOR {location.name.toUpperCase()} INVESTORS
+            </h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {popularPaths.map((path) => {
                 const href =
                   path.type === "service"
                     ? `/services/${path.slug}`
                     : path.type === "propertyType"
-                      ? `/property-types/${path.slug}`
+                      ? `/inventory/${path.slug}`
                       : "#";
                 return (
-                  <article key={`${path.type}-${path.slug}`} className="rounded-xl border border-outline/60 bg-secondary/30 p-4">
-                    <p className="text-xs uppercase tracking-[0.35em] text-ink/60">
-                      {path.type === "service" ? "Service" : path.type === "propertyType" ? "Property Type" : "Path"}
+                  <Link
+                    key={`${path.type}-${path.slug}`}
+                    href={href}
+                    className="group border-t border-white/20 pt-5"
+                  >
+                    <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                      {path.type === "service" ? "Service" : "Property Type"}
                     </p>
-                    <h3 className="mt-2 text-lg font-semibold text-heading">{path.name}</h3>
-                    <p className="mt-1 text-sm text-ink/80">{path.whyPopular}</p>
-                    {href !== "#" && (
-                      <Link href={href} className="mt-3 inline-flex text-xs uppercase tracking-[0.35em] text-primary">
-                        View details
-                      </Link>
-                    )}
-                  </article>
+                    <h3 className="mt-2 font-serif text-lg text-white group-hover:text-accent" style={{ fontWeight: 400 }}>
+                      {path.name}
+                    </h3>
+                    <p className="mt-1 text-sm text-white/60">{path.whyPopular}</p>
+                  </Link>
                 );
               })}
             </div>
-          </section>
-        ) : (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading">Focused services</h2>
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
+          </div>
+        </section>
+      ) : (
+        <section className="bg-primary py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl" style={{ fontWeight: 300 }}>
+              FOCUSED SERVICES
+            </h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
               {featuredServices.map((service) => (
-                <article key={service.slug} className="rounded-xl border border-outline/60 bg-secondary/30 p-4">
-                  <p className="text-xs uppercase tracking-[0.35em] text-ink/60">{service.category || "Service"}</p>
-                  <h3 className="mt-2 text-lg font-semibold text-heading">{getShortServiceName(service.slug)}</h3>
-                  <p className="mt-1 text-sm text-ink/80">{service.short}</p>
-                  <Link href={service.route} className="mt-3 inline-flex text-xs uppercase tracking-[0.35em] text-primary">
-                    View details
-                  </Link>
-                </article>
+                <Link
+                  key={service.slug}
+                  href={service.route}
+                  className="group border-t border-white/20 pt-5"
+                >
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                    {service.category || "Service"}
+                  </p>
+                  <h3 className="mt-2 font-serif text-lg text-white group-hover:text-accent" style={{ fontWeight: 400 }}>
+                    {getShortServiceName(service.slug)}
+                  </h3>
+                  <p className="mt-1 text-sm text-white/60">{service.short}</p>
+                </Link>
               ))}
             </div>
             <Link
               href="/services"
-              className="mt-6 inline-flex rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.35em] text-heading"
+              className="mt-8 inline-block border border-white/50 px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
             >
-              View all services
+              VIEW ALL SERVICES
             </Link>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        {batchData?.exampleCapability && (
-          <section className="rounded-2xl border border-outline bg-panel p-6">
-            <h2 className="text-2xl font-semibold text-heading mb-4">Example engagement</h2>
-            <div className="space-y-4 text-sm text-ink/80">
-              <p className="text-xs text-ink/60 italic">{batchData.exampleCapability.disclaimer}</p>
+      {/* Example Engagement */}
+      {batchData?.exampleCapability && (
+        <section className="border-t border-outline/30 py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              EXAMPLE ENGAGEMENT
+            </h2>
+            <p className="mt-2 text-xs italic text-ink/50">{batchData.exampleCapability.disclaimer}</p>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {batchData.exampleCapability.location && (
                 <div>
-                  <p className="font-semibold text-heading">Location:</p>
-                  <p>{batchData.exampleCapability.location}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Location</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.location}</p>
                 </div>
               )}
               {batchData.exampleCapability.situation && (
                 <div>
-                  <p className="font-semibold text-heading">Situation:</p>
-                  <p>{batchData.exampleCapability.situation}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Situation</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.situation}</p>
                 </div>
               )}
               {batchData.exampleCapability.ourApproach && (
                 <div>
-                  <p className="font-semibold text-heading">Our Approach:</p>
-                  <p>{batchData.exampleCapability.ourApproach}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Our Approach</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.ourApproach}</p>
                 </div>
               )}
               {batchData.exampleCapability.expectedOutcome && (
                 <div>
-                  <p className="font-semibold text-heading">Expected Outcome:</p>
-                  <p>{batchData.exampleCapability.expectedOutcome}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Expected Outcome</p>
+                  <p className="mt-1 text-sm text-ink/70">{batchData.exampleCapability.expectedOutcome}</p>
                 </div>
               )}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        <section className="rounded-2xl border border-outline bg-secondary/40 p-6">
-          <h2 className="text-2xl font-semibold text-heading">Questions investors ask</h2>
-          <div className="mt-4 grid gap-4 md:grid-cols-2">
+      {/* FAQs */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+            QUESTIONS INVESTORS ASK
+          </h2>
+          <div className="mt-8 grid gap-8 md:grid-cols-2">
             {faq.map((item, index) => (
-              <article key={item.q || index} className="rounded-xl border border-outline/60 bg-panel p-4">
-                <h3 className="text-base font-semibold text-heading">{item.q}</h3>
-                <p className="mt-2 text-sm text-ink/80">{item.a}</p>
+              <article key={item.q || index} className="border-l-2 border-accent pl-5">
+                <h3 className="font-serif text-lg text-primary" style={{ fontWeight: 400 }}>{item.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/70">{item.a}</p>
               </article>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={`tel:${site.phoneDigits}`}
-            className="inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-xs font-bold uppercase tracking-[0.3em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold"
-          >
-            Call Now
-          </a>
+      {/* Other Locations */}
+      <section className="border-t border-outline/30 py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+            OTHER SERVICE AREAS
+          </h2>
+          <div className="mt-8 grid grid-cols-1 gap-1 md:grid-cols-3">
+            {otherLocations.map((loc) => (
+              <Link
+                key={loc.slug}
+                href={loc.route}
+                className="group relative aspect-[4/3] overflow-hidden"
+              >
+                {loc.heroImage && (
+                  <Image
+                    src={loc.heroImage}
+                    alt={loc.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                )}
+                <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                  <h3 className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl" style={{ fontWeight: 300 }}>
+                    {loc.name.toUpperCase()}
+                  </h3>
+                  <div className="mt-4 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="border border-white px-4 py-2 text-[10px] tracking-[0.2em] text-white">
+                      EXPLORE
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-primary py-14 lg:py-20">
+        <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
+          <h2 className="font-serif text-3xl text-white md:text-4xl" style={{ fontWeight: 300 }}>
+            Ready to Start Your Exchange?
+          </h2>
+          <p className="mt-4 text-sm text-white/70">
+            Our team is ready to help you navigate the 1031 exchange process with confidence.
+          </p>
           <Link
-            href="/contact#contact-form"
-            className="inline-flex items-center justify-center rounded-full border-2 border-primary px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:bg-primary/10"
+            href="/contact"
+            className="mt-8 inline-block border border-white px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
           >
-            Get In Touch
-          </Link>
-          <Link
-            href="/locations"
-            className="inline-flex items-center justify-center rounded-full border border-outline px-6 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-heading transition hover:border-primary hover:bg-primary/5"
-          >
-            View all locations
+            CONTACT US
           </Link>
         </div>
-      </div>
+      </section>
 
       <Script
         id="location-breadcrumbs"
@@ -234,4 +325,3 @@ function buildFaq(name: string) {
     },
   ];
 }
-

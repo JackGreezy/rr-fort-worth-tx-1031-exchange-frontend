@@ -21,6 +21,19 @@ export const createPageMetadata = ({ title, description, path }: MetadataArgs): 
   alternates: {
     canonical: `${SITE_URL}${path}`,
   },
+  openGraph: {
+    title,
+    description,
+    url: `${SITE_URL}${path}`,
+    siteName: COMPANY_NAME,
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
+  },
 });
 
 export const getBreadcrumbJsonLd = (items: Array<{ label: string; href: string }>) => ({

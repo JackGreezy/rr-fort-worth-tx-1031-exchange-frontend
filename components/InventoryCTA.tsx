@@ -8,7 +8,7 @@ type InventoryCTAProps = {
 };
 
 export default function InventoryCTA({ variant = "default", propertyType, urgency }: InventoryCTAProps) {
-  const ctaText = propertyType 
+  const ctaText = propertyType
     ? `Claim ${propertyType} Properties Now`
     : urgency === "deadline"
     ? "Secure Your Replacement Property Today"
@@ -22,24 +22,26 @@ export default function InventoryCTA({ variant = "default", propertyType, urgenc
 
   if (variant === "compact") {
     return (
-      <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-outline/60 bg-gold/10 p-4">
-        <div className="flex-1 min-w-[200px]">
-          <p className="text-sm font-semibold text-heading">{ctaText}</p>
-          <p className="mt-1 text-xs text-ink/70">{description}</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <a
-            href={`tel:${site.phoneDigits}`}
-            className="inline-flex items-center justify-center rounded-full bg-gold px-5 py-2.5 text-xs font-bold uppercase tracking-[0.3em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold"
-          >
-            Call Now
-          </a>
-          <Link
-            href="/contact#contact-form"
-            className="inline-flex items-center justify-center rounded-full border border-primary px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:bg-primary/10"
-          >
-            Get In Touch
-          </Link>
+      <div className="border border-white/20 bg-white/10 px-6 py-5">
+        <div className="flex flex-wrap items-center gap-6">
+          <div className="min-w-[200px] flex-1">
+            <p className="font-serif text-lg text-white" style={{ fontWeight: 400 }}>{ctaText}</p>
+            <p className="mt-1 text-sm text-white/70">{description}</p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`tel:${site.phoneDigits}`}
+              className="bg-accent px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-accent/90"
+            >
+              CALL NOW
+            </a>
+            <Link
+              href="/contact#contact-form"
+              className="border border-white/50 px-6 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
+            >
+              GET IN TOUCH
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -47,54 +49,65 @@ export default function InventoryCTA({ variant = "default", propertyType, urgenc
 
   if (variant === "hero") {
     return (
-      <section className="rounded-3xl bg-gradient-to-br from-primary via-primary to-gold/80 py-12 px-6 text-primaryfg">
+      <section className="bg-primary py-14 lg:py-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-          <p className="text-xs uppercase tracking-[0.4em] text-primaryfg/80">Limited Inventory Available</p>
-          <h2 className="text-3xl font-semibold md:text-4xl">{ctaText}</h2>
-          <p className="max-w-2xl text-sm text-primaryfg/90">{description}</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+            Limited Inventory Available
+          </p>
+          <h2 className="font-serif text-3xl text-white md:text-4xl" style={{ fontWeight: 300 }}>
+            {ctaText}
+          </h2>
+          <p className="max-w-2xl text-sm text-white/70">{description}</p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <a
               href={`tel:${site.phoneDigits}`}
-              className="inline-flex items-center justify-center rounded-full border border-primaryfg/40 bg-primaryfg px-8 py-3.5 text-xs font-bold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.25)]"
+              className="bg-accent px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-accent/90"
             >
-              Call {site.phone} Now
+              CALL {site.phone} NOW
             </a>
             <Link
               href="/contact#contact-form"
-              className="inline-flex items-center justify-center rounded-full border border-primaryfg/60 px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-primaryfg transition hover:-translate-y-0.5 hover:bg-primaryfg/10"
+              className="border border-white/50 px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
             >
-              Request Inventory Access
+              REQUEST INVENTORY ACCESS
             </Link>
           </div>
-          <p className="text-xs text-primaryfg/70">Monday-Friday: 8am-6pm • Same-day property matching • IRS-compliant</p>
+          <p className="text-xs text-white/50">
+            Monday&ndash;Friday: 8am&ndash;6pm &bull; Same-day property matching &bull; IRS-compliant
+          </p>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="rounded-3xl border-2 border-gold/40 bg-gradient-to-br from-gold/5 via-secondary/30 to-gold/5 py-10 px-6 shadow-[0_20px_48px_rgba(183,147,73,0.15)]">
+    <section className="border border-outline/30 bg-paper py-12 px-6">
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 text-center">
-        <p className="text-xs uppercase tracking-[0.4em] text-primary/70">Act Fast — Inventory Moves Quickly</p>
-        <h2 className="text-2xl font-semibold text-heading md:text-3xl">{ctaText}</h2>
-        <p className="max-w-2xl text-sm text-ink/80">{description}</p>
+        <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+          Act Fast &mdash; Inventory Moves Quickly
+        </p>
+        <h2 className="font-serif text-3xl text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+          {ctaText}
+        </h2>
+        <p className="max-w-2xl text-sm text-ink/70">{description}</p>
         <div className="flex flex-col gap-3 sm:flex-row">
           <a
             href={`tel:${site.phoneDigits}`}
-            className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-3.5 text-xs font-bold uppercase tracking-[0.3em] text-ink transition hover:-translate-y-0.5 hover:shadow-gold"
+            className="bg-accent px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-accent/90"
           >
-            Call {site.phone} Now
+            CALL {site.phone} NOW
           </a>
           <Link
             href="/contact#contact-form"
-            className="inline-flex items-center justify-center rounded-full border-2 border-primary px-8 py-3.5 text-xs font-semibold uppercase tracking-[0.3em] text-primary transition hover:-translate-y-0.5 hover:bg-primary/10"
+            className="border border-primary px-8 py-3 text-[10px] font-medium tracking-[0.2em] text-primary transition hover:bg-primary hover:text-white"
           >
-            Get In Touch
+            GET IN TOUCH
           </Link>
         </div>
-        <p className="text-xs text-ink/60">Response within 2 hours • Free property matching • No obligation</p>
+        <p className="text-xs text-ink/50">
+          Response within 2 hours &bull; Free property matching &bull; No obligation
+        </p>
       </div>
     </section>
   );
 }
-

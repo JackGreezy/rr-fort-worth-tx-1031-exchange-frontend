@@ -10,8 +10,9 @@ import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 import { getInventoryBatchData } from "@/lib/batch-data";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "1031 Exchange Inventory",
-  description: "Browse replacement property categories and types for 1031 exchanges.",
+  title: "1031 Exchange Property Inventory | Fort Worth",
+  description:
+    "Browse replacement property categories and types for 1031 exchanges in Fort Worth and nationwide.",
   path: "/inventory",
 });
 
@@ -24,98 +25,190 @@ export default function InventoryPage() {
   const inventorySpotlight = getInventoryBatchData();
 
   return (
-    <div className="bg-panel py-16">
-      <div className="container mx-auto space-y-10">
-        <Breadcrumbs items={breadcrumbs} />
-        <header className="space-y-6">
-          <div>
-            <h1 className="text-4xl font-semibold text-heading">1031 Exchange Property Inventory</h1>
-            <p className="mt-3 text-base text-ink/80">
-              Browse replacement property types suitable for 1031 exchanges. We provide nationwide property identification for single tenant retail, NNN properties, and more.
-            </p>
+    <div className="bg-paper">
+      {/* Hero */}
+      <section className="bg-primary py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <Breadcrumbs items={breadcrumbs} className="text-white/70" />
+          <h1
+            className="mt-6 font-serif text-4xl text-white md:text-5xl lg:text-6xl"
+            style={{ fontWeight: 300 }}
+          >
+            PROPERTY INVENTORY
+          </h1>
+          <p className="mt-4 max-w-2xl text-base text-white/80">
+            Browse replacement property categories and types suitable for 1031
+            exchanges. Nationwide property identification for single tenant
+            retail, NNN properties, and more.
+          </p>
+          <div className="mt-8">
+            <InventoryCTA variant="compact" urgency="deadline" />
           </div>
-          <InventoryCTA variant="compact" urgency="deadline" />
-        </header>
+        </div>
+      </section>
 
-        {inventorySpotlight && inventorySpotlight.length > 0 && (
-          <section>
-            <h2 className="text-2xl font-semibold text-heading mb-6">Property spotlights</h2>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Property Spotlights */}
+      {inventorySpotlight && inventorySpotlight.length > 0 && (
+        <section className="py-14 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2
+              className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl"
+              style={{ fontWeight: 300 }}
+            >
+              PROPERTY SPOTLIGHTS
+            </h2>
+            <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {inventorySpotlight.map((spotlight, index) => (
                 <Link
                   key={spotlight.type || index}
                   href={spotlight.href || "#"}
-                  className="group overflow-hidden rounded-2xl border border-outline bg-panel p-6 transition hover:border-primary"
+                  className="group border-t border-outline/30 pt-5"
                 >
-                  <h3 className="text-xl font-semibold text-heading">{spotlight.title}</h3>
-                  <p className="mt-2 text-sm text-ink/80">{spotlight.copy}</p>
+                  <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                    Spotlight
+                  </p>
+                  <h3
+                    className="mt-2 font-serif text-lg text-primary group-hover:text-accent"
+                    style={{ fontWeight: 400 }}
+                  >
+                    {spotlight.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-ink/60 line-clamp-2">
+                    {spotlight.copy}
+                  </p>
                   {spotlight.ctaLabel && (
-                    <p className="mt-4 text-xs font-semibold uppercase tracking-[0.35em] text-primary">
-                      {spotlight.ctaLabel} →
+                    <p className="mt-3 text-[10px] font-medium tracking-[0.15em] text-accent">
+                      {spotlight.ctaLabel} &rarr;
                     </p>
                   )}
                   {spotlight.note && (
-                    <p className="mt-2 text-xs text-ink/60 italic">{spotlight.note}</p>
+                    <p className="mt-2 text-xs italic text-ink/50">
+                      {spotlight.note}
+                    </p>
                   )}
                 </Link>
               ))}
             </div>
-          </section>
-        )}
+          </div>
+        </section>
+      )}
 
-        <section>
-          <h2 className="text-2xl font-semibold text-heading mb-6">Property categories</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Property Categories - Image Grid */}
+      <section className="border-t border-outline/30 py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2
+            className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl"
+            style={{ fontWeight: 300 }}
+          >
+            PROPERTY CATEGORIES
+          </h2>
+          <p className="mt-2 text-sm text-ink/60">
+            Major asset classes available for 1031 exchange replacement property
+            identification.
+          </p>
+
+          <div className="mt-8 grid grid-cols-1 gap-1 md:grid-cols-3">
             {inventoryCategories.map((category) => (
-              <Link key={category.slug} href={category.route} className="group overflow-hidden rounded-2xl border border-outline bg-panel transition hover:border-primary">
+              <Link
+                key={category.slug}
+                href={category.route}
+                className="group relative aspect-[4/3] overflow-hidden"
+              >
                 {category.heroImage && (
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={category.heroImage}
-                      alt={`${category.name} properties`}
-                      fill
-                      className="object-cover transition group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
+                  <Image
+                    src={category.heroImage}
+                    alt={`${category.name} properties`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
                 )}
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-heading">{category.name}</h3>
-                  {category.note && <p className="mt-2 text-sm text-ink/80">{category.note}</p>}
+                <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+                  <h3
+                    className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl"
+                    style={{ fontWeight: 300 }}
+                  >
+                    {category.name.toUpperCase()}
+                  </h3>
+                  {category.note && (
+                    <p className="mt-2 max-w-xs text-xs text-white/70 line-clamp-2">
+                      {category.note}
+                    </p>
+                  )}
+                  <div className="mt-4 opacity-0 transition-opacity group-hover:opacity-100">
+                    <span className="border border-white px-4 py-2 text-[10px] tracking-[0.2em] text-white">
+                      EXPLORE
+                    </span>
+                  </div>
                 </div>
               </Link>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section>
-          <h2 className="text-2xl font-semibold text-heading mb-6">Property types</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* All Property Types */}
+      <section className="bg-primary py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <h2
+            className="font-serif text-3xl uppercase tracking-[0.08em] text-white md:text-4xl"
+            style={{ fontWeight: 300 }}
+          >
+            ALL PROPERTY TYPES
+          </h2>
+          <p className="mt-2 text-sm text-white/60">
+            Specific property types available for replacement property sourcing.
+          </p>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {propertyTypesData.map((propertyType) => (
-              <Link key={propertyType.slug} href={propertyType.route} className="block rounded-2xl border border-outline bg-panel p-6 hover:border-primary">
-                <h3 className="text-xl font-semibold text-heading">{propertyType.name}</h3>
-                <p className="mt-2 text-sm text-ink/80">Browse {propertyType.name.toLowerCase()} properties for 1031 exchange</p>
+              <Link
+                key={propertyType.slug}
+                href={propertyType.route}
+                className="group border-t border-white/20 pt-4"
+              >
+                <h3
+                  className="font-serif text-base text-white group-hover:text-accent"
+                  style={{ fontWeight: 400 }}
+                >
+                  {propertyType.name}
+                </h3>
+                <p className="mt-1 text-[10px] font-medium uppercase tracking-[0.15em] text-accent">
+                  BROWSE &rarr;
+                </p>
               </Link>
             ))}
           </div>
-        </section>
-
-        <InventoryCTA variant="default" urgency="deadline" />
-
-        <div className="rounded-2xl border border-outline bg-panel p-6 text-sm text-ink/70">
-          <p className="mb-2">
-            <strong>Note:</strong> DST or TIC may be securities. We do not sell securities. We provide introductions to licensed providers only.
-          </p>
-          <p>This site routes inquiries to our chosen fulfillment partner for 1031 exchange advisory and property identification support.</p>
         </div>
-      </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-14 lg:py-20">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <InventoryCTA variant="hero" urgency="deadline" />
+        </div>
+      </section>
+
+      {/* Disclaimer */}
+      <section className="border-t border-outline/30 py-10">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+          <p className="text-xs text-ink/50">
+            <strong className="text-ink/70">Note:</strong> DST or TIC may be
+            securities. We do not sell securities. We provide introductions to
+            licensed providers only. This site routes inquiries to our chosen
+            fulfillment partner for 1031 exchange advisory and property
+            identification support.
+          </p>
+        </div>
+      </section>
 
       <Script
         id="inventory-breadcrumbs"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(getBreadcrumbJsonLd(breadcrumbs)) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getBreadcrumbJsonLd(breadcrumbs)),
+        }}
       />
     </div>
   );
 }
-

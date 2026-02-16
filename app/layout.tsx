@@ -56,7 +56,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} flex min-h-screen flex-col bg-paper text-ink antialiased`}>
         <Header />
-        <div className="flex-1">{children}</div>
+        <div className="flex-1 pt-16">{children}</div>
         <Footer />
         <StickyCta />
         <Analytics />

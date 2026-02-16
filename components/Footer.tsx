@@ -1,6 +1,6 @@
 import Link from "next/link";
 import site from "@/content/site.json";
-import { resources, toolsData, servicesData, locationsData } from "@/data";
+import { resources, toolsData, locationsData } from "@/data";
 import type { LocationItem } from "@/data/types";
 import {
   COMPANY_NAME,
@@ -12,7 +12,18 @@ import {
   PRIMARY_STATE_ABBR,
   SITE_URL,
 } from "@/lib/constants";
-import { getShortServiceName } from "@/lib/service-names";
+
+const footerServices = [
+  { name: "Forward Exchange", href: "/services/forward-exchange" },
+  { name: "Reverse Exchange", href: "/services/reverse-exchange" },
+  { name: "Delayed Exchange", href: "/services/delayed-exchange" },
+  { name: "Improvement Exchange", href: "/services/improvement-exchange" },
+  { name: "Build-to-Suit Exchange", href: "/services/build-to-suit-exchange" },
+  { name: "DST Placement", href: "/services/dst-placement-readiness" },
+  { name: "Qualified Intermediary", href: "/services/qualified-intermediary-services" },
+  { name: "Property Identification", href: "/services/property-identification" },
+  { name: "Timeline Management", href: "/services/fort-worth-45-day-sprint" },
+];
 
 const sitemapLinks = [
   { label: "Services", href: "/services" },
@@ -105,16 +116,15 @@ export default function Footer() {
 
           {/* Services - takes 5 columns */}
           <section className="space-y-4 lg:col-span-5 lg:border-l lg:border-white/10 lg:pl-8">
-            <h4 className="text-base font-semibold text-white">All Services</h4>
+            <h4 className="text-base font-semibold text-white">Services</h4>
             <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-xs">
-              {servicesData.map((service) => (
+              {footerServices.map((service) => (
                 <Link
-                  key={service.slug}
-                  href={service.route}
-                  className="text-primaryfg/80 transition hover:text-white whitespace-nowrap overflow-hidden text-ellipsis"
-                  title={service.name}
+                  key={service.href}
+                  href={service.href}
+                  className="text-primaryfg/80 transition hover:text-white"
                 >
-                  {getShortServiceName(service.slug)}
+                  {service.name}
                 </Link>
               ))}
             </div>
