@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 
 const heroImages = [
-  '/fort-worth-texas-1031-exchange-homepage-hero-1.jpg',
-  '/fort-worth-texas-1031-exchange-homepage-hero-2.jpg',
-  '/fort-worth-texas-1031-exchange-homepage-hero-3.jpg',
-  '/fort-worth-texas-1031-exchange-homepage-hero-4.jpg',
+  '/locations/fort-worth/fort-worth-tx.webp',
+  '/locations/dallas/dallas-tx.webp',
+  '/locations/arlington/arlington-tx.jpg',
+  '/locations/plano/plano-tx.webp',
 ];
 
 export default function RotatingHeroBackground() {

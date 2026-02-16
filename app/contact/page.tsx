@@ -26,7 +26,7 @@ export default function ContactPage() {
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-4.jpg"
+            src="/locations/fort-worth/fort-worth-tx.webp"
             alt="Fort Worth"
             fill
             className="object-cover"

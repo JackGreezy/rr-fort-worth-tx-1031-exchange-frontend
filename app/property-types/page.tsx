@@ -24,7 +24,7 @@ export default function PropertyTypesPage() {
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-1.jpg"
+            src="/locations/fort-worth/fort-worth-tx.webp"
             alt="Property Types"
             fill
             className="object-cover"
@@ -50,10 +50,7 @@ export default function PropertyTypesPage() {
             INVENTORY CATEGORIES
           </h2>
           <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {inventoryCategories.map((category, index) => {
-              const imageIndex = (index % 4) + 1;
-              const imageSrc = `/fort-worth-texas-1031-exchange-homepage-hero-${imageIndex}.jpg`;
-              
+            {inventoryCategories.map((category) => {
               return (
                 <Link
                   key={category.slug}
@@ -63,7 +60,7 @@ export default function PropertyTypesPage() {
                   <article className="overflow-hidden border border-outline/30 bg-panel transition hover:border-primary/30">
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image
-                        src={category.heroImage || imageSrc}
+                        src={category.heroImage || "/locations/fort-worth/fort-worth-tx.webp"}
                         alt={category.name}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-105"

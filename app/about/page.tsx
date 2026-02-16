@@ -39,7 +39,7 @@ export default function AboutPage() {
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-2.jpg"
+            src="/locations/dallas/dallas-tx.webp"
             alt="Fort Worth"
             fill
             className="object-cover"
@@ -64,7 +64,7 @@ export default function AboutPage() {
           <div className="flex gap-4">
             <div className="relative mt-10 aspect-[3/4] w-1/2 overflow-hidden">
               <Image
-                src="/fort-worth-texas-1031-exchange-homepage-hero-1.jpg"
+                src="/locations/fort-worth/fort-worth-tx.webp"
                 alt="Fort Worth skyline"
                 fill
                 className="object-cover"
@@ -73,7 +73,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[3/4] w-1/2 overflow-hidden">
               <Image
-                src="/fort-worth-texas-1031-exchange-homepage-hero-3.jpg"
+                src="/locations/arlington/arlington-tx.jpg"
                 alt="Fort Worth real estate"
                 fill
                 className="object-cover"

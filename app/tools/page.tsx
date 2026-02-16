@@ -66,7 +66,7 @@ export default function ToolsIndexPage() {
       <section className="relative py-20 lg:py-28">
         <div className="absolute inset-0">
           <Image
-            src="/fort-worth-texas-1031-exchange-homepage-hero-2.jpg"
+            src="/locations/dallas/dallas-tx.webp"
             alt="Tools"
             fill
             className="object-cover"
