@@ -21,18 +21,8 @@ export default function PropertyTypesPage() {
   return (
     <div className="bg-paper">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-28">
-        <div className="absolute inset-0">
-          <Image
-            src="/locations/fort-worth/fort-worth-tx.webp"
-            alt="Property Types"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-black/50" />
-        </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+      <section className="bg-primary py-20 lg:py-28">
+        <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
           <Breadcrumbs items={breadcrumbs} className="text-white/70" />
           <h1 className="mt-6 font-serif text-4xl text-white md:text-5xl lg:text-6xl" style={{ fontWeight: 300 }}>
             PROPERTY TYPES
