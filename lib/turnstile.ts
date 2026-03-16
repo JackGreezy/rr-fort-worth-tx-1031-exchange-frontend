@@ -33,4 +33,3 @@ export async function verifyTurnstile(token: string, remoteip?: string) {
     return false
   }
 }
-

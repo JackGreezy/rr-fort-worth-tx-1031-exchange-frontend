@@ -1,15 +1,7 @@
-'use client';
+"use client";
 
-import { Suspense, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import clsx from "clsx";
-import {
-  CONTACT_EMAIL,
-  CONTACT_PHONE,
-  CONTACT_PHONE_DIGITS,
-} from "@/lib/constants";
-import { servicesData } from "@/data/services";
-import { getShortServiceName } from "@/lib/service-names";
+import { useState, useEffect, Suspense, useRef } from "react";
+import { FormEvent } from "react";
 
 declare global {
   interface Window {
@@ -23,11 +15,6 @@ declare global {
   }
 }
 
-const TURNSTILE_SCRIPT_ID = "cf-turnstile-script";
-const TURNSTILE_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
-const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
-
-// Utility to load Turnstile script exactly once
 function loadTurnstile(): Promise<void> {
   if (typeof window === "undefined") return Promise.resolve();
   if (window._turnstileLoaded) return Promise.resolve();
@@ -41,502 +28,252 @@ function loadTurnstile(): Promise<void> {
       return resolve();
     }
     const s = document.createElement("script");
-    s.src = TURNSTILE_SRC;
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
     s.async = true;
     s.defer = true;
-    s.onload = () => {
-      window._turnstileLoaded = true;
-      resolve();
-    };
-    s.onerror = () => {
-      console.error("Failed to load Turnstile script");
-      reject(new Error("Turnstile script failed to load"));
-    };
+    s.onload = () => { window._turnstileLoaded = true; resolve(); };
+    s.onerror = () => reject(new Error("Turnstile script failed to load"));
     document.head.appendChild(s);
   });
 }
 
-type ContactFormProps = {
-  heading?: string;
-  description?: string;
-  variant?: "default" | "compact";
-  formId?: string;
-  prefillProjectType?: string;
-};
-
-type FormState = {
+type FormData = {
   name: string;
-  company: string;
   email: string;
   phone: string;
   projectType: string;
+  city: string;
   property: string;
   estimatedCloseDate: string;
-  city: string;
+  company: string;
   timeline: string;
-  details: string;
+  message: string;
 };
 
-const defaultState: FormState = {
-  name: "",
-  company: "",
-  email: "",
-  phone: "",
-  projectType: "",
-  property: "",
-  estimatedCloseDate: "",
-  city: "",
-  timeline: "",
-  details: "",
-};
-
-// Base project types
-const baseProjectTypes = [
-  'Multifamily Property Identification',
-  'Industrial Property Search',
-  'Triple Net Retail Properties',
-  'Medical Office Buildings',
-  'Self Storage Facilities',
-  'Hospitality Assets',
-  'Land Development Sites',
-  'Mixed Use Properties',
-  'Exchange Timeline Planning',
-  'Qualified Intermediary Coordination',
-  'Reverse Exchange Setup',
-  'Construction Exchange Oversight',
-  'CPA and Attorney Alignment',
-  'Other'
-];
-
-// Get all service names from servicesData
-const allServiceNames = servicesData.map(service => getShortServiceName(service.slug));
-
-// Combine base types with service names, removing duplicates
-const getAllProjectTypes = (customType?: string): string[] => {
-  const types = new Set([...baseProjectTypes, ...allServiceNames]);
-  if (customType && customType.trim()) {
-    types.add(customType.trim());
-  }
-  return Array.from(types).sort();
-};
-
-function ContactFormInner({
-  heading = "Start your Fort Worth 1031 exchange",
-  description = "Share your transaction timeline and we will coordinate a call with our exchange desk.",
-  variant = "default",
-  formId = "contact-form",
-  prefillProjectType,
-  projectTypeFromParams,
-}: ContactFormProps & { projectTypeFromParams?: string }) {
-  const [formState, setFormState] = useState<FormState>(defaultState);
+function ContactForm() {
+  const captchaRef = useRef<HTMLDivElement | null>(null);
+  const [formData, setFormData] = useState<FormData>({
+    name: "", email: "", phone: "", projectType: "", city: "",
+    property: "", estimatedCloseDate: "", company: "", timeline: "", message: "",
+  });
+  const [errors, setErrors] = useState<Partial<FormData>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [error, setError] = useState<string | null>(null);
+  const [feedback, setFeedback] = useState("");
   const [turnstileId, setTurnstileId] = useState<string | null>(null);
   const [turnstileReady, setTurnstileReady] = useState(false);
-  const captchaContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
-  // Get projectType from URL params to include in dropdown options
-  const projectTypeParam = projectTypeFromParams || prefillProjectType;
-  
-  // Memoize project types list to include any custom type from URL
-  const projectTypes = getAllProjectTypes(projectTypeParam || undefined);
-
-  useEffect(() => {
-    // Prefill form from URL parameters
-    if (projectTypeParam) {
-      setFormState(prev => ({ ...prev, projectType: projectTypeParam }));
-    }
-  }, [projectTypeParam]);
-
-  // Load Turnstile script
   useEffect(() => {
     let cancelled = false;
     const initTimeout = setTimeout(async () => {
-      if (cancelled) return;
-      if (!TURNSTILE_SITE_KEY) return;
-
+      if (cancelled || !siteKey) return;
       try {
         await loadTurnstile();
-        if (cancelled) return;
-
-        if (!window.turnstile) {
-          console.error("Turnstile API not available");
-          return;
-        }
-
-        if (!captchaContainerRef.current) {
-          console.error("Turnstile ref not mounted");
-          return;
-        }
-
-        const id: string = window.turnstile.render(captchaContainerRef.current, {
-          sitekey: TURNSTILE_SITE_KEY,
+        if (cancelled || !window.turnstile || !captchaRef.current) return;
+        const id: string = window.turnstile.render(captchaRef.current, {
+          sitekey: siteKey,
           size: "normal",
-          callback: () => {
-            setTurnstileReady(true);
-          },
-          "error-callback": () => {
-            console.warn("Turnstile error");
-            setTurnstileReady(false);
-          },
-          "timeout-callback": () => {
-            console.warn("Turnstile timeout");
-            setTurnstileReady(false);
-          },
+          callback: () => setTurnstileReady(true),
+          "error-callback": () => setTurnstileReady(false),
+          "timeout-callback": () => setTurnstileReady(false),
         });
         setTurnstileId(id);
         setTurnstileReady(true);
-        console.log("Turnstile initialized successfully");
       } catch (error) {
         console.error("Failed to initialize Turnstile:", error);
         setTurnstileReady(false);
       }
     }, 500);
+    return () => { cancelled = true; clearTimeout(initTimeout); };
+  }, [siteKey]);
 
-    return () => {
-      cancelled = true;
-      clearTimeout(initTimeout);
-    };
+  useEffect(() => {
+    if (window.location.hash === "#contact-form") {
+      const el = document.getElementById("contact-form");
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+    }
   }, []);
 
-  const handleChange =
-    (field: keyof FormState) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setFormState((prev) => ({ ...prev, [field]: event.target.value }));
-    };
-
-  const validate = () => {
-    if (!formState.name.trim()) return "Name is required";
-    if (!formState.email.trim()) return "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) return "Valid email required";
-    if (!formState.phone.trim()) return "Phone is required";
-    if (!formState.projectType) return "Project type is required";
-    // property, estimatedCloseDate, city, timeline, and details are all optional
-    if (TURNSTILE_SITE_KEY && (!turnstileReady || !window.turnstile || !turnstileId)) {
-      return "Please complete the security verification.";
-    }
-    return null;
+  const handleChange = (field: keyof FormData) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setFormData(prev => ({ ...prev, [field]: e.target.value }));
+    setErrors(prev => ({ ...prev, [field]: undefined }));
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setError(null);
-
-    const validationError = validate();
-    if (validationError) {
-      setError(validationError);
-      return;
+  const validate = (): boolean => {
+    const newErrors: Partial<FormData> = {};
+    if (!formData.name.trim()) newErrors.name = "Required";
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      newErrors.email = "Invalid email";
     }
+    if (!formData.phone.trim()) newErrors.phone = "Required";
+    if (!formData.projectType.trim()) newErrors.projectType = "Required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!validate()) { setFeedback("Please complete all required fields."); return; }
+    setStatus("submitting");
+    setErrors({});
+    setFeedback("");
 
     try {
-      setStatus("submitting");
+      if (siteKey && (!turnstileReady || !window.turnstile || !turnstileId)) {
+        setFeedback("Please complete the security verification.");
+        setStatus("error");
+        return;
+      }
 
-      // Get Turnstile token
       let turnstileToken = '';
-      if (TURNSTILE_SITE_KEY && window.turnstile && turnstileId) {
+      if (siteKey && window.turnstile && turnstileId) {
         try {
-          // Reset before executing to avoid "already executed" error
           window.turnstile.reset(turnstileId);
           turnstileToken = await new Promise<string>((resolve, reject) => {
-            if (!window.turnstile) {
-              reject(new Error("Turnstile not available"));
-              return;
-            }
+            if (!window.turnstile) { reject(new Error("Turnstile not available")); return; }
             window.turnstile.execute(turnstileId, {
-              async: true,
-              action: "form_submit",
+              async: true, action: "form_submit",
               callback: (t: string) => resolve(t),
               "error-callback": () => reject(new Error("turnstile-error")),
               "timeout-callback": () => reject(new Error("turnstile-timeout")),
             });
           });
-        } catch (err) {
-          console.error("Turnstile execution error:", err);
+        } catch {
+          setFeedback("Security verification failed. Please try again.");
           setStatus("error");
-          setError('Security verification failed. Please try again.');
-          if (window.turnstile && turnstileId) {
-            window.turnstile.reset(turnstileId);
-          }
+          if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
           return;
         }
       }
 
-      // Prepare phone number (digits only)
-      const phoneDigits = formState.phone.replace(/\D/g, '');
-
-      // Submit to API
-      const response = await fetch('/api/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: formState.name,
-          company: formState.company,
-          email: formState.email,
-          phone: phoneDigits,
-          projectType: formState.projectType,
-          property: formState.property,
-          estimatedCloseDate: formState.estimatedCloseDate,
-          city: formState.city,
-          timeline: formState.timeline,
-          details: formState.details,
-          'cf-turnstile-response': turnstileToken,
+          name: formData.name, email: formData.email,
+          phone: formData.phone.replace(/\D/g, ''),
+          projectType: formData.projectType, city: formData.city,
+          property: formData.property, estimatedCloseDate: formData.estimatedCloseDate,
+          company: formData.company, timeline: formData.timeline,
+          details: formData.message, turnstileToken,
         }),
       });
 
       if (response.ok) {
+        setFormData({ name: "", email: "", phone: "", projectType: "", city: "", property: "", estimatedCloseDate: "", company: "", timeline: "", message: "" });
+        if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
         setStatus("success");
-        setFormState(defaultState);
-        // Reset turnstile
-        if (window.turnstile && turnstileId) {
-          window.turnstile.reset(turnstileId);
-        }
+        setFeedback("Thank you. An exchange specialist will follow up within one business day.");
       } else {
         const errorData = await response.json().catch(() => ({ error: 'Failed to submit form' }));
+        setFeedback(errorData.error || 'Failed to submit form. Please try again.');
         setStatus("error");
-        setError(errorData.error || 'We could not send that message. Please try again or call us.');
-        // Reset turnstile on error
-        if (window.turnstile && turnstileId) {
-          window.turnstile.reset(turnstileId);
-        }
+        if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
       }
-    } catch (err) {
-      console.error(err);
+    } catch {
+      setFeedback("An error occurred. Please try again or contact us directly.");
       setStatus("error");
-      setError("We could not send that message. Please try again or call us.");
-      // Reset turnstile on error
-      if (window.turnstile && turnstileId) {
-        window.turnstile.reset(turnstileId);
-      }
+      if (window.turnstile && turnstileId) window.turnstile.reset(turnstileId);
     }
   };
 
-  const siteKeyMissing = !TURNSTILE_SITE_KEY;
-
   return (
-    <>
-      <section
-        id={formId}
-        className={clsx(
-          "border border-outline/40 bg-panel p-8",
-          variant === "compact" && "p-6"
-        )}
-      >
-        <header className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.15em] text-accent">Secure Intake</p>
-          <h3 className="font-serif text-2xl font-normal text-primary">{heading}</h3>
-          <p className="text-sm text-ink/70">
-            {description} All submissions include a timestamp for {timezone}.
-          </p>
-        </header>
-
-        <form onSubmit={handleSubmit} className="mt-6 space-y-5" noValidate>
-          <div className="grid gap-4 md:grid-cols-2">
+    <div id="contact-form" className="border border-white/10 bg-brand-charcoal/50 p-8">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <fieldset disabled={status === "submitting"} className="space-y-6">
+          <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="name" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Name *
-              </label>
-              <input
-                type="text"
-                id="name"
-                value={formState.name}
-                onChange={(e) => handleChange("name")(e)}
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-                required
-              />
-              {error && error.includes("Name") && <p className="text-red-500 text-xs mt-1">{error}</p>}
+              <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Name <span className="text-brand-copper">*</span></label>
+              <input id="name" type="text" required value={formData.name} onChange={handleChange("name")} aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={!!errors.name} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Your name" />
+              {errors.name && <p id="name-error" className="mt-1 text-xs text-red-400">{errors.name}</p>}
             </div>
-
             <div>
-              <label htmlFor="company" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Company
-              </label>
-              <input
-                type="text"
-                id="company"
-                value={formState.company}
-                onChange={(e) => handleChange("company")(e)}
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-              />
+              <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Email <span className="text-brand-copper">*</span></label>
+              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" />
+              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
             </div>
           </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="email" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Email *
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={formState.email}
-                onChange={(e) => handleChange("email")(e)}
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-                required
-              />
-              {error && error.includes("Email") && <p className="text-red-500 text-xs mt-1">{error}</p>}
+              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone <span className="text-brand-copper">*</span></label>
+              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" />
+              {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
             </div>
-
             <div>
-              <label htmlFor="phone" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Phone *
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                value={formState.phone}
-                onChange={(e) => handleChange("phone")(e)}
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-                required
-              />
-              {error && error.includes("Phone") && <p className="text-red-500 text-xs mt-1">{error}</p>}
+              <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Company</label>
+              <input id="company" type="text" value={formData.company} onChange={handleChange("company")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Company name (optional)" />
             </div>
           </div>
-
           <div>
-            <label htmlFor="projectType" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-              Project Type *
-            </label>
-            <select
-              id="projectType"
-              value={formState.projectType}
-              onChange={(e) => handleChange("projectType")(e)}
-              className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink focus:border-primary focus:outline-none"
-              required
-            >
-              <option value="">Select a project type</option>
-              {projectTypes.map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
+            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Service <span className="text-brand-copper">*</span></label>
+            <select id="projectType" required value={formData.projectType} onChange={handleChange("projectType")} aria-describedby={errors.projectType ? "projectType-error" : undefined} aria-invalid={!!errors.projectType} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
+              <option value="">Select a service</option>
+              <option value="Forward Exchange">Forward Exchange</option>
+              <option value="Reverse Exchange">Reverse Exchange</option>
+              <option value="Qualified Intermediary Services">Qualified Intermediary Services</option>
+              <option value="Property Identification">Property Identification</option>
+              <option value="NNN Property Identification">NNN Property Identification</option>
+              <option value="Exchange Consultation">Exchange Consultation</option>
+              <option value="Form 8824 Preparation">Form 8824 Preparation</option>
+              <option value="Boot Analysis">Boot Analysis</option>
             </select>
-            {error && error.includes("Project type") && <p className="text-red-500 text-xs mt-1">{error}</p>}
+            {errors.projectType && <p id="projectType-error" className="mt-1 text-xs text-red-400">{errors.projectType}</p>}
           </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="property" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Property Being Sold
-              </label>
-              <input
-                type="text"
-                id="property"
-                value={formState.property}
-                onChange={(e) => handleChange("property")(e)}
-                placeholder="Include property type, location, and estimated value (optional)"
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-              />
+              <label htmlFor="city" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">City</label>
+              <input id="city" type="text" value={formData.city} onChange={handleChange("city")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Primary metro (optional)" />
             </div>
             <div>
-              <label htmlFor="estimatedCloseDate" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-                Estimated Close Date
-              </label>
-              <input
-                type="date"
-                id="estimatedCloseDate"
-                value={formState.estimatedCloseDate}
-                onChange={(e) => handleChange("estimatedCloseDate")(e)}
-                className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-              />
+              <label htmlFor="timeline" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Timeline</label>
+              <select id="timeline" value={formData.timeline} onChange={handleChange("timeline")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
+                <option value="">Select timeline (optional)</option>
+                <option value="Immediate">Immediate</option>
+                <option value="45 days">45 days</option>
+                <option value="180 days">180 days</option>
+                <option value="Planning phase">Planning phase</option>
+              </select>
             </div>
           </div>
-
-          <div>
-            <label htmlFor="city" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-              City
-            </label>
-            <input
-              type="text"
-              id="city"
-              value={formState.city}
-              onChange={(e) => handleChange("city")(e)}
-              placeholder="Primary metro or submarket (optional)"
-              className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-            />
+          <div className="grid gap-6 md:grid-cols-2">
+            <div>
+              <label htmlFor="property" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Property Being Sold</label>
+              <input id="property" type="text" value={formData.property} onChange={handleChange("property")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Type, location, value (optional)" />
+            </div>
+            <div>
+              <label htmlFor="estimatedCloseDate" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Estimated Close Date</label>
+              <input id="estimatedCloseDate" type="date" value={formData.estimatedCloseDate} onChange={handleChange("estimatedCloseDate")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors" />
+            </div>
           </div>
-
           <div>
-            <label htmlFor="timeline" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-              Timeline
-            </label>
-            <input
-              type="text"
-              id="timeline"
-              value={formState.timeline}
-              onChange={(e) => handleChange("timeline")(e)}
-              placeholder="e.g., 45 days, 3 months, flexible (optional)"
-              className="w-full border border-outline/60 bg-panel px-4 py-3 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none"
-            />
+            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Message</label>
+            <textarea id="message" rows={4} value={formData.message} onChange={handleChange("message")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors resize-none" placeholder="Goals, preferences, or coordination needs (optional)" />
           </div>
-
-          <div>
-            <label htmlFor="details" className="block text-xs font-medium uppercase tracking-[0.1em] text-primary mb-2">
-              Message
-            </label>
-            <textarea
-              id="details"
-              value={formState.details}
-              onChange={(e) => handleChange("details")(e)}
-              rows={6}
-              placeholder="Outline goals, replacement preferences, or coordination needs (optional)"
-              className="w-full border border-outline/60 bg-secondary/30 p-4 text-sm text-ink placeholder:text-ink/40 focus:border-primary focus:outline-none resize-vertical"
-            />
-          </div>
-
-          {TURNSTILE_SITE_KEY && (
-            <div className="mt-4 flex justify-center">
-              <div ref={captchaContainerRef} className="min-h-[78px]" />
+          {siteKey && (
+            <div className="flex justify-center">
+              <div ref={captchaRef} className="min-h-[78px]" />
             </div>
           )}
-          {siteKeyMissing && (
-            <p className="text-xs text-red-500 mt-2">Turnstile site key missing. Please set NEXT_PUBLIC_TURNSTILE_SITE_KEY.</p>
-          )}
-
-          {error && <p className="text-sm text-red-500">{error}</p>}
-
-          <button
-            type="submit"
-            className="w-full bg-primary px-6 py-4 text-xs font-medium uppercase tracking-[0.15em] text-primaryfg transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
-            disabled={status === "submitting" || (TURNSTILE_SITE_KEY && !turnstileReady) || siteKeyMissing}
-          >
-            {status === "submitting" ? "SENDING..." : "SEND MESSAGE"}
+          <button type="submit" disabled={status === "submitting" || !!(siteKey && !turnstileReady)} className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
+            {status === "submitting" ? "Submitting..." : "Submit →"}
           </button>
-
-          {status === "success" && (
-            <p className="text-sm text-primary">Thank you. Our team will confirm receipt shortly.</p>
+          <p className="text-xs text-white/40 text-center">Educational content only. Not tax or legal advice.</p>
+          {feedback && (
+            <p role="status" aria-live="polite" className={"text-sm text-center " + (status === "success" ? "text-green-400" : "text-red-400")}>{feedback}</p>
           )}
-
-          <div className="text-xs text-ink/50">
-            <p>
-              Prefer to talk now? Call{" "}
-              <a className="text-accent hover:text-primary" href={`tel:${CONTACT_PHONE_DIGITS}`}>
-                {CONTACT_PHONE}
-              </a>{" "}
-              or email{" "}
-              <a className="text-accent hover:text-primary" href={`mailto:${CONTACT_EMAIL}`}>
-                {CONTACT_EMAIL}
-              </a>
-              .
-            </p>
-          </div>
-        </form>
-      </section>
-    </>
+        </fieldset>
+      </form>
+    </div>
   );
 }
 
-function ContactFormWithSearchParams(props: ContactFormProps) {
-  const params = useSearchParams();
-  const projectTypeFromParams = params?.get("projectType") || undefined;
-
-  return <ContactFormInner {...props} projectTypeFromParams={projectTypeFromParams} />;
-}
-
-export default function ContactForm(props: ContactFormProps) {
+export function ContactFormWrapper() {
   return (
-    <Suspense fallback={<div className="border border-outline/40 bg-panel p-6">Loading form...</div>}>
-      <ContactFormWithSearchParams {...props} />
+    <Suspense fallback={<div className="border border-white/10 bg-brand-charcoal/50 p-8 text-white/60">Loading form...</div>}>
+      <ContactForm />
     </Suspense>
   );
 }
