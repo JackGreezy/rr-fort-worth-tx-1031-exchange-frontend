@@ -1,0 +1,66 @@
+{
+ "slug": "alliance-fort-worth-tx",
+ "taxonomy": "locations",
+ "title": "Alliance Fort Worth",
+ "name": "Alliance Fort Worth",
+ "metaTitle": "Alliance Fort Worth 1031 Exchange Investors | Fort Worth, TX",
+ "metaDescription": "1031 exchange coordination for Alliance Fort Worth investors trading rail-served, air-cargo-adjacent, and single-tenant industrial property near AllianceTexas.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Alliance Fort Worth is the industrial core of the AllianceTexas development, developed around Fort Worth Alliance Airport's cargo operations and BNSF Railway's intermodal facility. The property types here are almost entirely industrial and logistics rather than office or retail. Confirming which specific zone a building sits within, rail-served, air-cargo-adjacent, or general flex, matters more here than in a submarket where every parcel looks roughly interchangeable from the road.</p>"
+  },
+  {
+   "heading": "Rail, Air Cargo, and Highway Access Set the Underwriting Baseline",
+   "html": "<p>BNSF Railway's Alliance Intermodal Facility supports rail-served warehouse product, Fort Worth Alliance Airport supports air-cargo-adjacent buildings, and the I-35W corridor ties the district to the rest of the metro. A buyer's underwriting should confirm actual rail-spur or intermodal access documented in title and easement records rather than assumed from a marketing brochure describing the broader Alliance corridor. A title company unfamiliar with rail easements can miss a spur agreement that was recorded against a much larger parent parcel decades before the current building was constructed, so pulling the full chain of title rather than a summary report is worth the extra step.</p>"
+  },
+  {
+   "heading": "The Industrial Product Types an Alliance Exchanger Will Encounter",
+   "html": "<p>The inventory here divides into a handful of recognizable categories:</p><ul><li>bulk distribution and fulfillment buildings with dock-high clear span construction</li><li>rail-served warehouse space with a documented BNSF spur easement</li><li>air-cargo-adjacent flex and logistics buildings near Fort Worth Alliance Airport</li><li>build-to-suit single-tenant industrial buildings under long-term corporate leases</li><li>light-industrial and flex space serving contractors that support the larger campus</li></ul><p>Vacancy inside Alliance has generally tracked national industrial demand more closely than it tracks the rest of the Fort Worth metro, since much of the leasing activity here serves regional and national distribution networks rather than local retail or office tenants.</p>"
+  },
+  {
+   "heading": "Identification Strategy for Single-Tenant Industrial Concentration",
+   "html": "<p>Single-tenant build-to-suit buildings carry concentrated lease-renewal risk when the lease term is shorter than the exchanger's expected hold. Identifying a broader list under the 200% rule that includes multi-tenant flex space or a DST interest gives a fallback if the single tenant's renewal terms don't hold up under review. A DST interest backed by diversified industrial holdings can also serve as a lower-management alternative for an exchanger who does not want to take on direct landlord responsibilities for a single large tenant.</p>"
+  },
+  {
+   "heading": "Rail and Airport Easements Belong in the Exchange File, Not Just the Marketing Package",
+   "html": "<p>Recorded rail-spur easements, airport-adjacent height or noise-related restrictions, and any master-development covenants tied to the AllianceTexas development should be pulled and reviewed before the identification notice is filed. A buyer relying on a broker's description of rail access without the recorded easement in hand has no documented right to enforce it after closing. Any covenant tied to the AllianceTexas master development agreement, including use restrictions or design review requirements for exterior improvements, should also be confirmed directly with the developer's covenant administrator rather than assumed from a neighboring building's permitted use.</p>"
+  },
+  {
+   "heading": "Financing Coordination on Build-to-Suit Industrial Product",
+   "html": "<p>Lenders financing a single-tenant build-to-suit purchase typically require the original lease, any guaranty, and an estoppel confirmation from the tenant before final approval. Starting that request early keeps the qualified intermediary, lender, and title company aligned on the same closing date rather than discovering a missing estoppel during the final week of the 180-day period. A lender's site inspection should also confirm the building's actual clear height and dock count against the marketing package, since a mismatch discovered during underwriting is a common cause of a financing delay this close to the exchange deadline.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Do I need to confirm rail access before buying Alliance-area warehouse space?",
+   "a": "Yes. A recorded BNSF spur easement should be reviewed directly rather than relying on a marketing description of rail access, since only the recorded document gives an enforceable right after closing."
+  },
+  {
+   "q": "How many properties should I identify if I'm exiting a single-tenant build-to-suit building near Alliance?",
+   "a": "More than three is common. A broader list under the 200% rule lets an investor include multi-tenant flex space or a DST interest as a fallback if the single tenant's lease renewal terms raise concerns during diligence."
+  },
+  {
+   "q": "Do airport-adjacent restrictions affect industrial property near Fort Worth Alliance Airport?",
+   "a": "Height, noise, or use restrictions tied to airport operations can apply to nearby parcels, and confirming these against the recorded record, rather than the airport's general vicinity alone, should happen before the identification notice."
+  },
+  {
+   "q": "What should I request from the seller before financing a build-to-suit purchase?",
+   "a": "The original lease, any lease guaranty, and a current tenant estoppel are typically required by a lender, and requesting these early avoids a late discovery that delays closing near the 180-day deadline."
+  },
+  {
+   "q": "Can 1031 Exchange Fort Worth confirm my Alliance-area property meets like-kind requirements?",
+   "a": "No. This service coordinates documentation, identification timing, and communication among the investor's advisors. Like-kind qualification is determined by the investor's CPA, tax attorney, and qualified intermediary."
+  },
+  {
+   "q": "Does Alliance Fort Worth vacancy behave differently than the rest of the Fort Worth industrial market?",
+   "a": "It can. Leasing activity here is tied more closely to national distribution and logistics demand than to local retail or office cycles, so a vacancy comparison should use industrial-specific data rather than a metro-wide average."
+  },
+  {
+   "q": "Should I expect the same lease structure across all Alliance industrial buildings?",
+   "a": "No. Bulk distribution buildings, rail-served warehouses, and air-cargo-adjacent flex space often carry different lease structures and tenant responsibilities, so each replacement candidate's lease should be reviewed on its own terms rather than assumed to match a standard industrial template."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 860
+}

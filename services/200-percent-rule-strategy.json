@@ -1,0 +1,58 @@
+{
+ "slug": "200-percent-rule-strategy",
+ "taxonomy": "services",
+ "title": "200% Rule Strategy",
+ "name": "200% Rule Strategy",
+ "metaTitle": "200% Rule Strategy in Fort Worth, TX",
+ "metaDescription": "Fort Worth 1031 exchange 200-percent rule strategy: how investors identify unlimited replacement candidates across Alliance, Southlake, and Arlington within value limits.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The 200% rule lets an investor identify more than three replacement properties within the 45-day window, provided the combined fair market value of everything listed does not exceed 200% of what was sold. Fort Worth investors working across scattered submarkets, from Alliance industrial to Arlington retail pads, use this rule when a single-corridor search cannot be relied on to produce three closable candidates.</p>"
+  },
+  {
+   "heading": "When the 200% Rule Fits Better Than the Three-Property Rule",
+   "html": "<p>The three-property rule caps identification at three assets regardless of value, which works when a relinquished sale is large and replacement stock is scarce. The 200% rule instead removes the count limit and substitutes a value ceiling, which suits investors spreading a mid-sized Cultural District sale across several smaller Grapevine or Colleyville properties rather than one large asset.</p><p>Choosing between the two rules happens before the 45-day clock starts, since the identification notice has to state which rule is being applied and list assets consistent with it.</p>"
+  },
+  {
+   "heading": "Calculating the 200% Ceiling",
+   "html": "<p>The ceiling is calculated against the aggregate fair market value of the relinquished property or properties as of the transfer date, not the original purchase price or current asking prices on candidate replacements. On a defense-corridor sale near the Lockheed campus, that means the closing statement value, not an appraisal from years earlier, is the number the 200% multiple runs against.</p><ul><li>Confirm the relinquished property's transfer-date fair market value</li><li>Multiply by two to set the identification ceiling</li><li>List candidate values from purchase contracts or broker opinions of value</li><li>Recheck the running total each time a candidate is added or dropped</li></ul>"
+  },
+  {
+   "heading": "Documentation for a Multi-Candidate List",
+   "html": "<p>A 200% identification typically names more properties than the three-property rule allows, so the written notice to the qualified intermediary needs unambiguous legal descriptions or addresses for every candidate, along with a value used to support the aggregate calculation. Fort Worth submarket names alone are not sufficient identification; parcel-level detail is what the IRS standard requires.</p>"
+  },
+  {
+   "heading": "Interaction With the 95% Rule",
+   "html": "<p>If the 200% ceiling is exceeded even by a small margin, the exchange falls back to the 95% rule, which requires acquiring 95% of the value of everything identified. Because that fallback is unforgiving, the value calculation under the 200% rule is checked and rechecked before the 45th day rather than assumed correct from an early draft list.</p>"
+  },
+  {
+   "heading": "Applying the Rule Across Scattered Fort Worth Submarkets",
+   "html": "<p>Investors splitting a single relinquished sale across several smaller acquisitions often gravitate toward the 200% rule because it accommodates a search that spans unrelated corridors, for example a Colleyville retail pad alongside a Burleson flex-industrial building, without forcing the list down to three candidates. Each submarket carries its own pricing pattern, so aggregating values accurately requires pulling current data for every corridor represented on the list rather than applying one blended assumption.</p><p>Because candidates can be added or removed up until day 45, an investor working the 200% rule across multiple Fort Worth-area corridors typically keeps a running spreadsheet of values, updating the aggregate total each time a broker provides a revised price or a candidate falls out of consideration. That discipline matters most when the list is long enough that a single overlooked value shift could push the total past the ceiling without anyone noticing until later in the process.</p><p>Some investors build in a deliberate cushion below the 200% ceiling rather than identifying right up to the limit, giving the running total room to absorb a favorable price movement on one candidate without triggering a compliance problem. That cushion is a practical risk-management choice rather than a requirement, and it tends to matter most on lists where several candidates are still in early negotiation and their eventual contract price is not yet fixed. The margin is checked one final time immediately before the notice is delivered, since it is the value on record at that moment, not an earlier draft, that governs the exchange. A short written confirmation from whoever performed the final calculation, dated and attached to the identification notice itself, gives the exchange file a clear record of exactly what value supported the decision to proceed under this rule rather than the three-property or 95% alternatives.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Can a Fort Worth investor switch from the three-property rule to the 200% rule mid-window?",
+   "a": "The identification notice can be revised any time before the 45th day, so switching rules is possible as long as the revised list is delivered to the qualified intermediary before that deadline."
+  },
+  {
+   "q": "Does the 200% rule limit how many properties can ultimately be acquired?",
+   "a": "No numeric cap applies once the value ceiling is respected. An investor can acquire any number of the identified properties as long as the aggregate identified value did not exceed 200% of the relinquished value."
+  },
+  {
+   "q": "What value is used for a replacement property still under negotiation?",
+   "a": "A reasonable good-faith estimate, typically the contract price or a broker's opinion of value, is used at identification. Investors should confirm the appropriate valuation approach with their tax advisor given the specific facts."
+  },
+  {
+   "q": "Does exceeding the 200% ceiling by a small amount disqualify the whole exchange?",
+   "a": "Exceeding the ceiling removes the protection of the 200% rule for every property on the list, rather than only the excess amount, unless the 95% rule is separately satisfied by closing on nearly everything identified."
+  },
+  {
+   "q": "Are Arlington and Alliance properties treated differently under the 200% rule?",
+   "a": "No. The rule applies to aggregate value regardless of submarket or asset type, so a mix of industrial and retail candidates across different Fort Worth-area corridors is calculated the same way."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 892
+}

@@ -1,0 +1,58 @@
+{
+ "slug": "form-8824-preparation-support",
+ "taxonomy": "services",
+ "title": "Form 8824 Preparation Support",
+ "name": "Form 8824 Preparation Support",
+ "metaTitle": "Form 8824 Preparation Support in Fort Worth, TX",
+ "metaDescription": "Fort Worth 1031 exchange Form 8824 preparation support: organizing closing statements and basis figures for Alliance and downtown exchange filings.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Form 8824 is the IRS form used to report a like-kind exchange, and it requires specific figures pulled from both closing statements: relinquished property fair market value, adjusted basis, replacement property value, and any boot received. Fort Worth investors closing exchanges across Alliance industrial and downtown office assets benefit from having those figures organized before their tax advisor sits down to prepare the return.</p>"
+  },
+  {
+   "heading": "What the Form Requires",
+   "html": "<p>The form asks for dates: when the relinquished property was originally acquired, when it was transferred, when the replacement was identified, and when it was received. It also asks for a description of each property specific enough to identify the asset, which for a Cultural District retail building means more than a submarket name.</p><p>Preparation support means assembling those dates and descriptions from the exchange file rather than reconstructing them from memory or scattered emails once the filing deadline approaches.</p>"
+  },
+  {
+   "heading": "Reconciling Basis and Boot Figures",
+   "html": "<p>The realized gain, recognized gain, and adjusted basis of the replacement property all flow from the relationship between the relinquished property's basis, any boot received, and the replacement property's purchase price. On a Southlake industrial replacement where debt was reduced relative to the relinquished mortgage, the mortgage boot calculation directly affects the recognized gain line on the form.</p><ul><li>Relinquished property adjusted basis and fair market value at transfer</li><li>Replacement property purchase price and closing date</li><li>Cash boot and mortgage boot calculated separately</li><li>Selling expenses and exchange expenses allocated correctly</li></ul>"
+  },
+  {
+   "heading": "Coordinating With the Tax Advisor's Timeline",
+   "html": "<p>Because Form 8824 is filed with the tax return for the year the relinquished property was sold, even if the replacement closing occurred in the following calendar year on a late-year transaction, the preparation timeline has to account for that split-year scenario. Fort Worth investors who sold in December and closed on an Alliance replacement in January need this cross-year detail organized early.</p>"
+  },
+  {
+   "heading": "What This Service Does Not Cover",
+   "html": "<p>This support organizes the underlying transaction record and figures; it does not substitute for a CPA's or tax advisor's judgment on how to report the exchange, calculate depreciation recapture, or address state-specific filing requirements. Investors should confirm final figures and filing positions directly with their tax advisor.</p>"
+  },
+  {
+   "heading": "Preparing for a Multi-Property Filing",
+   "html": "<p>An investor who identified several replacement properties under the 200% or 95% rule, and closed on more than one, needs Form 8824 detail organized separately for each replacement acquired, since basis and boot calculations do not simply average across a portfolio of purchases. A Fort Worth investor closing on both an Alliance-area distribution building and a smaller Grapevine retail parcel from a single relinquished sale needs each acquisition's contribution to the overall exchange tracked individually before the figures are handed to a tax advisor.</p><p>Keeping that breakdown current as each closing occurs, rather than compiling it retroactively at filing time, reduces the chance of a reconciliation error surfacing after the return has already been prepared.</p><p>A running summary sheet, updated after each closing with the property description, purchase price, financing terms, and any boot associated with that specific acquisition, gives a tax advisor a ready reference rather than a stack of individual closing statements to sort through independently. For an investor who split a single relinquished sale across an Alliance industrial building and a Grapevine retail parcel, that summary sheet also makes it easier to confirm the combined totals match the overall exchange proceeds before the return is filed. Any discrepancy between the summary sheet and the underlying closing statements is resolved before the figures reach the tax advisor, since catching a data-entry error at that stage is far simpler than amending a filed return later. The completed summary, along with copies of both closing statements and the exchange agreement, forms the core package handed to the tax advisor at filing time rather than a loose collection of documents assembled under deadline pressure. Preparing that package well ahead of the filing deadline, rather than in the final days before the return is due, also gives the tax advisor room to ask follow-up questions if any figure needs clarification.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "When is Form 8824 filed relative to a Fort Worth exchange closing?",
+   "a": "It is filed with the federal tax return for the year the relinquished property was sold, even if the replacement property closes in the following tax year on a late-year transaction."
+  },
+  {
+   "q": "Does this service prepare or file Form 8824 directly?",
+   "a": "No. This service organizes closing statements, dates, and basis figures so a CPA or tax advisor can prepare and file the form; it does not replace tax advice or filing services."
+  },
+  {
+   "q": "What figures cause the most confusion on Form 8824?",
+   "a": "Boot calculations and adjusted basis reconciliation tend to cause the most confusion, particularly when debt levels differ between the relinquished and replacement properties."
+  },
+  {
+   "q": "Is a legal description required for Form 8824 or is a street address sufficient?",
+   "a": "A description specific enough to identify the property is generally sufficient, though a tax advisor can confirm the appropriate level of detail for a given filing."
+  },
+  {
+   "q": "What happens if figures on Form 8824 do not match the closing statements?",
+   "a": "A mismatch between the form and the underlying closing statements can trigger IRS inquiry, which is why reconciling every figure against the actual closing documents before filing is a core part of preparation support."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 853
+}

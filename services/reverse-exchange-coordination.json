@@ -1,0 +1,66 @@
+{
+ "slug": "reverse-exchange-coordination",
+ "taxonomy": "services",
+ "title": "Reverse Exchange Coordination",
+ "name": "Reverse Exchange Coordination",
+ "metaTitle": "Reverse Exchange Coordination in Fort Worth, TX",
+ "metaDescription": "Coordinating reverse 1031 exchanges for Fort Worth investors, covering EAT parking structure, financing, and the 45 and 180 day clocks in reverse.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A reverse exchange lets a Fort Worth investor acquire the replacement property before selling the relinquished one, but the structure trades timing flexibility for added documentation and cost, since neither property can sit in the investor's own name while both are in the exchange.</p>"
+  },
+  {
+   "heading": "Why Investors Use a Reverse Structure in Fort Worth",
+   "html": "<p>A reverse exchange becomes the right tool when a strong replacement candidate surfaces before the relinquished property has a buyer under contract, which happens often enough in competitive submarkets near the Alliance corridor and the Cultural District that waiting for a standard forward exchange would mean losing the deal to another buyer. It also gets used when a seller needs more time to complete repairs or lease-up before the relinquished property can list, without forcing the investor to pass on a replacement opportunity in the meantime.</p><p>A reverse structure can also apply when an investor is selling one property to acquire several smaller replacements, or the reverse, and the relinquished-property closing simply will not land inside the same window as the desired replacement acquisition without the parking arrangement bridging the gap.</p>"
+  },
+  {
+   "heading": "EAT Parking Arrangement Mechanics",
+   "html": "<p>An exchange accommodation titleholder takes and holds title to one of the two properties, either the replacement property under an exchange-first structure or the relinquished property under an exchange-last structure, while the investor's own name stays off that title during the parking period. The EAT typically holds title through a single-member LLC formed for that purpose, and we confirm the entity structure, the qualified exchange accommodation agreement, and how the EAT is financed before the parking arrangement begins.</p>"
+  },
+  {
+   "heading": "Documentation for a Reverse Exchange",
+   "html": "<p>A reverse exchange requires more paperwork than a standard forward exchange, and we assemble the full set before the EAT takes title to either property.</p><ul><li>qualified exchange accommodation agreement between the investor and the EAT</li><li>loan documents if the EAT requires financing to acquire the parked property</li><li>management agreement covering who operates the parked property during the holding period</li><li>written identification of the property to be relinquished, delivered inside 45 days of the EAT taking title</li><li>purchase and sale agreement transferring the parked property to its final owner within 180 days</li></ul>"
+  },
+  {
+   "heading": "Financing Complications Unique to Reverse Structures",
+   "html": "<p>Lenders are more cautious financing a property titled to an EAT rather than the investor directly, and some lenders will not extend a standard commercial loan to an EAT-held entity at all, which pushes investors toward all-cash EAT acquisitions or specialized reverse-exchange financing. We confirm a lender's willingness to finance the parked property before the reverse structure is set up, since discovering a financing gap after the EAT has already taken title leaves far fewer options.</p>"
+  },
+  {
+   "heading": "Timeline Discipline for the 45 and 180 Day Clocks",
+   "html": "<p>Both deadlines still apply in a reverse exchange, they simply run in the opposite direction: the investor has 45 days from the EAT taking title to identify the property being relinquished, and 180 days to complete the sale of that relinquished property to close out the exchange. Missing either deadline unwinds the safe harbor protection the parking arrangement was built to preserve, so we track both clocks from the day the EAT takes title rather than from the eventual relinquished-property closing.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is an exchange accommodation titleholder and why is one needed?",
+   "a": "The EAT is the entity that holds title to either the replacement or relinquished property during a reverse exchange, since neither property can sit in the investor's own name while both are part of the exchange, preserving the safe harbor structure."
+  },
+  {
+   "q": "Why would a Fort Worth investor choose a reverse exchange over a standard forward exchange?",
+   "a": "A reverse structure lets the investor secure a strong replacement candidate before the relinquished property has a buyer under contract, which matters in competitive submarkets where waiting for a forward exchange could mean losing the deal."
+  },
+  {
+   "q": "Can the EAT finance the parked property with a standard commercial loan?",
+   "a": "Sometimes, but many lenders are cautious financing a property titled to an EAT rather than the investor directly, which is why financing feasibility should be confirmed before the reverse structure is set up, not after the EAT takes title."
+  },
+  {
+   "q": "How do the 45-day and 180-day deadlines apply differently in a reverse exchange?",
+   "a": "The clocks run from the day the EAT takes title rather than from a sale closing: 45 days to identify the property being relinquished, and 180 days to complete that relinquished-property sale and close out the exchange."
+  },
+  {
+   "q": "Who manages the parked property while the EAT holds title?",
+   "a": "A management agreement typically assigns day-to-day operation of the parked property, whether that is the investor, a property manager, or another party, and this arrangement should be documented before the parking period begins."
+  },
+  {
+   "q": "Can a reverse exchange be used to acquire multiple smaller replacement properties?",
+   "a": "Yes, a reverse structure can bridge a single relinquished-property sale against several planned replacement acquisitions when the timing does not otherwise align, though each parked property still needs its own EAT documentation and financing review."
+  },
+  {
+   "q": "What happens if the relinquished property does not sell within the 180-day period of a reverse exchange?",
+   "a": "The exchange fails to complete, and the investor is left owning both the parked replacement property and the unsold relinquished property, which is why realistic listing and pricing strategy for the relinquished property should be set before the reverse structure begins."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 853
+}

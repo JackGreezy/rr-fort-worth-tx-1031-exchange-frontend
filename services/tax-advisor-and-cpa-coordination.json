@@ -1,0 +1,70 @@
+{
+ "slug": "tax-advisor-and-cpa-coordination",
+ "taxonomy": "services",
+ "title": "Tax Advisor and CPA Coordination",
+ "name": "Tax Advisor and CPA Coordination",
+ "metaTitle": "Tax Advisor and CPA Coordination in Fort Worth, TX",
+ "metaDescription": "Coordinating exchange documentation between a Fort Worth investor and their CPA or tax advisor, without providing tax advice ourselves.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A 1031 exchange only works if the transaction paperwork and the eventual tax filing describe the same set of facts, and that alignment depends on routing documents to the investor's CPA as they are generated rather than assembling everything after closing for the advisor to sort out.</p>"
+  },
+  {
+   "heading": "Division of Responsibility Between Coordination and Tax Advice",
+   "html": "<p>We coordinate the process, meaning we track deadlines, assemble documentation, and confirm that transaction paperwork matches what the investor's tax advisor will need, but we do not calculate an investor's tax liability, opine on basis, or recommend a specific structure over another for tax purposes. Every Fort Worth exchange we work on gets routed to the investor's own CPA or tax attorney for that judgment, since basis history, depreciation recapture exposure, and an investor's broader tax situation are specific to each individual return.</p><p>When an investor does not already have a CPA experienced with exchange transactions, we can point toward advisors who regularly handle this work, but the investor makes the final selection and engagement decision independently.</p>"
+  },
+  {
+   "heading": "Documents Routed to the CPA at Each Stage",
+   "html": "<p>Rather than waiting until after closing to hand the advisor a folder of paperwork, we route documents as each stage of the exchange is completed.</p><ul><li>relinquished-property closing statement, sent as soon as the sale closes</li><li>exchange agreement and assignment of contract rights from the qualified intermediary</li><li>written identification notice, copied to the advisor the same day it is delivered</li><li>replacement-property closing statement, sent as soon as the purchase closes</li><li>QI's final accounting of funds held and disbursed throughout the exchange</li></ul>"
+  },
+  {
+   "heading": "Basis Carryover and Depreciation Schedule Hand-Off",
+   "html": "<p>Basis in the replacement property depends on the relinquished property's adjusted basis, any boot received, and closing costs from both transactions, a calculation that belongs to the investor's CPA rather than to us. What we can control is making sure the CPA receives complete closing statements and a clear transaction timeline instead of a partial file that forces the advisor to chase down missing figures during tax season.</p><p>We also flag any boot received during the exchange, whether cash boot from unequal trade value or debt-relief boot from a reduction in mortgage balance between the two properties, since both affect the basis and gain calculation the CPA needs to perform, even though the calculation itself remains the advisor's responsibility.</p>"
+  },
+  {
+   "heading": "Coordinating Timing With the Advisor's Own Deadlines",
+   "html": "<p>Form 8824 gets filed with the tax return covering the year the exchange began, and an exchange that closes late in the calendar year can leave the advisor a short window to finalize the filing if documentation arrives late. We flag exchanges closing in the fourth quarter to the advisor early, so the CPA can plan for the filing rather than receiving the full file in March under deadline pressure.</p>"
+  },
+  {
+   "heading": "When to Loop in the CPA Before Identification, Not After",
+   "html": "<p>Some structural decisions, including whether a partial-interest sale, a related-party transaction, or a specific replacement structure like a Delaware statutory trust fits an investor's broader tax picture, are better raised with the CPA before a property is identified rather than after the identification list is locked. We encourage that early conversation rather than treating the advisor as a step that happens only at tax-filing time.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does this coordination service replace the need for a CPA or tax attorney?",
+   "a": "No, we track deadlines and route documentation but do not calculate tax liability, opine on basis, or recommend a tax structure. Every exchange should involve the investor's own CPA or tax attorney for that judgment."
+  },
+  {
+   "q": "When should documents be sent to the investor's tax advisor?",
+   "a": "As each stage of the exchange is completed, including both closing statements, the exchange agreement, and the written identification notice, rather than waiting until after closing to assemble a single file."
+  },
+  {
+   "q": "How does an exchange closing late in the year affect Form 8824 filing?",
+   "a": "Form 8824 is filed with the return covering the year the exchange began, and a late-year closing can leave the CPA a short window to finalize the filing if documentation arrives late, so we flag those exchanges to the advisor early."
+  },
+  {
+   "q": "Who determines the investor's basis in the replacement property?",
+   "a": "The investor's CPA calculates basis using the relinquished property's adjusted basis, any boot received, and closing costs from both transactions. Our role is making sure the CPA receives complete closing statements to work from."
+  },
+  {
+   "q": "Should a CPA be involved before or after a replacement property is identified?",
+   "a": "Before, particularly for structural questions involving a partial-interest sale, a related-party transaction, or a Delaware statutory trust, since those decisions are harder to unwind once an identification list is locked."
+  },
+  {
+   "q": "What is boot and why does it get flagged to the CPA during the exchange?",
+   "a": "Boot is cash or debt relief received in the exchange, whether from unequal trade value or a reduced mortgage balance between properties, and both forms affect the basis and gain calculation the CPA needs to perform, even though we do not calculate that figure ourselves."
+  },
+  {
+   "q": "What happens if the CPA is only brought in after the replacement property already closed?",
+   "a": "The advisor can still prepare the required filing, but reviewing structural questions and confirming documentation after the fact leaves far less room to correct a gap in the file, which is why earlier involvement is recommended rather than treated as a year-end task."
+  },
+  {
+   "q": "Does the CPA need copies of documents from every closing, or just the final settlement statements?",
+   "a": "Every stage matters, since the exchange agreement, assignment notices, and identification letter each carry facts the CPA needs to confirm against the final closing statements, not only the two settlement statements themselves."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 893
+}

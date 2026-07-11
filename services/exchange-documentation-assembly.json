@@ -1,0 +1,58 @@
+{
+ "slug": "exchange-documentation-assembly",
+ "taxonomy": "services",
+ "title": "Exchange Documentation Assembly",
+ "name": "Exchange Documentation Assembly",
+ "metaTitle": "Exchange Documentation Assembly in Fort Worth, TX",
+ "metaDescription": "Fort Worth 1031 exchange documentation assembly: exchange agreements, assignments, and notices organized across Alliance and downtown transaction files.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A 1031 exchange produces a specific document set: the exchange agreement with the qualified intermediary, assignment of contract rights on both the relinquished and replacement transactions, written identification notices, and escrow instructions. Fort Worth investors closing deals across Alliance industrial and downtown office product need that set assembled consistently, not scattered across different closing files.</p>"
+  },
+  {
+   "heading": "Core Documents in the File",
+   "html": "<p>The exchange agreement establishes the qualified intermediary's role and confirms the taxpayer does not have actual or constructive receipt of proceeds. Assignment documents transfer the taxpayer's contract rights, not the property itself, to the qualified intermediary on both sides of the trade. Notice of assignment then has to be delivered to the buyer and seller respectively before each closing.</p><p>On a Cultural District retail sale paired with a Southlake replacement purchase, these documents are drafted for each leg of the exchange separately, since the assignment on the sale side and the assignment on the purchase side reference different counterparties and contracts.</p>"
+  },
+  {
+   "heading": "Assembling the Identification Record",
+   "html": "<p>The written identification notice, along with proof of timely delivery to the qualified intermediary, is one of the more commonly missing pieces in an exchange file after the fact. Assembling it into the permanent record at the time it is sent, rather than trying to reconstruct delivery timing later, avoids a gap that is difficult to fill in retrospect.</p><ul><li>Exchange agreement with the qualified intermediary</li><li>Assignment of contract rights for both closings</li><li>Written identification notice with delivery confirmation</li><li>Escrow instructions directing proceeds through the qualified intermediary</li><li>Both closing statements with allocations cross-checked</li></ul>"
+  },
+  {
+   "heading": "Organizing the File for Tax Preparation",
+   "html": "<p>A tax advisor preparing Form 8824 needs the fair market values, adjusted basis figures, and any boot calculation in a format that maps directly to the form's line items. Assembling the file with that end use in mind, rather than only for closing purposes, saves reconciliation work once tax season arrives.</p>"
+  },
+  {
+   "heading": "Retention and Access",
+   "html": "<p>Exchange documentation is typically retained for as long as the replacement property is held, since its basis carries forward into any future disposition. Keeping the file organized and accessible, whether digitally or in hard copy, matters as much for a sale five years out as it does for the current year's tax filing.</p>"
+  },
+  {
+   "heading": "Coordinating the File Across Multiple Advisors",
+   "html": "<p>A single Fort Worth exchange often involves several separate advisors, a real estate attorney reviewing contract language, a CPA handling the tax return, a lender's counsel on the replacement financing, and the qualified intermediary managing the exchange mechanics itself. Each of these parties tends to need a slightly different subset of the same underlying documents, which is why the file is organized as one coherent record rather than several disconnected sets kept by each party independently.</p><p>On a multi-property acquisition spanning both an Alliance industrial building and a Cultural District retail parcel, that means maintaining parallel but clearly labeled document sets for each leg of the exchange, so no advisor has to guess which closing a given assignment notice or escrow instruction actually corresponds to.</p><p>A shared index, listing every document in the file alongside the party responsible for producing it and the date it was finalized, gives each advisor a single reference point rather than requiring them to search through a shared folder to confirm what has and has not been completed. That index is updated at each milestone, from the initial exchange agreement through the final closing statement on the replacement purchase, so nothing is assumed complete until it is actually confirmed in writing. When a new advisor joins the transaction partway through, for example a lender's counsel added once financing is confirmed, the index gives them a fast way to see what already exists rather than requesting a full document set from scratch. Maintaining that index as a living document through closing, rather than compiling it only at the end of the transaction, is what keeps the exchange file usable in real time rather than only after the fact. A well-kept index also shortens the handoff whenever a principal or advisor changes partway through a longer transaction timeline.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is the single most important document in a Fort Worth exchange file?",
+   "a": "The exchange agreement with the qualified intermediary is foundational, since it establishes that the taxpayer never had actual or constructive receipt of proceeds, which is the core requirement for tax deferral."
+  },
+  {
+   "q": "Does the assignment of contract rights transfer ownership of the property?",
+   "a": "No. Assignment transfers the taxpayer's rights and obligations under the purchase or sale contract to the qualified intermediary; the intermediary does not take title to the real property itself."
+  },
+  {
+   "q": "How long should exchange documentation be kept after closing?",
+   "a": "Documentation is generally retained for as long as the replacement property is held, since its basis carries forward and will be needed again at a future sale. A tax advisor can confirm specific retention timelines."
+  },
+  {
+   "q": "Who typically prepares the identification notice for the file?",
+   "a": "The investor or their representative drafts the notice with specific property descriptions, and the qualified intermediary usually confirms delivery and retains a copy for the exchange file."
+  },
+  {
+   "q": "Should escrow instructions reference the exchange agreement directly?",
+   "a": "Yes. Escrow instructions should route proceeds consistent with the exchange agreement's terms so there is no ambiguity about how funds move between the qualified intermediary and each closing."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 853
+}

@@ -1,0 +1,66 @@
+{
+ "slug": "cultural-district-tx",
+ "taxonomy": "locations",
+ "title": "Cultural District",
+ "name": "Cultural District",
+ "metaTitle": "Cultural District 1031 Exchange Investors | Fort Worth, TX",
+ "metaDescription": "1031 exchange coordination for Cultural District investors weighing West 7th multifamily, museum-adjacent retail, and Dickies Arena event-driven leases.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The Cultural District sits west of downtown around the city's museum campus and the Will Rogers Memorial Center, and the West 7th corridor next to it has added a dense strip of multifamily and retail development built to serve museum, arena, and rodeo-grounds visitor traffic rather than a traditional office-worker daytime population. The two identities overlap only at the margins, and an exchanger who treats West 7th multifamily and arena-adjacent retail as a single undifferentiated market risks underwriting one against the other's traffic pattern.</p>"
+  },
+  {
+   "heading": "Event-Driven Demand Changes the Underwriting, Not Just the Marketing",
+   "html": "<p>Dickies Arena and the Will Rogers Memorial Center draw a schedule of ticketed events, livestock and rodeo activity, and convention business that create visitor spikes rather than steady daily traffic. Retail and restaurant leases nearby should be underwritten against an actual event calendar, not a flat traffic assumption borrowed from a different part of the metro. A restaurant lease that performs well on a Friday night before a rodeo event can look weak on a quiet Tuesday, and averaging those two data points into one typical month tends to understate how much of the tenant's revenue actually depends on the venue calendar.</p>"
+  },
+  {
+   "heading": "What's Actually for Sale in the Cultural District Right Now",
+   "html": "<p>The property types in circulation here fall into a few clear categories:</p><ul><li>mid-rise and garden-style multifamily along the West 7th corridor</li><li>ground-floor retail and restaurant space built into West 7th's mixed-use buildings</li><li>limited office space serving museum and cultural-institution administrative functions</li><li>event-adjacent hospitality and short-stay lodging near Dickies Arena and the Will Rogers Memorial Center</li><li>a small stock of older single-tenant retail parcels along University Drive predating the West 7th redevelopment</li></ul><p>Multifamily along West 7th has generally leased up faster than the area's older University Drive retail, reflecting steady demand from residents who want walkable access to the district's restaurants and museum campus rather than a car-dependent commute.</p>"
+  },
+  {
+   "heading": "Identification Strategy for Visitor-Driven Retail Versus Multifamily",
+   "html": "<p>An exchanger trading one West 7th multifamily building for another similar one can typically rely on the three-property rule. An investor exiting event-driven retail with a lease renewal tied to the arena calendar benefits from the 200% rule, which keeps multifamily or a DST interest available as a backup rather than a narrow list confined to similar visitor-dependent retail. A DST interest can also be a reasonable fallback for an exchanger who wants exposure to the broader submarket without taking on a single event-dependent tenant directly.</p>"
+  },
+  {
+   "heading": "Documentation to Confirm Before Relying on Arena-Adjacent Foot Traffic",
+   "html": "<p>Any rent roll or lease renewal projection tied to Dickies Arena or Will Rogers Memorial Center traffic should be checked against the venue's actual event calendar, and against the tenant's sales reporting where a percentage-rent clause applies, rather than accepted at face value from a listing broker. Sales-based percentage rent reporting should be requested directly from the tenant rather than estimated from the base rent alone, since base rent frequently understates a restaurant's actual dependence on event traffic.</p>"
+  },
+  {
+   "heading": "Closing Coordination for a West 7th or Museum-Adjacent Property",
+   "html": "<p>Much of the Cultural District's newer product was built and financed within the last two decades, and lenders reviewing a replacement loan here typically request the original construction record and any subsequent capital improvement history. Assembling that file before the identification notice is filed keeps the qualified intermediary, lender, and title company working from the same closing date. Confirming that capital-improvement record also helps establish a defensible cost basis for the replacement property going into Form 8824 preparation.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does an event calendar at Dickies Arena or the Will Rogers Memorial Center matter for underwriting nearby retail?",
+   "a": "Yes. Visitor traffic near these venues is event-driven rather than steady, so a lease's percentage-rent clause or renewal history should be checked against the venue's actual event calendar rather than a flat traffic estimate."
+  },
+  {
+   "q": "How many properties should I identify exchanging out of one West 7th multifamily building?",
+   "a": "Three is usually enough if the replacement search stays within similar multifamily product in the corridor. A broader 200% rule list becomes more useful when comparing event-driven retail against more stable multifamily or DST alternatives."
+  },
+  {
+   "q": "What records should I request before buying arena-adjacent hospitality or lodging space?",
+   "a": "Request the property's event-tied occupancy history alongside its standard rent roll, since short-stay lodging near Dickies Arena and the Will Rogers Memorial Center can show occupancy swings that a standard annual average obscures."
+  },
+  {
+   "q": "Is older University Drive retail comparable to newer West 7th product for identification purposes?",
+   "a": "They differ enough in construction age, financing history, and tenant mix that comparing them directly can complicate a like-kind identification list; documenting each separately keeps the exchange record clear."
+  },
+  {
+   "q": "Can 1031 Exchange Fort Worth confirm my Cultural District property qualifies as like-kind?",
+   "a": "No. This service coordinates documentation and scheduling among the investor's advisors. Like-kind qualification and timing determinations are made by the investor's CPA, tax attorney, and qualified intermediary."
+  },
+  {
+   "q": "Does West 7th multifamily lease up faster than older retail near University Drive?",
+   "a": "Generally, yes. Newer multifamily along West 7th tends to lease steadily to residents seeking walkable access to the district's restaurants and museums, while older University Drive retail depends more heavily on drive-up traffic."
+  },
+  {
+   "q": "Should percentage-rent clauses be checked separately from the venue's ticketing revenue?",
+   "a": "Yes. Percentage rent is based on the tenant's own sales, not the venue's ticket sales, so requesting the tenant's sales reports directly is more reliable than inferring performance from arena attendance figures."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 854
+}

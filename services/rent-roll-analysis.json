@@ -1,0 +1,66 @@
+{
+ "slug": "rent-roll-analysis",
+ "taxonomy": "services",
+ "title": "Rent Roll Analysis",
+ "name": "Rent Roll Analysis",
+ "metaTitle": "Rent Roll Analysis in Fort Worth, TX",
+ "metaDescription": "Independent rent roll analysis for Fort Worth replacement candidates, reconciling lease abstracts, escalations, and expirations before identification.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A rent roll is a summary document, and a summary is only as reliable as the lease files behind it. Before a Fort Worth replacement property goes on an identification list, we reconcile the seller's rent roll against the underlying lease abstracts rather than accepting the spreadsheet as the record of truth.</p>"
+  },
+  {
+   "heading": "What a Rent Roll Needs to Reconcile Against",
+   "html": "<p>A trustworthy rent roll should tie to signed lease documents, current bank deposits, and any amendment or side letter modifying the original terms, rather than reflect only what a property manager last updated in a leasing spreadsheet. Amendments are the most common gap, since a rent abatement, expansion right, or early termination option granted informally can go unrecorded in the summary a buyer receives.</p><p>We also confirm the rent roll's effective date against the date the seller pulled bank deposit records, since a rent roll dated weeks before the trailing financials can show a tenant as current when a subsequent late payment or default has already occurred and simply has not been reflected yet.</p>"
+  },
+  {
+   "heading": "Lease Abstract Cross-Check by Asset Class",
+   "html": "<p>Industrial rent rolls near the Alliance corridor need cross-checking against expansion and renewal options tied to warehouse and distribution tenants whose space needs can shift with logistics contract cycles. Multifamily rent rolls need unit-level detail rather than an averaged rate, and retail rent rolls near Sundance Square and the Cultural District need percentage-rent clauses and co-tenancy provisions reviewed individually, since those clauses rarely show up in a summarized rent roll line.</p><p>Medical office rent rolls near the hospital-anchored corridors carry their own wrinkle, since a physician group's lease may reference a separate services or equipment agreement running alongside the base rent, and treating the base rent figure as the tenant's full financial obligation to the landlord can understate the tenant relationship's true value or overlook a linked obligation that terminates separately from the lease itself.</p>"
+  },
+  {
+   "heading": "Red Flags That Surface in Rent Roll Review",
+   "html": "<p>A defined set of issues recurs often enough in Fort Worth rent roll review that we check for each one before relying on the seller's numbers.</p><ul><li>rent listed above the lease's stated rate without a corresponding amendment on file</li><li>expired leases carried as month-to-month without confirming the tenant's actual renewal intent</li><li>concessions or free-rent periods absent from the rent roll but present in the lease</li><li>related-party leases where rent may not reflect an arm's-length market rate</li><li>vacant suites listed with a projected rather than a signed lease rate</li></ul>"
+  },
+  {
+   "heading": "Escalation and Option Period Modeling",
+   "html": "<p>A rent roll rarely models the full escalation schedule or option period rent, showing only the current in-place rate. We model the full remaining lease term for every material tenant, including whether an option period rent is fixed, tied to an index, or subject to a fair-market reset, since that distinction changes the property's income trajectory well beyond the current year.</p>"
+  },
+  {
+   "heading": "Timing Rent Roll Review Against the Identification Window",
+   "html": "<p>Rent roll reconciliation takes longer than reading the summary page, particularly on a multi-tenant property with a dozen or more leases each carrying their own amendments, and we start this review before a candidate is formally identified rather than after. An investor who identifies a property first and discovers a rent roll discrepancy afterward has far less room to walk away without disrupting the exchange timeline.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why can't a rent roll be relied on without checking the lease files?",
+   "a": "A rent roll is a summary a property manager or broker prepared, and amendments granting rent abatements, expansion rights, or early termination options are the most common gap between what the summary shows and what the signed lease actually allows."
+  },
+  {
+   "q": "What is different about reviewing an industrial rent roll near the Alliance corridor?",
+   "a": "Expansion and renewal options tied to warehouse and distribution tenants need individual review, since those tenants' space needs can shift with logistics contract cycles in ways an averaged rent roll figure does not capture."
+  },
+  {
+   "q": "Why do related-party leases need separate scrutiny in rent roll review?",
+   "a": "Rent between related parties may not reflect an arm's-length market rate, and relying on that figure without adjustment can overstate the property's true income once ownership changes hands."
+  },
+  {
+   "q": "How is an option period rent reviewed differently from the current lease rate?",
+   "a": "We confirm whether the option rent is fixed, tied to an index, or subject to a fair-market reset, since each structure produces a different income trajectory beyond the current lease term than the in-place rent roll figure shows."
+  },
+  {
+   "q": "Why start rent roll reconciliation before formal identification?",
+   "a": "Reconciling a rent roll against lease files takes time, and starting before a property is identified leaves room to walk away from a discrepancy without disrupting the 45-day or 180-day exchange deadlines."
+  },
+  {
+   "q": "Why does the effective date on a rent roll matter?",
+   "a": "A rent roll dated weeks before the trailing bank deposit records can show a tenant as current when a subsequent late payment or default has already occurred but has not yet been reflected, so aligning the two dates matters before relying on either document."
+  },
+  {
+   "q": "How is a medical office rent roll different from a standard retail or industrial rent roll?",
+   "a": "A physician group's lease may reference a separate services or equipment agreement running alongside the base rent, so treating the base rent figure as the tenant's entire financial obligation can miss part of the value or an obligation that terminates on its own schedule."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 860
+}

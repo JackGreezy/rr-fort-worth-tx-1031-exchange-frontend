@@ -1,0 +1,62 @@
+{
+ "slug": "downtown-fort-worth-tx",
+ "taxonomy": "locations",
+ "title": "Downtown Fort Worth",
+ "name": "Downtown Fort Worth",
+ "metaTitle": "Downtown Fort Worth 1031 Exchange Investors | Fort Worth, TX",
+ "metaDescription": "1031 exchange coordination for downtown Fort Worth investors trading legacy office towers, government-leased space, and historic warehouse conversions.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Downtown Fort Worth sits inside the bend of the Trinity River, a compact core of legal and financial office towers, county and city government space, and a handful of early-twentieth-century warehouse buildings now converted to residential or mixed use. An exchanger trading out of a downtown asset is usually dealing with one of two very different property types, and the documentation each requires is not interchangeable.</p>"
+  },
+  {
+   "heading": "Two Distinct Asset Records: Office Tower and Warehouse Conversion",
+   "html": "<p>Legacy Class A and B office towers near the courthouse corridor were built for a mix of law firms, banks, and professional services, and their exchange file leans on tenant estoppels and a current rent roll. A building like the Texas and Pacific Warehouse, converted decades later into residential lofts, carries a different record entirely: a certificate of occupancy that reflects the conversion rather than the original industrial use, plus any recorded covenants tied to its historic designation.</p><p>Treating these two records as interchangeable because both sit downtown is a documentation error. The underlying file for a warehouse conversion should include the conversion's certificate of occupancy and, where applicable, records from the city's Historic and Cultural Landmarks Commission review, rather than only a deed and lease abstract borrowed from an office-tower checklist.</p><p>A buyer's title commitment for either asset type should list every easement, restrictive covenant, and recorded historic-designation instrument by document number rather than by general reference, since a downtown parcel's chain of title in Tarrant County can run through several transfers where an old covenant was never formally released.</p>"
+  },
+  {
+   "heading": "The Asset Types an Exchanger Actually Encounters Downtown",
+   "html": "<p>A realistic downtown Fort Worth shortlist spans several distinct records:</p><ul><li>Class A and B office towers leased to law firms, banks, and professional services near the courthouse corridor</li><li>office space under lease to Tarrant County or City of Fort Worth departments, carrying government-lease terms rather than standard commercial terms</li><li>historic warehouse and loft conversions such as the Texas and Pacific Warehouse, now residential or mixed use</li><li>ground-floor retail and restaurant space serving the daytime office population</li><li>structured parking assets tied to a specific office tower's tenant base</li></ul>"
+  },
+  {
+   "heading": "Identification Strategy Depends on Which Record You're Assembling",
+   "html": "<p>An exchanger exiting a single large office tower with a concentrated tenant base often needs a broader identification list, since comparable downtown office product with a similar tenant profile is limited. The 200% rule lets that exchanger include a historic conversion or a DST interest alongside comparable office candidates. An exchanger trading one downtown office building for a similarly leased one can typically rely on the three-property rule, since the replacement search stays narrower.</p>"
+  },
+  {
+   "heading": "Government Leases and Historic Designation Add Documentation Steps",
+   "html": "<p>A government lease typically carries different assignment and termination language than a standard commercial lease, and confirming that the lease survives a change in ownership should happen before the identification notice is filed, not discovered during closing week.</p><p>On the conversion side, further build-out inside a designated historic structure typically requires review by the Historic and Cultural Landmarks Commission before construction begins, and that review timeline needs to be built into the 180-day exchange period rather than assumed to run without delay alongside it.</p>"
+  },
+  {
+   "heading": "Coordinating Title, Escrow, and the Qualified Intermediary Around a Compact Closing Window",
+   "html": "<p>Downtown parcels sit close together and often share the same title company and courthouse records office, so coordination is more a matter of sequencing than distance. The qualified intermediary's exchange agreement, the lender's underwriting file, and the title company's commitment should reference the same closing date and the same identification notice language. A mismatch discovered during closing week is the most common cause of a downtown closing slipping past its scheduled date. Scheduling a walkthrough or appraisal near the courthouse should also account for county business hours and any recorded street-closure notices tied to downtown events, since access to several office towers narrows during those windows.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does a Tarrant County or City of Fort Worth government lease change how I document a downtown exchange?",
+   "a": "Yes. Government leases typically carry different assignment and termination language than a standard commercial lease, and confirming the lease survives a change in ownership should happen before the identification notice is filed, not during closing week."
+  },
+  {
+   "q": "How many replacement properties should I identify if I'm exiting a single-tenant downtown office tower?",
+   "a": "More than three is common when the tenant base is concentrated in one or two large leases, since a broader list under the 200% rule lets an investor include a historic conversion or DST interest alongside comparable office product."
+  },
+  {
+   "q": "Does the historic designation on a building like the Texas and Pacific Warehouse affect an improvement exchange?",
+   "a": "It can. Interior build-out inside a designated historic structure often requires review by the Historic and Cultural Landmarks Commission before construction begins, and that review timeline should be built into the 180-day exchange period rather than assumed to run without delay."
+  },
+  {
+   "q": "What title issues come up most often with downtown Fort Worth office towers?",
+   "a": "Confirming that recorded easements and any parking or skybridge agreements tied to an adjacent tower are current and assignable is a frequent finding, since several downtown towers share structured parking or pedestrian connections documented decades apart."
+  },
+  {
+   "q": "Can 1031 Exchange Fort Worth confirm whether my downtown property qualifies for exchange treatment?",
+   "a": "No. This service coordinates documentation, identification timing, and communication among the investor's advisors. Whether a specific transaction qualifies, particularly one involving a government lease or a historic-designation review, is a determination made by the investor's CPA, tax attorney, and qualified intermediary."
+  },
+  {
+   "q": "Does the age of a downtown Fort Worth office tower affect financing for a replacement purchase?",
+   "a": "Yes. Lenders reviewing an older tower typically request the building's capital-improvement history and current mechanical-system condition alongside the standard rent roll, and assembling that record before the identification notice keeps underwriting on schedule."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 917
+}

@@ -1,0 +1,58 @@
+{
+ "slug": "improvement-exchange-planning",
+ "taxonomy": "services",
+ "title": "Improvement Exchange Planning",
+ "name": "Improvement Exchange Planning",
+ "metaTitle": "Improvement Exchange Planning in Fort Worth, TX",
+ "metaDescription": "Fort Worth improvement 1031 exchange planning: coordinating construction draws and title-holding structures on Alliance and Near Southside replacement sites.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>An improvement exchange, sometimes called a construction exchange, lets exchange proceeds fund improvements to a replacement property while it is held by an exchange accommodation titleholder, with the improved value counted toward the exchange. Fort Worth investors targeting undervalued Near Southside parcels or Alliance-area land for build-to-suit industrial use this structure when the raw acquisition price alone will not absorb the full exchange proceeds.</p>"
+  },
+  {
+   "heading": "Why an Accommodation Titleholder Is Required",
+   "html": "<p>Because the taxpayer cannot hold title to the replacement property while improvements are being completed using exchange funds, an exchange accommodation titleholder takes and holds title during the construction period. All construction contracts, draws, and permits during that period run through the titleholder rather than the taxpayer directly, which changes the contracting structure compared to a typical build-out.</p><p>On a Cultural District infill site, this means the general contractor agreement, permit applications, and inspection sign-offs are executed in the titleholder's name until the property transfers to the taxpayer.</p>"
+  },
+  {
+   "heading": "Fitting Construction Into the 180-Day Window",
+   "html": "<p>All improvements that are meant to count toward the exchange value must be substantially completed before the replacement property is deeded to the taxpayer at or before the 180-day deadline, which is a tight window for meaningful construction. Improvement exchanges are typically planned around work that can be sequenced fast, such as tenant build-outs or targeted renovations, rather than ground-up construction requiring a long permit cycle.</p><ul><li>Confirm the exchange accommodation titleholder structure before acquisition</li><li>Sequence construction draws against the 180-day deadline</li><li>Route all contractor payments through the titleholder's accounts</li><li>Document completed improvement value at the transfer date</li></ul>"
+  },
+  {
+   "heading": "Valuing Improvements at Transfer",
+   "html": "<p>Only the value of improvements actually completed by the transfer date counts toward the exchange; work still in progress or planned but not yet built does not. That makes construction sequencing and documentation of completion percentage a central part of planning, particularly on a defense-corridor site near Lockheed where permitting timelines can run longer than expected.</p>"
+  },
+  {
+   "heading": "Coordinating the Titleholder, Contractor, and Qualified Intermediary",
+   "html": "<p>An improvement exchange typically involves more moving parts than a standard purchase: the qualified intermediary holding proceeds, the titleholder holding legal title, and a contractor executing work against a fixed deadline. Planning maps out each party's role and the document handoffs between them before the acquisition closes.</p>"
+  },
+  {
+   "heading": "Selecting Candidate Sites With Realistic Construction Scope",
+   "html": "<p>Not every underpriced parcel makes a good improvement exchange candidate; the deciding factor is whether the scope of work needed to bring a site to its intended use can realistically finish within the remaining exchange window once acquisition and permitting time are subtracted from the full 180 days. A Near Southside infill lot needing only interior build-out for a small commercial tenant fits this structure more comfortably than a raw Alliance-area parcel requiring utility extension and a new access road before any building can begin.</p><p>Screening candidates against this construction-scope filter early, before a site is added to the identification list, prevents committing exchange proceeds to a project that has little realistic chance of reaching substantial completion before the deadline.</p><p>A rough construction schedule, built alongside the identification decision rather than after acquisition, helps confirm whether a candidate site is realistic before it consumes a slot on the list. That schedule accounts for permitting review time with the applicable Fort Worth-area jurisdiction, contractor mobilization, and a buffer for the kind of delay that construction projects commonly encounter, rather than assuming every phase proceeds exactly on the fastest possible timeline. If the schedule shows little to no buffer against the 180-day deadline once realistic permitting and mobilization time is included, that candidate is generally set aside in favor of a site with a shorter path to substantial completion. Where a Fort Worth-area municipality's permitting timeline is uncertain, an early conversation with the relevant building department, before acquisition rather than after, can clarify whether the schedule assumptions used in planning are realistic for that specific jurisdiction. That single conversation, held before the property is added to the identification list, often does more to protect the exchange deadline than any amount of construction-phase contingency planning after the fact. Documenting that conversation, along with the department's stated review timeline, gives the planning team a written reference point to measure actual progress against once permitting begins.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why can't a Fort Worth investor hold title directly during construction in an improvement exchange?",
+   "a": "The taxpayer cannot receive replacement property with a value that includes improvements not yet built, so title is held temporarily by an exchange accommodation titleholder until improvements are substantially complete."
+  },
+  {
+   "q": "Does an improvement exchange extend the 180-day deadline?",
+   "a": "No. The 180-day deadline applies the same way it does in any exchange; only improvements completed and the property transferred within that window count toward the exchange."
+  },
+  {
+   "q": "What kind of construction fits an improvement exchange timeline?",
+   "a": "Work that can be sequenced and substantially completed within the remaining exchange window, such as tenant improvements or targeted renovations, fits better than ground-up construction with a long permitting cycle."
+  },
+  {
+   "q": "Who pays the contractor during an improvement exchange?",
+   "a": "Payments are typically routed through the exchange accommodation titleholder's accounts, funded by exchange proceeds, rather than paid directly by the taxpayer during the holding period."
+  },
+  {
+   "q": "Can unfinished construction still count toward exchange value?",
+   "a": "No. Only the value of improvements actually completed by the transfer date counts; work still in progress at the 180-day deadline does not add to the exchange value."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 861
+}

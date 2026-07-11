@@ -1,0 +1,70 @@
+{
+ "slug": "retail-replacement-sourcing",
+ "taxonomy": "services",
+ "title": "Retail Replacement Sourcing",
+ "name": "Retail Replacement Sourcing",
+ "metaTitle": "Retail Replacement Sourcing in Fort Worth, TX",
+ "metaDescription": "Sourcing multi-tenant retail replacement candidates around Fort Worth with anchor tenant review, co-tenancy checks, and sales reporting verification.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Multi-tenant retail carries risks a single-tenant net lease property does not, since one anchor's lease terms can trigger co-tenancy clauses affecting every other tenant in the center. Sourcing a Fort Worth retail replacement candidate means reading those interdependencies before the property is identified, not after closing.</p>"
+  },
+  {
+   "heading": "Retail Corridors Feeding Fort Worth Replacement Inventory",
+   "html": "<p>Downtown retail near Sundance Square carries a dense, pedestrian-oriented tenant mix with lease terms driven by foot traffic and event programming rather than drive-up convenience, while neighborhood and community centers in the growth corridors around the city carry a more conventional grocery-anchored or service-anchored structure. We source across both, since an investor's exchange proceeds and risk tolerance can point toward either format depending on how much active management the investor is prepared to take on.</p><p>Parking and outparcel arrangements deserve equal attention regardless of corridor, since a retail property with shared parking obligations tied to an adjacent outparcel can carry maintenance and cost-sharing responsibilities that a standalone building never has to address.</p>"
+  },
+  {
+   "heading": "Anchor Tenant and Co-Tenancy Review",
+   "html": "<p>A center's anchor lease often includes a co-tenancy clause allowing smaller tenants to pay reduced rent, or in some cases terminate, if the anchor closes or is replaced by a weaker operator. We pull the anchor lease and every co-tenancy provision tied to it before a shopping center is identified, because a seller's trailing rent roll will not show the exposure that a single anchor departure could trigger across the rest of the center.</p><p>We also confirm whether the anchor lease includes an exclusive-use provision restricting what competing tenants can be leased space in the same center, since an exclusive-use conflict can block a landlord from re-tenanting a vacant suite with an otherwise qualified prospective tenant.</p>"
+  },
+  {
+   "heading": "Documentation Before a Retail Property Is Identified",
+   "html": "<p>A defined document set gets assembled before a multi-tenant retail candidate is placed on a 45-day identification list.</p><ul><li>anchor lease and every co-tenancy clause tied to smaller tenant rent or termination rights</li><li>full rent roll reconciled against signed leases for every suite</li><li>common area maintenance reconciliation history for the trailing three years</li><li>percentage rent reporting and sales verification for any tenant paying overage rent</li><li>parking ratio and reciprocal easement agreements affecting outparcels</li></ul>"
+  },
+  {
+   "heading": "Percentage Rent and Sales Reporting Verification",
+   "html": "<p>Tenants paying percentage rent above a sales breakpoint are supposed to report gross sales on a defined schedule, but enforcement of that reporting is inconsistent across smaller retail landlords, and we confirm the seller has actually collected and audited those reports rather than estimating overage rent from a stale figure. A center showing percentage rent income on the T-12 without underlying sales reports to support it should be treated as an unverified number until confirmed.</p>"
+  },
+  {
+   "heading": "Vacancy and Re-Tenanting Timeline Risk",
+   "html": "<p>A vacant suite in a retail center takes longer to re-lease than a vacant apartment unit, particularly if the space requires build-out specific to the prior tenant's use, and we model a realistic re-tenanting timeline rather than the seller's optimistic projection. An investor identifying a center with meaningful vacancy needs that timeline built into the return model before the property is added to the identification list, not discovered afterward.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is a co-tenancy clause and why does it matter for retail sourcing?",
+   "a": "A co-tenancy clause can allow smaller tenants to pay reduced rent or terminate their leases if a center's anchor closes or is replaced by a weaker operator, and that exposure will not show up in a seller's trailing rent roll unless the lease is reviewed directly."
+  },
+  {
+   "q": "How is percentage rent income verified before a retail property is identified?",
+   "a": "We confirm the seller has actually collected and audited gross sales reports from tenants paying overage rent, rather than accepting an estimated percentage rent figure shown on the trailing financials without supporting documentation."
+  },
+  {
+   "q": "Why does downtown Sundance Square retail get sourced differently than neighborhood centers?",
+   "a": "Downtown retail leases are driven by foot traffic and event programming rather than drive-up convenience, while neighborhood and community centers in growth corridors carry a more conventional grocery- or service-anchored structure, and each format suits a different investor risk tolerance."
+  },
+  {
+   "q": "How is retail vacancy risk modeled differently from multifamily or industrial vacancy?",
+   "a": "Retail suites often need tenant-specific build-out before re-leasing, which extends the realistic timeline well beyond a seller's optimistic projection, and that timeline needs to be built into the return model before identification rather than discovered afterward."
+  },
+  {
+   "q": "What CAM documentation should be reviewed before identifying a shopping center?",
+   "a": "Three years of common area maintenance reconciliation history should be requested, since inconsistent reconciliation practices can leave a new owner unable to recover expenses the prior owner never properly billed to tenants."
+  },
+  {
+   "q": "Why does an exclusive-use clause in an anchor lease matter for re-tenanting a vacancy?",
+   "a": "An exclusive-use provision can restrict which competing businesses may lease other suites in the center, and a conflict with that clause can block a landlord from re-tenanting a vacant space with an otherwise qualified prospective tenant."
+  },
+  {
+   "q": "Why does a shared outparcel arrangement matter for retail sourcing?",
+   "a": "A retail property with parking or access obligations shared with an adjacent outparcel can carry maintenance and cost-sharing responsibilities that a standalone building does not have, and reviewing the reciprocal easement agreement before identification confirms the actual scope of that obligation."
+  },
+  {
+   "q": "How should a retail center's parking ratio be verified before identification?",
+   "a": "We confirm the current parking count against both the original site plan and any local code requirement, since a center that has lost spaces to outparcel development or expansion over time may no longer meet the ratio its original approval assumed."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 890
+}

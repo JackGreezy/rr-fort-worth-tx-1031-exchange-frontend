@@ -1,0 +1,58 @@
+{
+ "slug": "95-percent-rule-strategy",
+ "taxonomy": "services",
+ "title": "95% Rule Strategy",
+ "name": "95% Rule Strategy",
+ "metaTitle": "95% Rule Strategy in Fort Worth, TX",
+ "metaDescription": "Fort Worth 1031 exchange 95-percent rule strategy: identifying broad replacement candidate lists across Alliance and Near Southside without a value cap.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The 95% rule allows an investor to identify an unlimited number of replacement properties, with no aggregate value ceiling, provided the investor ultimately acquires at least 95% of the total value of everything on the list. Fort Worth investors weighing a wide net across Alliance, Near Southside, and Bedford submarkets sometimes reach for this rule when neither the three-property nor 200% limits fit the search.</p>"
+  },
+  {
+   "heading": "Why the 95% Rule Is Used Less Often",
+   "html": "<p>Because the acquisition threshold is so close to total, this rule carries meaningfully more risk than the other two identification rules: falling even slightly short of 95% of identified value disqualifies the entire exchange, rather than only the shortfall amount. It tends to be selected only when an investor has strong confidence that most or all identified properties will close, for example when several candidates are already under firm contract at the time of identification.</p><p>A broad list built purely for optionality, without real closing likelihood behind each entry, usually points back toward the 200% rule instead.</p>"
+  },
+  {
+   "heading": "Structuring an Identification Under the 95% Rule",
+   "html": "<p>The written notice functions the same way as under the other rules, requiring specific addresses or legal descriptions delivered to the qualified intermediary before day 45, but the list can run longer since there is no count or value cap at the identification stage. Fort Worth investors identifying industrial buildings near the BNSF intermodal corridor alongside retail parcels closer to downtown have used this rule when spreading a large relinquished sale across many smaller assets.</p><ul><li>List every candidate with a specific address or legal description</li><li>Track expected closing probability for each listed property</li><li>Confirm which candidates are already under contract before relying on this rule</li><li>Recalculate the 95% threshold as candidates close or fall away</li></ul>"
+  },
+  {
+   "heading": "Monitoring the Threshold as Closings Occur",
+   "html": "<p>Once identification is locked, the exchange team tracks running acquired value against the 95% threshold as each closing occurs, since a late-stage financing failure on one candidate can push the total acquired value below the required percentage even if the earlier closings went smoothly.</p>"
+  },
+  {
+   "heading": "Coordinating With the Qualified Intermediary on Fallback Options",
+   "html": "<p>Given the narrow margin for error, exchanges relying on the 95% rule typically keep the qualified intermediary informed in real time about which candidates remain live, so proceeds can be directed quickly toward whichever properties are most likely to close within the 180-day period.</p>"
+  },
+  {
+   "heading": "Weighing the Trade-Off Against Fewer, Larger Candidates",
+   "html": "<p>Choosing the 95% rule over a shorter list under the three-property or 200% rule is a deliberate trade-off between flexibility and risk, and it works best when the underlying deal flow supports it. An investor exiting a sizable Near Southside multifamily building into a portfolio of smaller Bedford and Hurst retail assets, each already under contract before the 45-day deadline, has a realistic path to hitting 95% because the candidates were vetted before identification rather than sourced afterward.</p><p>By contrast, an investor still shopping broadly across Fort Worth-area submarkets with no firm contracts in place takes on outsized risk under this rule, since any single financing failure or seller withdrawal late in the window can jeopardize the entire exchange rather than just one line item on the list.</p><p>Before committing to this rule, the investor and the exchange team typically run a scenario check: what happens to the acquired-value percentage if any one candidate on the list falls through. If losing a single Hurst or Bedford property from the list would drop the acquired total below 95%, that concentration risk is worth addressing before day 45, either by adding a lower-priority backup candidate or by reconsidering whether the 200% rule offers a safer structure for the same search. Running that check before the notice is finalized, rather than after a candidate has already dropped out, is what keeps the 95% rule a deliberate choice rather than an accidental one. Documenting the concentration check alongside the identification notice itself gives the exchange file a clear record of why the rule was chosen and what contingency, if any, was built in for a single candidate falling through before the 180-day closing deadline.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why would a Fort Worth investor choose the 95% rule over the 200% rule?",
+   "a": "The 95% rule is used when the identified list needs to exceed both the three-property count and the 200% value ceiling, typically because a large number of smaller candidates are already under contract and expected to close."
+  },
+  {
+   "q": "What happens if only 90% of the identified value is acquired?",
+   "a": "Falling short of the 95% threshold disqualifies the entire exchange for tax purposes, which is why this rule is generally reserved for lists with high closing confidence."
+  },
+  {
+   "q": "Is there a limit on how many properties can be identified under the 95% rule?",
+   "a": "No, there is no count limit and no aggregate value ceiling at the identification stage, which is the main advantage of this rule over the other two."
+  },
+  {
+   "q": "Does the 95% rule require any different documentation than the three-property rule?",
+   "a": "The written notice format is the same, specific addresses or legal descriptions delivered to the qualified intermediary before day 45, though the list itself is typically longer."
+  },
+  {
+   "q": "Can an investor switch to the 95% rule after already filing an identification under the three-property rule?",
+   "a": "Yes, as long as the revised notice is delivered before the 45-day deadline. After that date, the rule and list in effect at day 45 govern the exchange."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 860
+}

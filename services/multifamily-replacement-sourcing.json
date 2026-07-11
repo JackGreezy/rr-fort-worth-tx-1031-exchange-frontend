@@ -1,0 +1,62 @@
+{
+ "slug": "multifamily-replacement-sourcing",
+ "taxonomy": "services",
+ "title": "Multifamily Replacement Sourcing",
+ "name": "Multifamily Replacement Sourcing",
+ "metaTitle": "Multifamily Replacement Sourcing in Fort Worth, TX",
+ "metaDescription": "Sourcing Fort Worth multifamily replacement candidates with rent-roll verification, capital reserve review, and financing timelines built around exchange deadlines.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Fort Worth's multifamily stock spans employment-driven demand pockets that behave differently from one another, and sourcing a replacement candidate starts with confirming which demand driver actually supports the property's occupancy, rather than accepting an offering memorandum's growth narrative at face value.</p>"
+  },
+  {
+   "heading": "Multifamily Submarkets Feeding Fort Worth Replacement Demand",
+   "html": "<p>Apartment demand near the west side draws on a stable base tied to the defense manufacturing employment at the Lockheed Martin plant and the adjacent joint reserve base, a tenant base that tends to sign shorter leases tied to program and shift schedules rather than year-long civilian leases exclusively. Near Southside and the Cultural District carry a different tenant profile, closer to hospital and university employment, with higher turnover but stronger rent growth in recently renovated product.</p><p>Properties tied to the Alliance corridor logistics and air-cargo employment base sit further north and often show occupancy patterns that move with warehouse hiring cycles rather than staying flat year over year, which changes how a trailing occupancy number should be interpreted.</p>"
+  },
+  {
+   "heading": "Rent Roll and Renewal Pattern Review",
+   "html": "<p>We request the full rent roll with lease start and end dates, not a summarized average, because a property showing strong trailing occupancy can still carry a renewal cliff where a large share of leases expire in the same ninety-day window. Concession history matters as much as the stated rent, since a unit rented at face rate with two free months has a different effective rent than the T-12 alone will show.</p><p>Utility billing structure also affects the comparison between candidates, since a property that bills residents directly through a ratio utility billing system reports different net income than an otherwise identical property where the owner absorbs water and trash costs inside the base rent. We confirm which billing structure is in place for every Fort Worth multifamily candidate before comparing net operating income across a shortlist, since the two structures are not directly comparable without adjustment.</p>"
+  },
+  {
+   "heading": "Documentation Assembled Before a Multifamily Property Is Identified",
+   "html": "<p>Before adding a multifamily candidate to a 45-day identification list, we assemble the records that let an investor underwrite the property rather than the marketing package.</p><ul><li>unit-level rent roll with lease start, end, and concession detail</li><li>trailing twelve-month collections reconciled against bank deposits</li><li>capital expenditure history for roofs, parking, and major mechanical systems</li><li>current property tax assessment and any pending reassessment appeal</li><li>insurance claims history for the trailing three years</li></ul>"
+  },
+  {
+   "heading": "Deferred Maintenance and Capital Reserve Exposure",
+   "html": "<p>Older Fort Worth multifamily product, particularly garden-style buildings from earlier development cycles, can carry deferred roof and parking-lot maintenance that a seller's capital budget line never fully captured. We request a physical condition assessment ahead of identification when a property's age or the seller's disclosures suggest deferred work, since a large capital call in year one can erase the return an investor modeled at acquisition.</p>"
+  },
+  {
+   "heading": "Financing Timeline Coordination",
+   "html": "<p>Multifamily lenders typically require more processing time than a single-tenant net lease loan, and we confirm a lender's underwriting timeline against the 180-day exchange period before a property is identified, not after an offer is already in hand. A property that fits an investor's return targets is still the wrong replacement choice if the financing cannot close inside the deadline.</p><p>Agency financing through a government-sponsored enterprise can offer favorable terms on a stabilized Fort Worth multifamily property, but the underwriting process for that financing typically runs longer than a conventional bank loan, and a lender's own appraisal and third-party reports add further time to the schedule. We map the full financing timeline against the exchange deadline before a property with agency-eligible financing is identified, rather than assuming the favorable terms are worth the added processing time in every case.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why does a strong trailing occupancy number not guarantee stable multifamily income?",
+   "a": "Occupancy can mask a renewal cliff where a large share of leases expire in the same window, and it does not reveal concession history that lowers the effective rent below the face rate shown on the rent roll."
+  },
+  {
+   "q": "How does employment near the Lockheed Martin plant affect west Fort Worth multifamily leasing?",
+   "a": "That tenant base often signs shorter leases tied to program and shift schedules rather than standard year-long civilian leases, which changes how renewal and turnover patterns should be modeled for a replacement property in that corridor."
+  },
+  {
+   "q": "What capital items are checked before identifying an older multifamily property?",
+   "a": "We review roof, parking lot, and major mechanical capital history, and request a physical condition assessment when a property's age or the seller's disclosures suggest deferred maintenance that could require a large capital call soon after closing."
+  },
+  {
+   "q": "Why does financing timeline matter before a multifamily property is identified?",
+   "a": "Multifamily lenders often require longer underwriting than a single-tenant net lease loan, and confirming that timeline against the 180-day exchange period before identification avoids choosing a property the financing cannot close in time to support."
+  },
+  {
+   "q": "How are Alliance corridor multifamily occupancy patterns different from other Fort Worth submarkets?",
+   "a": "Occupancy near the Alliance logistics and air-cargo employment base can move with warehouse hiring cycles rather than holding flat, so a trailing occupancy figure needs to be read against recent hiring activity rather than treated as a static baseline."
+  },
+  {
+   "q": "Why does utility billing structure matter when comparing multifamily candidates?",
+   "a": "A property billing residents directly through a ratio utility billing system reports different net operating income than one where the owner absorbs water and trash costs inside base rent, so billing structure needs to be confirmed before comparing net income across a shortlist."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 880
+}

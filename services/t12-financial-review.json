@@ -1,0 +1,66 @@
+{
+ "slug": "t12-financial-review",
+ "taxonomy": "services",
+ "title": "T12 Financial Review",
+ "name": "T12 Financial Review",
+ "metaTitle": "T12 Financial Review in Fort Worth, TX",
+ "metaDescription": "Independent T-12 verification protocol for Fort Worth 1031 replacement candidates, confirming Tarrant County reassessment exposure before pricing a purchase.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>A trailing twelve-month statement carries the most scrutiny of any document in a Fort Worth exchange, because it is the figure a seller controls most directly and the figure a lender relies on most heavily. Independent verification is a required step before the T-12 is allowed to set a purchase price or support a loan application, not a discretionary one.</p>"
+  },
+  {
+   "heading": "Source Documents the T-12 Must Reconcile To",
+   "html": "<p>A T-12 is verified against three source documents: bank deposit records, the signed rent roll, and the current Tarrant County property tax bill. It is not accepted as a standalone spreadsheet a listing broker assembled. Owner-managed properties, common among smaller commercial buildings near the Cultural District and Sundance Square, carry elevated risk of informal bookkeeping that blends categories or omits a cost the owner absorbed personally rather than routing it through formal accounting.</p><p>The prior year's statement is reconciled against the current one whenever it is available. A material year-over-year swing in a single line item, repairs or utilities most often, is treated as requiring a documented explanation from the seller before the figure is accepted, whether the cause is a data entry error or an actual change in the property's condition.</p>"
+  },
+  {
+   "heading": "Reassessment Exposure After a Change in Ownership",
+   "html": "<p>A trailing statement reflects the seller's current Tarrant County assessed value, and a sale at a higher price frequently triggers a reassessment that raises the real property tax expense above what the T-12 shows. This gap is treated as material on properties that have not traded in several years, since accumulated appreciation between the last assessment and the sale price can be substantial once the appraisal district recalculates value after closing.</p><p>Any pending protest or appeal on the seller's existing assessment is reviewed independently, since a favorable ruling obtained by the seller does not automatically carry forward to a new owner once the file reopens under the sale price.</p>"
+  },
+  {
+   "heading": "Verification Protocol Before the Numbers Are Relied Upon",
+   "html": "<p>Reliance on a seller's T-12 is conditioned on completing a defined verification protocol rather than accepting the summary at face value.</p><ul><li>Income reconciled against bank deposits for a minimum of six months of the trailing period</li><li>Property tax modeled at the anticipated post-sale reassessed value, not the seller's current bill</li><li>Insurance independently quoted for the buyer's ownership structure rather than carried forward from the seller's policy</li><li>Any one-time income or expense item identified and removed from the operating baseline</li><li>Repair and maintenance spend compared against the property's documented physical condition</li></ul>"
+  },
+  {
+   "heading": "Expense Lines With Documented Understatement Risk",
+   "html": "<p>Repairs and maintenance is the line with the highest documented understatement risk, particularly on owner-operated industrial and flex space along the AllianceTexas and BNSF-served corridor, where an owner-operator historically absorbed labor costs without routing them through formal accounting. Insurance premiums carry similar risk when a policy is scheduled to renew shortly after the trailing period closes, and commercial insurance pricing has moved enough in recent cycles that a stale premium figure understates the real ongoing cost.</p><p>Properties leased to a single defense-sector tenant near the Lockheed Martin corridor in west Fort Worth carry a distinct risk profile: specialized tenant-improvement or environmental coverage requirements can be absent from a seller's existing policy and only surface once the buyer's insurer underwrites the specific use.</p>"
+  },
+  {
+   "heading": "Consequence of Underwriting Without Normalization",
+   "html": "<p>An investor who prices a replacement property off the seller's T-12 without normalizing property tax, insurance, and deferred repair costs is exposed to net operating income landing materially below what justified the purchase price, a gap typically not discovered until the first full year of ownership. Because the exchange has already closed by that point, the price is not subject to renegotiation. The normalization protocol requires a few days of documented review before identification; skipping it exposes the investor to a full year of underperformance discovered at the point it is most costly to correct.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why is independent verification of the T-12 required rather than optional?",
+   "a": "Sellers and their brokers assemble the T-12 in the most favorable defensible light without necessarily misstating it. Reconciling the statement against bank deposits and Tarrant County tax records is the only way to confirm the figures independently before they support a price or a loan."
+  },
+  {
+   "q": "How does a Tarrant County reassessment affect underwriting after a sale?",
+   "a": "A sale at a higher price commonly triggers reassessment, and the trailing statement reflects only the seller's existing assessed value, so the real post-sale property tax expense can run well above the T-12 figure."
+  },
+  {
+   "q": "Why do owner-managed properties near the Cultural District or Sundance Square carry elevated review risk?",
+   "a": "Owner-managed bookkeeping is documented to more frequently blend categories or omit labor and maintenance costs the owner absorbed personally, which understates true operating costs for a new buyer."
+  },
+  {
+   "q": "What qualifies as a one-time item requiring removal from the T-12 baseline?",
+   "a": "Income or expense that will not recur, such as an insurance settlement or a single large capital repair, is required to be removed, since leaving it in distorts the property's ongoing operating performance."
+  },
+  {
+   "q": "Should a buyer rely on the seller's existing insurance premium during underwriting?",
+   "a": "No. Insurance is independently quoted for the buyer's ownership structure and coverage needs, since a carried-forward seller premium can materially understate the real cost, particularly on a defense-sector leaseback near the Lockheed Martin corridor where coverage requirements differ from a standard commercial policy."
+  },
+  {
+   "q": "Does a favorable property tax appeal carry forward to a new owner?",
+   "a": "Not automatically. A sale typically prompts the Tarrant County Appraisal District to reopen the file at the new sale price, so a favorable ruling obtained by the seller on a prior assessment should not be assumed to protect the buyer after closing."
+  },
+  {
+   "q": "What happens after a T-12 review flags an insurance coverage gap on a single-tenant industrial property?",
+   "a": "The gap is routed to the buyer's insurance broker for an updated quote before the identification deadline, since a coverage requirement discovered only during loan underwriting can compress the closing timeline as much as an unresolved title exception."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 960
+}

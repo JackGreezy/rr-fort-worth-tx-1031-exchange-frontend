@@ -1,0 +1,62 @@
+{
+ "slug": "qualified-intermediary-coordination",
+ "taxonomy": "services",
+ "title": "Qualified Intermediary Coordination",
+ "name": "Qualified Intermediary Coordination",
+ "metaTitle": "Qualified Intermediary Coordination in Fort Worth, TX",
+ "metaDescription": "Qualified intermediary compliance coordination for Fort Worth 1031 exchanges, covering assignment sequencing, escrow custody, and wire verification standards.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Qualified intermediary coordination in Fort Worth is treated as a compliance control, not a convenience service. The QI's assignment paperwork, the timing of every notice, and the routing of every wire have to satisfy the safe harbor requirements precisely, because a procedural gap on an AllianceTexas industrial closing or a Sundance Square retail conversion carries the same disqualification risk as a gap on a much larger transaction.</p>"
+  },
+  {
+   "heading": "The Compliance Function the Safe Harbor Serves",
+   "html": "<p>The qualified intermediary exists to solve one specific compliance problem: preventing the investor from having actual or constructive receipt of the relinquished-property proceeds between the two closings. The QI takes assignment of the investor's rights under the sale and purchase contracts, holds the proceeds under that assignment, and releases funds only when the replacement closing is ready to fund.</p><p>Constructive receipt is the exposure monitored most closely, and it is broader than physically touching the funds. An investor who negotiates non-standard release conditions into the exchange agreement, or who retains any right to direct where or when the QI moves money beyond the ordinary closing contingencies, can create the same disqualification exposure as receiving the funds directly. Exchange agreements on Fort Worth files are drafted to keep release conditions limited to standard closing contingencies for this reason, and any request to modify them is routed to counsel before it is accepted.</p>"
+  },
+  {
+   "heading": "Required Sequence of Assignment and Notice",
+   "html": "<p>Safe harbor treatment depends on a documented sequence of signed assignments and delivered notices, verified in order rather than assumed complete because the title company handled a prior file.</p><ul><li>Exchange agreement and assignment of contract rights executed before the relinquished property closes</li><li>Notice of assignment delivered to the buyer on the relinquished side</li><li>Written identification notice delivered to the qualified intermediary inside the 45-day statutory window</li><li>Notice of assignment delivered to the seller on the replacement side</li><li>Settlement statement reviewed and confirmed to route funds through the QI before signing</li></ul><p>Each item on this sequence is confirmed independently rather than inferred from the prior item's completion, since an assumption at any step is where compliance gaps typically originate.</p>"
+  },
+  {
+   "heading": "Escrow Custody and Funds-Control Verification",
+   "html": "<p>Escrow structure is verified for every engagement rather than assumed to match a prior transaction with the same qualified intermediary. That verification covers whether relinquished-property proceeds are held in a segregated account per transaction or a commingled trust account, and whether accrued interest during the holding period is credited to the investor or retained as part of the QI's fee, a distinction that should be resolved in the exchange agreement before signing rather than in the final accounting.</p><p>Wire instructions are confirmed through a documented callback to a phone number already on file, never a number supplied only by email, on every fund release regardless of transaction size. On an AllianceTexas industrial closing where a BNSF-served tenant estoppel is still pending at signing, or a Cultural District property with multiple lienholders, the same verification standard applies without exception.</p>"
+  },
+  {
+   "heading": "Documentation Standards for Advisor Alignment",
+   "html": "<p>The exchange agreement, assignment notices, and identification letter are routed to the investor's CPA and lender as each document is executed, not compiled into a single file after closing. This standard exists because a gap identified after closing, a mismatch between the identification letter and Form 8824, for instance, is materially harder to correct than one caught while the transaction is still open. Lender closing conditions and CPA reporting requirements are treated as inputs to the QI's paperwork, not as a separate track reconciled at the end.</p>"
+  },
+  {
+   "heading": "Due Diligence Requirements Before Engaging a Qualified Intermediary",
+   "html": "<p>Not every qualified intermediary offers equivalent financial protection, and engagement is conditioned on confirming specific safeguards beforehand: how exchange funds are held, whether the QI carries fidelity bond or errors-and-omissions coverage, and whether it has documented experience with the specific exchange structure involved, including reverse or improvement exchanges rather than only standard forward exchanges. A qualified intermediary holds full sale proceeds for weeks or longer on transactions tied to a Lockheed Martin-area industrial leaseback as readily as a retail conversion near Sundance Square, and this due diligence step is completed before engagement, not after funds are already held.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What specific risk does the safe harbor rule address?",
+   "a": "It prevents the investor from having actual or constructive receipt of relinquished-property proceeds between closings. Direct or indirect control over the funds, even briefly, exposes the exchange to disqualification regardless of intent."
+  },
+  {
+   "q": "What happens if the written identification notice reaches the wrong party?",
+   "a": "The identification must be delivered in writing to the qualified intermediary within the 45-day window. Delivery only to a broker or an attorney, without the QI receiving it directly, can be treated as if no identification occurred."
+  },
+  {
+   "q": "Can one title company close both the relinquished and replacement sides of a Fort Worth exchange?",
+   "a": "Yes, and it is routine, but the proceeds are still required to route through the qualified intermediary's escrow rather than move directly between the two closings. That routing is confirmed on the settlement statement before signing."
+  },
+  {
+   "q": "How is a wire transfer verified before a large release of funds?",
+   "a": "Through a documented callback to a phone number already on file, not a number provided by email, on every release regardless of transaction size, since exchange proceeds are a frequent wire-fraud target during closing week."
+  },
+  {
+   "q": "What should be confirmed before engaging a qualified intermediary on an AllianceTexas or Cultural District transaction?",
+   "a": "Whether funds are held in a segregated account per transaction, whether the QI carries fidelity bond or errors-and-omissions coverage, and whether it has documented experience with the specific exchange structure involved, including reverse or improvement exchanges."
+  },
+  {
+   "q": "What happens if the QI's assignment paperwork is signed after the relinquished property closes?",
+   "a": "The assignment is required to be executed before that closing for safe harbor protection to apply without question. Paperwork executed afterward raises exposure regarding whether the investor briefly held rights to the sale proceeds outside the qualified intermediary structure."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 952
+}

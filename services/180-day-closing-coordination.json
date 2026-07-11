@@ -1,0 +1,58 @@
+{
+ "slug": "180-day-closing-coordination",
+ "taxonomy": "services",
+ "title": "180-Day Closing Coordination",
+ "name": "180-Day Closing Coordination",
+ "metaTitle": "180-Day Closing Coordination in Fort Worth, TX",
+ "metaDescription": "Fort Worth 180-day exchange closing coordination: title, lender, and QI timelines tracked against the statutory deadline across Alliance and Near Southside deals.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The 180-day exchange period begins on the date the relinquished property closes and runs on a fixed calendar, not a business-day count. Fort Worth investors trading out of a Cultural District retail parcel or a Near Southside multifamily building need a closing calendar that reconciles title, lender, and qualified intermediary milestones against that single deadline from day one.</p>"
+  },
+  {
+   "heading": "Building the Closing Calendar",
+   "html": "<p>Coordination starts with a reverse-engineered calendar: the 180th day is fixed first, then title commitment review, survey delivery, lender underwriting, and final walk-through dates are placed backward from it. On Alliance-area industrial transactions, where BNSF rail-served parcels often carry environmental Phase I timelines, that reverse build has to leave room for a second-round Phase II if the first report flags anything.</p><p>Each milestone is logged with the responsible party and a buffer, so a delayed survey on a Sundance Square mixed-use closing does not silently consume days meant for lender funding review.</p>"
+  },
+  {
+   "heading": "Coordinating Title, Escrow, and the Qualified Intermediary",
+   "html": "<p>The qualified intermediary must receive assignment notice to both the relinquished and replacement contracts before each respective closing, and escrow instructions have to route exchange proceeds directly between the QI and closing table rather than through the taxpayer. Tarrant County title work on defense-corridor properties near the Lockheed campus frequently involves easement and access review that title has to clear before the QI will release funds.</p><ul><li>Confirm QI assignment language matches both contracts exactly</li><li>Verify escrow holds proceeds in a qualified trust or escrow account</li><li>Track lender commitment expiration against the 180-day date</li><li>Reconcile title exceptions before scheduling the final walk-through</li><li>Confirm closing statement allocations match the exchange agreement</li></ul>"
+  },
+  {
+   "heading": "Handling Compressed Windows",
+   "html": "<p>When identification consumes most of the first 45 days, the remaining runway for due diligence and closing on a replacement property in the Cultural District or a Southlake industrial park compresses fast. A compressed window calls for parallel-tracking lender underwriting with title curative work rather than sequencing them, and for flagging any contingency in the replacement contract that could push closing past day 180.</p>"
+  },
+  {
+   "heading": "Documentation Carried Through Closing",
+   "html": "<p>Every closing coordinated under this process produces a paper trail: the calendar, assignment notices, escrow instructions, and a closing statement cross-check against the exchange agreement. That record is what a tax advisor or CPA will ask for when preparing the exchange's supporting documentation after the fact, so it is assembled as the deal moves rather than reconstructed afterward.</p>"
+  },
+  {
+   "heading": "Working With Tarrant County Title and Survey Vendors",
+   "html": "<p>Fort Worth closings run through a mix of title companies and survey firms whose response times vary depending on submarket and deal volume, and coordinating the 180-day calendar means building relationships with vendors who understand the exchange deadline is not negotiable. A title company accustomed to standard purchase closings may not automatically flag that a survey delay on a Cultural District parcel threatens an exchange deadline the way it would a routine transaction with an extendable closing date.</p><p>Setting expectations with the title company and surveyor at engagement, rather than after a delay has already occurred, keeps the exchange calendar realistic. On Alliance-area industrial closings, where a boundary or easement issue near a rail spur can require a follow-up survey, that early conversation about the fixed deadline often determines whether the vendor prioritizes the order correctly.</p><p>Closing coordination also accounts for the practical reality that Tarrant County recording offices and utility providers have their own processing windows, which factor into the final days before the 180th day when a last-minute document correction becomes necessary.</p><p>A written vendor checklist, listing each title company, surveyor, and inspector engaged on a given transaction along with their confirmed turnaround commitment, gives the coordination team a single reference point rather than a set of verbal assurances scattered across phone calls. That checklist is updated as each milestone clears, so any slippage against the original commitment is visible immediately rather than discovered only when the closing date itself is at risk.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Does the 180-day clock pause for weekends or holidays in Tarrant County?",
+   "a": "No. The 180-day period runs on calendar days from the relinquished property closing with no extension for weekends, holidays, or business closures, so closing calendars are built on that fixed count."
+  },
+  {
+   "q": "What happens if a Fort Worth replacement closing slips past day 180?",
+   "a": "A closing after the 180th day disqualifies the exchange for tax purposes. Coordination exists specifically to build buffer into title, lender, and inspection timelines so a slip does not happen, and investors should confirm any late-stage risk with their tax advisor."
+  },
+  {
+   "q": "Who holds the exchange proceeds between the two closings?",
+   "a": "The qualified intermediary holds proceeds in a qualified escrow or trust account. The taxpayer cannot have actual or constructive receipt of the funds at any point, including between the relinquished sale and replacement purchase."
+  },
+  {
+   "q": "Can lender underwriting on an Alliance industrial building be coordinated alongside title curative work?",
+   "a": "Yes, and on tighter windows it usually has to be. Running underwriting and title clearance in parallel rather than sequentially is standard practice when the days remaining after identification are limited."
+  },
+  {
+   "q": "What documentation should be kept from the closing coordination process?",
+   "a": "The closing calendar, both assignment notices, escrow instructions, and the final closing statement should all be retained, since a tax advisor will reference them when preparing Form 8824 and related exchange records."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 852
+}

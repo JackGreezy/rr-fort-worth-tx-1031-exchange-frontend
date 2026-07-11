@@ -1,0 +1,70 @@
+{
+ "slug": "three-property-rule-strategy",
+ "taxonomy": "services",
+ "title": "Three-Property Rule Strategy",
+ "name": "Three-Property Rule Strategy",
+ "metaTitle": "Three-Property Rule Strategy in Fort Worth, TX",
+ "metaDescription": "Applying the three-property identification rule for Fort Worth exchanges, with a compliant candidate list built before the 45-day deadline.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>The three-property rule lets a Fort Worth investor identify up to three replacement candidates regardless of their combined value, and for most exchanges it is the simplest identification path available, provided the written notice is specific and delivered on time.</p>"
+  },
+  {
+   "heading": "How the Three-Property Rule Works",
+   "html": "<p>Under this rule, an investor can name as many as three properties on the written identification notice with no value ceiling attached, unlike the 200 percent rule, which caps total identified value, or the 95 percent rule, which requires acquiring nearly everything identified. As long as no more than three properties are named, the investor is free to identify a modest industrial building alongside a much larger multifamily property without running into a value limit.</p><p>This rule also applies regardless of how many of the three named properties the investor ultimately acquires; closing on just one of the three, or on more than one if the exchange proceeds allow, still satisfies the identification requirement as long as the acquisition happens inside the 180-day exchange period.</p>"
+  },
+  {
+   "heading": "When the Three-Property Rule Fits Fort Worth Exchanges",
+   "html": "<p>This rule works well when an investor is comparing candidates across different asset classes, for instance weighing a net lease retail property near Sundance Square against a multifamily property closer to the Cultural District, since the rule does not force a value cap that penalizes naming a higher-value backup candidate. It fits less well when an investor already has a strong lead candidate and only wants a couple of low-value backups, where the 200 percent rule can sometimes allow naming more than three properties without the same restriction.</p><p>An investor exchanging out of a single large relinquished property into several smaller Fort Worth candidates, spread across submarkets to diversify tenant and asset-class exposure, is another common scenario where the value-uncapped nature of this rule fits well, since the combined value of the smaller candidates would otherwise risk exceeding a percentage-based cap.</p>"
+  },
+  {
+   "heading": "Building a Compliant Three-Candidate List",
+   "html": "<p>A compliant list under this rule requires the same documentation discipline regardless of which candidate ends up closing.</p><ul><li>legal description or unambiguous street address for each of the three properties</li><li>written notice delivered to the qualified intermediary, not merely to a broker or attorney</li><li>delivery confirmed before midnight on the 45th day after the relinquished property closed</li><li>no more than three properties named, since a fourth name defeats this rule's protection entirely</li><li>a realistic closing timeline for each candidate inside the remaining 180-day period</li></ul>"
+  },
+  {
+   "heading": "Common Missteps That Break the Rule's Protection",
+   "html": "<p>Naming a fourth property alongside three others, even informally in an email rather than the formal notice, can jeopardize the whole identification if the IRS treats it as exceeding the rule's limit. Vague descriptions, such as identifying a shopping center by name without a legal description, and notices delivered to the wrong party are the other failure points we see most often among investors handling this step without close review.</p>"
+  },
+  {
+   "heading": "Choosing Between the Three-Property Rule and the Alternative Rules",
+   "html": "<p>The choice usually comes down to how many serious candidates an investor has and how they compare in value. An investor confident in exactly two or three candidates, spanning different asset classes or submarkets around Fort Worth, is typically better served by this rule's simplicity, while an investor wanting a longer list of lower-value backups may find the 200 percent rule's structure fits better despite its value cap.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there a value limit under the three-property rule?",
+   "a": "No, an investor can identify up to three properties with no cap on their combined value, which distinguishes this rule from the 200 percent rule and the 95 percent rule, both of which impose value-related conditions."
+  },
+  {
+   "q": "What happens if a fourth property is named alongside three others?",
+   "a": "Naming a fourth property, even informally, can jeopardize the identification if it is treated as exceeding the rule's three-property limit, so the written notice needs to name no more than three candidates."
+  },
+  {
+   "q": "When does the three-property rule fit better than the 200 percent rule?",
+   "a": "It fits well when an investor is comparing a small number of serious candidates across different asset classes or price points, since no value cap penalizes naming a higher-value backup alongside a smaller lead candidate."
+  },
+  {
+   "q": "Does identifying a property by name instead of legal description satisfy this rule?",
+   "a": "No, the written notice needs an unambiguous street address or legal description for each candidate. Naming a property only by its shopping center or building name without that detail risks an invalid identification."
+  },
+  {
+   "q": "Who must receive the written identification notice under this rule?",
+   "a": "The qualified intermediary, delivered in writing before midnight on the 45th day after the relinquished property closed. Sending the notice only to a broker or attorney does not satisfy the requirement."
+  },
+  {
+   "q": "Does an investor need to acquire all three identified properties?",
+   "a": "No, acquiring just one of the three named properties, or more than one if proceeds allow, still satisfies the identification requirement, as long as the acquisition closes inside the 180-day exchange period."
+  },
+  {
+   "q": "Can the three-property rule be combined with the 200 percent rule on the same identification list?",
+   "a": "The two rules are treated as separate elections, and mixing their conditions on one list risks an invalid identification, so an investor should choose one rule's requirements to satisfy rather than blending value caps and property counts from both."
+  },
+  {
+   "q": "Can a backup candidate be added to the list after day thirty of the identification window?",
+   "a": "Yes, as long as the notice naming it reaches the qualified intermediary in writing before the 45th day closes, and the total number of properties named across every notice sent still stays at three or fewer under this rule."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 902
+}

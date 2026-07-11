@@ -1,0 +1,58 @@
+{
+ "slug": "market-comparable-analysis",
+ "taxonomy": "services",
+ "title": "Market Comparable Analysis",
+ "name": "Market Comparable Analysis",
+ "metaTitle": "Market Comparable Analysis in Fort Worth, TX",
+ "metaDescription": "Fort Worth 1031 exchange market comparable analysis: sourcing recent sale comps across Alliance, Cultural District, and downtown submarkets for replacement pricing.",
+ "sections": [
+  {
+   "heading": null,
+   "html": "<p>Setting a defensible value for a replacement property, whether for identification purposes, boot calculation, or lender underwriting, depends on recent comparable sales in the right submarket. Fort Worth spans distinct pricing environments, from Alliance industrial to downtown office near Sundance Square, so a comp set pulled from the wrong corridor produces a misleading value.</p>"
+  },
+  {
+   "heading": "Matching Comps to Submarket and Asset Type",
+   "html": "<p>An industrial building near the AllianceTexas inland port with rail access does not price the same as a similarly sized flex building near Saginaw or Haslet without that access, and a Cultural District retail parcel trades on different metrics than a similarly sized pad in Mansfield or Burleson. Comparable analysis starts by narrowing the comp set to properties that share both location characteristics and physical specifications with the target replacement.</p><p>Recency matters as much as location; a sale from several years earlier in a fast-moving corridor like Alliance can understate current pricing meaningfully, so comps are weighted toward the most recent closings available.</p>"
+  },
+  {
+   "heading": "Adjusting for Building and Site Differences",
+   "html": "<p>Raw sale price per square foot rarely transfers directly between properties; adjustments for clear height, age, tenant credit quality, and remaining lease term refine a comp set into a workable value range. On a defense-corridor property near the Lockheed campus, tenant credit and lease structure can move value more than physical building differences.</p><ul><li>Confirm comp sales are within a comparable distance and submarket</li><li>Adjust for building age, clear height, and physical condition</li><li>Weight recent closings more heavily than older sales</li><li>Account for tenant lease term and credit quality differences</li></ul>"
+  },
+  {
+   "heading": "Using Comps for Identification and Boot Planning",
+   "html": "<p>A comp-supported value range feeds directly into identification decisions, since the 200% and 95% rules both depend on accurate value estimates for candidate properties, and into boot calculation, since mortgage and cash boot both reference the relinquished property's fair market value at transfer.</p>"
+  },
+  {
+   "heading": "Working With Local Brokers on Comp Access",
+   "html": "<p>Comparable sale data for off-market or lightly marketed transactions, common in smaller submarkets like Colleyville or Weatherford, often requires direct broker relationships rather than public record alone, since recorded sale prices do not always capture the full transaction structure.</p>"
+  },
+  {
+   "heading": "Building a Comp File That Supports Later Scrutiny",
+   "html": "<p>A comparable analysis prepared for exchange purposes carries more weight when it documents its sources and reasoning clearly, since a value estimate that later feeds into an identification notice or a boot calculation may need to be explained to a tax advisor or, in the case of an audit, to a taxing authority. Recording the specific comps used, the adjustments applied, and the date the analysis was prepared turns a one-time estimate into a defensible record.</p><p>For a Fort Worth investor comparing an Alliance industrial acquisition against a downtown office alternative, keeping that documentation separate for each property considered also makes it easier to revisit the analysis later if the identification list changes before the 45-day deadline.</p><p>A standard comp-file template, applied consistently across every candidate regardless of submarket, also makes it easier to compare unlike properties against one another on an apples-to-apples basis. Using the same template for a Weatherford outparcel and an Alliance-area distribution building, even though the comps themselves come from entirely different markets, keeps the underlying methodology consistent even when the properties being valued are not. That consistency becomes especially useful when a value estimate is revisited weeks later, since the original reasoning is preserved in the same format rather than scattered across informal notes taken at the time. A completed comp file, handed to the qualified intermediary or tax advisor alongside the identification notice, also shortens the time needed to answer any question about how a listed property's value was determined during the exchange itself. Building that habit into every valuation, regardless of how straightforward a given property seems at the outset, keeps the analysis consistent across an investor's full identification list rather than only the candidates that turn out to be contested. A consistent comp file across the whole list also makes side-by-side review faster whenever a candidate needs to be dropped or replaced before the 45-day deadline. Over time, a well-maintained comp archive covering the Fort Worth-area submarkets an investor trades in most often also shortens the setup time needed for the next exchange, since prior analyses provide a useful starting reference even when the specific properties involved have changed.</p>"
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why can't a single comp set be used across all Fort Worth submarkets?",
+   "a": "Pricing dynamics differ significantly between corridors, for example Alliance industrial with rail access versus smaller flex-industrial nodes, so comps need to be matched to the specific submarket and asset type of the target property."
+  },
+  {
+   "q": "How recent should comparable sales be for a replacement property valuation?",
+   "a": "Recent closings, ideally within the past year, are weighted most heavily, particularly in fast-moving corridors where older sales can understate current pricing."
+  },
+  {
+   "q": "Do comps matter for the 200% and 95% identification rules?",
+   "a": "Yes. Both rules depend on accurate value estimates for identified properties, so a defensible comp-based value supports the identification calculation and reduces the risk of miscalculating the applicable threshold."
+  },
+  {
+   "q": "Where does comp data come from for off-market Fort Worth-area transactions?",
+   "a": "Public record captures recorded sale prices, but full transaction detail for off-market deals, especially in smaller submarkets, often requires broker relationships with direct knowledge of the deal terms."
+  },
+  {
+   "q": "Does tenant lease term affect comparable value more than building condition?",
+   "a": "It can, particularly on single-tenant industrial or office properties where remaining lease term and tenant credit quality often move value more than physical differences between buildings."
+  }
+ ],
+ "internalLinks": [],
+ "wordCount": 880
+}
