@@ -62,7 +62,7 @@ function ContactForm() {
   const [turnstileId, setTurnstileId] = useState<string | null>(null);
   const [turnstileReady, setTurnstileReady] = useState(false);
 
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  const siteKey = "";
 
   useEffect(() => {
     let cancelled = false;
@@ -182,82 +182,47 @@ function ContactForm() {
 
   return (
     <div id="contact-form" className="border border-white/10 bg-brand-charcoal/50 p-8">
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6" action="/api/contact" method="post">
         <fieldset disabled={status === "submitting"} className="space-y-6">
           <div className="grid gap-6 md:grid-cols-2">
             <div>
               <label htmlFor="name" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Name <span className="text-brand-copper">*</span></label>
-              <input id="name" type="text" required value={formData.name} onChange={handleChange("name")} aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={!!errors.name} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Your name" />
+              <input id="name" type="text" required value={formData.name} onChange={handleChange("name")} aria-describedby={errors.name ? "name-error" : undefined} aria-invalid={!!errors.name} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Your name" name="name"/>
               {errors.name && <p id="name-error" className="mt-1 text-xs text-red-400">{errors.name}</p>}
             </div>
             <div>
               <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Email <span className="text-brand-copper">*</span></label>
-              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" />
+              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" name="email"/>
               {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
               <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone <span className="text-brand-copper">*</span></label>
-              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" />
+              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" name="phone"/>
               {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
             </div>
-            <div>
-              <label htmlFor="company" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Company</label>
-              <input id="company" type="text" value={formData.company} onChange={handleChange("company")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Company name (optional)" />
-            </div>
+
           </div>
           <div>
-            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Service <span className="text-brand-copper">*</span></label>
-            <select id="projectType" required value={formData.projectType} onChange={handleChange("projectType")} aria-describedby={errors.projectType ? "projectType-error" : undefined} aria-invalid={!!errors.projectType} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
-              <option value="">Select a service</option>
-              <option value="Forward Exchange">Forward Exchange</option>
-              <option value="Reverse Exchange">Reverse Exchange</option>
-              <option value="Qualified Intermediary Services">Qualified Intermediary Services</option>
-              <option value="Property Identification">Property Identification</option>
-              <option value="NNN Property Identification">NNN Property Identification</option>
-              <option value="Exchange Consultation">Exchange Consultation</option>
-              <option value="Form 8824 Preparation">Form 8824 Preparation</option>
-              <option value="Boot Analysis">Boot Analysis</option>
-            </select>
+            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Previously Completed a 1031 Exchange? <span className="text-brand-copper">*</span></label>
+            <select id="projectType" className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors" name="hasCompleted1031" required><option value="">Select yes or no</option><option value="Yes">Yes</option><option value="No">No</option></select>
             {errors.projectType && <p id="projectType-error" className="mt-1 text-xs text-red-400">{errors.projectType}</p>}
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <label htmlFor="city" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">City</label>
-              <input id="city" type="text" value={formData.city} onChange={handleChange("city")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Primary metro (optional)" />
-            </div>
-            <div>
-              <label htmlFor="timeline" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Timeline</label>
-              <select id="timeline" value={formData.timeline} onChange={handleChange("timeline")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors">
-                <option value="">Select timeline (optional)</option>
-                <option value="Immediate">Immediate</option>
-                <option value="45 days">45 days</option>
-                <option value="180 days">180 days</option>
-                <option value="Planning phase">Planning phase</option>
-              </select>
-            </div>
+
+
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <label htmlFor="property" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Property Being Sold</label>
-              <input id="property" type="text" value={formData.property} onChange={handleChange("property")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="Type, location, value (optional)" />
-            </div>
-            <div>
-              <label htmlFor="estimatedCloseDate" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Estimated Close Date</label>
-              <input id="estimatedCloseDate" type="date" value={formData.estimatedCloseDate} onChange={handleChange("estimatedCloseDate")} className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors" />
-            </div>
+
+
           </div>
           <div>
-            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Message</label>
-            <textarea id="message" rows={4} value={formData.message} onChange={handleChange("message")} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors resize-none" placeholder="Goals, preferences, or coordination needs (optional)" />
+            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Additional Notes</label>
+            <textarea id="message" className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors resize-none" name="notes" rows={4} placeholder="Share any exchange questions or context"></textarea>
           </div>
-          {siteKey && (
-            <div className="flex justify-center">
-              <div ref={captchaRef} className="min-h-[78px]" />
-            </div>
-          )}
-          <button type="submit" disabled={status === "submitting" || !!(siteKey && !turnstileReady)} className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
+
+          <button type="submit" className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-white transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
             {status === "submitting" ? "Submitting..." : "Submit →"}
           </button>
           <p className="text-xs text-white/40 text-center">Educational content only. Not tax or legal advice.</p>
@@ -270,10 +235,18 @@ function ContactForm() {
   );
 }
 
-export function ContactFormWrapper() {
+export function ContactFormWrapper(_props?: {
+  formId?: string;
+  heading?: string;
+  description?: string;
+  subheading?: string;
+  prefillProjectType?: string;
+}) {
   return (
     <Suspense fallback={<div className="border border-white/10 bg-brand-charcoal/50 p-8 text-white/60">Loading form...</div>}>
       <ContactForm />
     </Suspense>
   );
 }
+
+export default ContactFormWrapper;
