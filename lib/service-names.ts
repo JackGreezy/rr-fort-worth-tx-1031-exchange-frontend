@@ -106,6 +106,46 @@ export function getShortServiceName(slug: string): string {
     "exchange-education": "Exchange Education",
     "exchange-consultation": "Consultation",
     "investor-resources": "Investor Resources",
+
+    // Core procedural guides
+    "the-45-day-identification-period": "45 Day Period",
+    "the-180-day-exchange-deadline": "180 Day Deadline",
+    "what-is-boot-in-a-1031-exchange": "Understanding Boot",
+    "the-qualified-intermediary-role": "QI Role",
+    "like-kind-property-explained": "Like Kind Property",
+    "reverse-1031-exchange-explained": "Reverse Exchange Rules",
+    "improvement-build-to-suit-exchange": "Improvement Build-To-Suit",
+    "related-party-1031-exchange-rules": "Related Party Rules",
+
+    // Upstream funnel: capital gains tax deferral topics
+    "capital-gains-on-rental-property": "Capital Gains Rental",
+    "capital-gains-on-investment-property": "Capital Gains Investment",
+    "home-sale-capital-gains": "Home Sale Gains",
+    "second-home-capital-gains-tax": "Second Home Gains",
+    "inherited-property-capital-gains": "Inherited Property Gains",
+    "depreciation-recapture-explained": "Depreciation Recapture",
+    "section-121-exclusion-explained": "Section 121 Exclusion",
+    "how-to-reduce-capital-gains-tax": "Reduce Capital Gains",
+
+    // Upstream funnel: real estate investing topics
+    "how-to-invest-in-real-estate": "Real Estate Investing",
+    "passive-real-estate-income": "Passive Income",
+    "real-estate-syndication-explained": "Syndication Explained",
+    "fractional-real-estate-investing": "Fractional Investing",
+    "real-estate-crowdfunding-explained": "Crowdfunding Explained",
+    "commercial-real-estate-investing": "Commercial Investing",
+    "building-real-estate-cash-flow": "Real Estate Cash Flow",
+    "is-a-rental-a-good-investment": "Rental Investment",
+
+    // Upstream funnel: asset class topics
+    "triple-net-lease-nnn": "Triple Net Lease",
+    "what-is-an-nnn-lease": "NNN Lease Basics",
+    "self-storage-investing": "Self Storage",
+    "multifamily-investing": "Multifamily Investing",
+    "apartment-building-investing": "Apartment Buildings",
+    "mobile-home-park-investing": "Mobile Home Parks",
+    "industrial-real-estate-investing": "Industrial Investing",
+    "medical-office-investing": "Medical Office",
   };
   
   // Check for special case first (try original slug, then cleaned slug, then base)
