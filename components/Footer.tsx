@@ -42,30 +42,30 @@ const complianceLinks = resources.slice(0, 4);
 // Sort locations: Fort Worth first, then other cities, then districts/suburbs
 function sortLocations(locations: LocationItem[]): LocationItem[] {
   const primaryCitySlug = PRIMARY_CITY.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-  
+
   return [...locations].sort((a, b) => {
     // Fort Worth first
     if (a.slug === primaryCitySlug) return -1;
     if (b.slug === primaryCitySlug) return 1;
-    
+
     // Then cities
     const aIsCity = a.type === "city";
     const bIsCity = b.type === "city";
     if (aIsCity && !bIsCity) return -1;
     if (!aIsCity && bIsCity) return 1;
-    
+
     // Then districts
     const aIsDistrict = a.type === "district";
     const bIsDistrict = b.type === "district";
     if (aIsDistrict && !bIsDistrict) return -1;
     if (!aIsDistrict && bIsDistrict) return 1;
-    
+
     // Then suburbs
     const aIsSuburb = a.type === "suburb";
     const bIsSuburb = b.type === "suburb";
     if (aIsSuburb && !bIsSuburb) return -1;
     if (!aIsSuburb && bIsSuburb) return 1;
-    
+
     // Alphabetical for same type
     return a.name.localeCompare(b.name);
   });
@@ -74,7 +74,7 @@ function sortLocations(locations: LocationItem[]): LocationItem[] {
 export default function Footer() {
   const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(CONTACT_ADDRESS)}&output=embed`;
   const sortedLocations = sortLocations(locationsData);
-  
+
   // Top locations: Fort Worth + first 7 cities/districts
   const topLocations = sortedLocations.slice(0, 8);
   const remainingLocations = sortedLocations.slice(8);
@@ -89,8 +89,7 @@ export default function Footer() {
             <p className="text-xs uppercase tracking-[0.35em] text-primaryfg/70">Best 1031 Exchange in Fort Worth, TX</p>
             <h3 className="text-2xl font-semibold text-white">{COMPANY_NAME}</h3>
             <p className="text-sm text-primaryfg/80">
-              {CONTACT_ADDRESS}
-              <br />
+
               Serving Fort Worth, Dallas, and investors across Texas.
               <br />
               <span className="text-xs">We help Fort Worth investors find replacement properties across all 50 states.</span>
@@ -139,7 +138,7 @@ export default function Footer() {
           {/* Locations - takes 4 columns */}
           <section className="space-y-4 lg:col-span-4 lg:border-l lg:border-white/10 lg:pl-8">
             <h4 className="text-base font-semibold text-white">Locations</h4>
-            
+
             {/* Top locations - always visible */}
             <div className="space-y-1.5">
               {topLocations.map((location) => (
@@ -169,7 +168,7 @@ export default function Footer() {
                 </div>
               </div>
             )}
-            
+
             <Link
               href="/locations"
               className="mt-2 inline-block text-xs font-semibold uppercase tracking-[0.32em] text-gold transition hover:text-white"
