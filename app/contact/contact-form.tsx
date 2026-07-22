@@ -191,16 +191,16 @@ function ContactForm() {
               {errors.name && <p id="name-error" className="mt-1 text-xs text-red-400">{errors.name}</p>}
             </div>
             <div>
-              <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Email <span className="text-brand-copper">*</span></label>
-              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" name="email"/>
-              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
+              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone Number <span className="text-brand-copper">*</span></label>
+              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" name="phone"/>
+              {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone Number <span className="text-brand-copper">*</span></label>
-              <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" name="phone"/>
-              {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
+              <label htmlFor="email" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Email <span className="text-brand-copper">*</span></label>
+              <input id="email" type="email" required value={formData.email} onChange={handleChange("email")} aria-describedby={errors.email ? "email-error" : undefined} aria-invalid={!!errors.email} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="your@email.com" name="email"/>
+              {errors.email && <p id="email-error" className="mt-1 text-xs text-red-400">{errors.email}</p>}
             </div>
 
           </div>
