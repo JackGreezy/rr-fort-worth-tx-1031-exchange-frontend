@@ -52,6 +52,12 @@ function normalizeLead(body: Record<string, unknown>): ExchangeLead {
   };
 }
 
+const BLOCKED_INQUIRY_TERMS = /(?:\b(?:domain|index)\w*|\bseo\b)/i;
+
+function containsBlockedInquiryMessage(message: string) {
+  return BLOCKED_INQUIRY_TERMS.test(message);
+}
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;",
@@ -99,6 +105,10 @@ export async function POST(request: Request) {
       ? ((await request.json()) as Record<string, unknown>)
       : Object.fromEntries((await request.formData()).entries());
     const lead = normalizeLead(raw);
+    if (containsBlockedInquiryMessage(lead.notes)) {
+      if (!wantsJson) return NextResponse.redirect(new URL("/contact?submitted=1", request.url), 303);
+      return NextResponse.json({ ok: true, success: true });
+    }
     const missing = (["name", "email", "phone", "hasCompleted1031"] as const).filter((field) => !lead[field]);
     if (missing.length) {
       if (!wantsJson) return NextResponse.redirect(new URL("/contact?formError=missing-fields", request.url), 303);
