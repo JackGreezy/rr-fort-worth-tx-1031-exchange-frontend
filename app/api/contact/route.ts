@@ -58,6 +58,87 @@ function containsBlockedInquiryMessage(message: string) {
   return BLOCKED_INQUIRY_TERMS.test(message);
 }
 
+type RateLimitBucket = {
+  count: number;
+  resetAt: number;
+};
+
+type RateLimitResult = {
+  limit: number;
+  remaining: number;
+  retryAfter: number;
+};
+
+const IP_RATE_LIMIT = { limit: 5, windowMs: 15 * 60 * 1000 } as const;
+const EMAIL_RATE_LIMIT = { limit: 3, windowMs: 60 * 60 * 1000 } as const;
+const rateLimitGlobal = globalThis as typeof globalThis & {
+  __rrContactRateLimits?: Map<string, RateLimitBucket>;
+};
+const rateLimitStore = rateLimitGlobal.__rrContactRateLimits ??= new Map<string, RateLimitBucket>();
+
+function requestIp(request: Request) {
+  return (
+    request.headers.get("cf-connecting-ip") ||
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    ""
+  );
+}
+
+function consumeRateLimit(key: string, limit: number, windowMs: number, now: number): RateLimitResult | null {
+  const current = rateLimitStore.get(key);
+  if (!current || current.resetAt <= now) {
+    rateLimitStore.set(key, { count: 1, resetAt: now + windowMs });
+    return null;
+  }
+  if (current.count >= limit) {
+    return {
+      limit,
+      remaining: 0,
+      retryAfter: Math.max(1, Math.ceil((current.resetAt - now) / 1000)),
+    };
+  }
+  current.count += 1;
+  return null;
+}
+
+function checkRateLimit(request: Request, lead: ExchangeLead) {
+  const now = Date.now();
+  if (rateLimitStore.size > 10_000) {
+    for (const [key, bucket] of rateLimitStore) {
+      if (bucket.resetAt <= now) rateLimitStore.delete(key);
+    }
+  }
+  const ip = requestIp(request);
+  if (ip) {
+    const result = consumeRateLimit(`ip:${ip}`, IP_RATE_LIMIT.limit, IP_RATE_LIMIT.windowMs, now);
+    if (result) return result;
+  }
+  const email = lead.email.trim().toLowerCase();
+  if (email) {
+    const result = consumeRateLimit(`email:${email}`, EMAIL_RATE_LIMIT.limit, EMAIL_RATE_LIMIT.windowMs, now);
+    if (result) return result;
+  }
+  return null;
+}
+
+function rateLimitedResponse(request: Request, wantsJson: boolean, result: RateLimitResult) {
+  const headers = {
+    "Retry-After": String(result.retryAfter),
+    "X-RateLimit-Limit": String(result.limit),
+    "X-RateLimit-Remaining": String(result.remaining),
+  };
+  if (!wantsJson) {
+    const response = NextResponse.redirect(new URL("/contact?formError=rate-limited", request.url), 303);
+    for (const [name, value] of Object.entries(headers)) response.headers.set(name, value);
+    return response;
+  }
+  return NextResponse.json(
+    { ok: false, error: "Too many contact requests. Please wait before trying again." },
+    { status: 429, headers },
+  );
+}
+
 function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (character) => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;",
@@ -109,6 +190,8 @@ export async function POST(request: Request) {
       if (!wantsJson) return NextResponse.redirect(new URL("/contact?submitted=1", request.url), 303);
       return NextResponse.json({ ok: true, success: true });
     }
+    const rateLimit = checkRateLimit(request, lead);
+    if (rateLimit) return rateLimitedResponse(request, wantsJson, rateLimit);
     const missing = (["name", "email", "phone", "hasCompleted1031"] as const).filter((field) => !lead[field]);
     if (missing.length) {
       if (!wantsJson) return NextResponse.redirect(new URL("/contact?formError=missing-fields", request.url), 303);

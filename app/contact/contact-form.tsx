@@ -198,14 +198,14 @@ function ContactForm() {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             <div>
-              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone <span className="text-brand-copper">*</span></label>
+              <label htmlFor="phone" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Phone Number <span className="text-brand-copper">*</span></label>
               <input id="phone" type="tel" required value={formData.phone} onChange={handleChange("phone")} aria-describedby={errors.phone ? "phone-error" : undefined} aria-invalid={!!errors.phone} className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors" placeholder="(555) 555-5555" name="phone"/>
               {errors.phone && <p id="phone-error" className="mt-1 text-xs text-red-400">{errors.phone}</p>}
             </div>
 
           </div>
           <div>
-            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Previously Completed a 1031 Exchange? <span className="text-brand-copper">*</span></label>
+            <label htmlFor="projectType" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Have you completed a 1031 exchange before? <span className="text-brand-copper">*</span></label>
             <select id="projectType" className="w-full bg-brand-dark border border-white/20 px-4 py-3 text-sm text-white focus:border-brand-copper focus:outline-none transition-colors" name="hasCompleted1031" required><option value="">Select yes or no</option><option value="Yes">Yes</option><option value="No">No</option></select>
             {errors.projectType && <p id="projectType-error" className="mt-1 text-xs text-red-400">{errors.projectType}</p>}
           </div>
@@ -218,7 +218,7 @@ function ContactForm() {
 
           </div>
           <div>
-            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Additional Notes</label>
+            <label htmlFor="message" className="mb-2 block text-xs font-medium uppercase tracking-widest text-white/60">Notes</label>
             <textarea id="message" className="w-full bg-transparent border border-white/20 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-brand-copper focus:outline-none transition-colors resize-none" name="notes" rows={4} placeholder="Share any exchange questions or context"></textarea>
           </div>
 
