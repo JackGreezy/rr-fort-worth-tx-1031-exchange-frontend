@@ -11,6 +11,7 @@ import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from "@/lib/constants";
 import { getLocationBatchData } from "@/lib/batch-data";
 import { getShortServiceName } from "@/lib/service-names";
+import { locationRichContent } from "@/lib/location-content";
 
 type Params = Promise<{ slug: string }> | { slug: string };
 
@@ -36,15 +37,19 @@ export default async function LocationPage({ params }: { params: Params }) {
   if (!location) notFound();
 
   const batchData = getLocationBatchData(location.slug);
+  const richContent = locationRichContent[location.slug];
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Neighborhoods", href: "/locations" },
     { label: location.name, href: `/locations/${location.slug}` },
   ];
 
-  const faq = batchData?.faqs
-    ? batchData.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
-    : buildFaq(location.name);
+  const faq =
+    richContent?.faqs && richContent.faqs.length > 0
+      ? richContent.faqs
+      : batchData?.faqs
+        ? batchData.faqs.map((faq) => ({ q: faq.question, a: faq.answer }))
+        : buildFaq(location.name);
 
   const popularPaths = batchData?.popularPaths || [];
   const featuredServices = servicesData.slice(0, 4);
@@ -116,6 +121,32 @@ export default async function LocationPage({ params }: { params: Params }) {
           )}
         </div>
       </section>
+
+      {/* Local Market Notes (additive rich content) */}
+      {richContent?.sections && richContent.sections.length > 0 && (
+        <section className="pb-14 lg:pb-20">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
+              {location.name.toUpperCase()} MARKET NOTES
+            </h2>
+            <div className="mt-8 max-w-3xl space-y-10">
+              {richContent.sections.map((section, index) => (
+                <div key={section.heading ?? `intro-${index}`}>
+                  {section.heading && (
+                    <h3 className="font-serif text-xl text-primary md:text-2xl" style={{ fontWeight: 400 }}>
+                      {section.heading}
+                    </h3>
+                  )}
+                  <div
+                    className={`prose prose-lg max-w-none text-ink/80 prose-p:leading-relaxed prose-strong:text-primary prose-ul:list-disc prose-li:marker:text-accent ${section.heading ? "mt-3" : ""}`}
+                    dangerouslySetInnerHTML={{ __html: section.html }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Popular Paths / Featured Services */}
       {popularPaths.length > 0 ? (
