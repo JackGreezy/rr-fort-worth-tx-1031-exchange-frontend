@@ -53,9 +53,18 @@ function normalizeLead(body: Record<string, unknown>): ExchangeLead {
 }
 
 const BLOCKED_INQUIRY_TERMS = /(?:\b(?:domain|index)\w*|\bseo\b)/i;
+const EMOJI_PATTERN = /(?:\p{Extended_Pictographic}|\p{Regional_Indicator}|[#*0-9]\uFE0F?\u20E3)/u;
 
 function containsBlockedInquiryMessage(message: string) {
   return BLOCKED_INQUIRY_TERMS.test(message);
+}
+
+function containsEmojiInquiry(body: Record<string, unknown>) {
+  return Object.entries(body).some(
+    ([key, value]) =>
+      EMOJI_PATTERN.test(key) ||
+      (typeof value === "string" && EMOJI_PATTERN.test(value)),
+  );
 }
 
 type RateLimitBucket = {
@@ -186,7 +195,7 @@ export async function POST(request: Request) {
       ? ((await request.json()) as Record<string, unknown>)
       : Object.fromEntries((await request.formData()).entries());
     const lead = normalizeLead(raw);
-    if (containsBlockedInquiryMessage(lead.notes)) {
+    if (containsBlockedInquiryMessage(lead.notes) || containsEmojiInquiry(raw)) {
       if (!wantsJson) return NextResponse.redirect(new URL("/contact?submitted=1", request.url), 303);
       return NextResponse.json({ ok: true, success: true });
     }
