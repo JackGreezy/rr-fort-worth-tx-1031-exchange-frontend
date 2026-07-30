@@ -18,6 +18,7 @@ const staticRoutes = [
   "/privacy",
   "/property-types",
   "/services",
+  "/tax-deferral-strategies",
   "/terms",
   "/tools",
 ];
@@ -75,4 +76,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return pages;
 }
-

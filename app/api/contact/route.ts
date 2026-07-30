@@ -195,6 +195,16 @@ export async function POST(request: Request) {
       ? ((await request.json()) as Record<string, unknown>)
       : Object.fromEntries((await request.formData()).entries());
     const lead = normalizeLead(raw);
+    const requestContext = (() => {
+      try {
+        const value = new URL(request.headers.get("referer") || request.url).searchParams.get("request");
+        if (value === "california-lunch") return "California steak lunch invitation review";
+        if (value === "guide") return "1031 owner guide";
+        return "";
+      } catch {
+        return "";
+      }
+    })();
     if (containsBlockedInquiryMessage(lead.notes) || containsEmojiInquiry(raw)) {
       if (!wantsJson) return NextResponse.redirect(new URL("/contact?submitted=1", request.url), 303);
       return NextResponse.json({ ok: true, success: true });
@@ -216,6 +226,7 @@ export async function POST(request: Request) {
     const siteUrl = process.env.EMAIL_SITE_URL || process.env.NEXT_PUBLIC_SITE_URL || new URL(request.url).origin;
     const hostname = new URL(siteUrl).hostname.replace(/^www\./, "");
     const siteName = process.env.NEXT_PUBLIC_SITE_NAME?.trim() || hostname;
+    const ownerGuideUrl = new URL("/guides/1031-owner-guide.pdf", siteUrl).toString();
     const fromEmail = process.env.SENDGRID_FROM_EMAIL?.trim() || process.env.BUSINESS_EMAIL?.trim() || process.env.CONTACT_EMAIL?.trim() || `info@${hostname}`;
     const recipients = Array.from(new Set([
       ...splitEmails(process.env.BUSINESS_EMAIL),
@@ -228,6 +239,7 @@ export async function POST(request: Request) {
 
     const internalHtml = emailShell(siteName, `New 1031 exchange inquiry from ${lead.name}`, `
       <p style="margin:0 0 8px;color:#64748b;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em">New website inquiry</p>
+      ${requestContext ? `<p style="margin:0 0 14px;padding:10px 12px;background:#fff7ed;border-radius:8px;color:#9a3412;font-size:13px;font-weight:700">Request: ${escapeHtml(requestContext)}</p>` : ""}
       <h1 style="margin:0 0 22px;font-size:26px;line-height:1.25;color:#172033">1031 exchange contact request</h1>
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;font-size:15px;line-height:1.55">
         <tr><td style="padding:9px 0;color:#64748b;width:190px">Name</td><td style="padding:9px 0;font-weight:700">${safe.name}</td></tr>
@@ -241,6 +253,8 @@ export async function POST(request: Request) {
     const confirmationHtml = emailShell(siteName, "We received your 1031 exchange inquiry", `
       <h1 style="margin:0 0 16px;font-size:26px;line-height:1.25;color:#172033">Thanks, ${safe.name}.</h1>
       <p style="margin:0 0 16px;font-size:16px;line-height:1.65">We received your 1031 exchange inquiry. A member of the team will review your information and follow up using the phone number or email address you provided.</p>
+      <div style="margin:0 0 16px;padding:18px;background:#f8fafc;border-radius:10px;font-size:15px;line-height:1.6"><strong>Your 1031 owner guide is ready.</strong><br><a href="${escapeHtml(ownerGuideUrl)}" style="display:inline-block;margin-top:8px;color:#1565c0;font-weight:700">Open the owner guide</a></div>
+      ${requestContext === "California steak lunch invitation review" ? `<div style="margin:0 0 16px;padding:18px;background:#fff7ed;border-radius:10px;font-size:15px;line-height:1.6"><strong>Lunch invitation review received.</strong><br>The team will review the planned sale, location, schedule, and availability before discussing an invitation.</div>` : ""}
       <div style="padding:18px;background:#f8fafc;border-radius:10px;font-size:15px;line-height:1.6"><strong>Prior 1031 exchange experience:</strong> ${safe.hasCompleted1031}<br><strong>Your notes:</strong> ${notes}</div>
     `);
 

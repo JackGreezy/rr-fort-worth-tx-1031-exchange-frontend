@@ -1,5 +1,11 @@
 'use client';
 
+import ExchangeIntentSection from "../components/ExchangeIntentSection";
+
+
+
+
+
 import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
@@ -437,7 +443,7 @@ export default function Home() {
                 </Link>
           </div>
         </section>
-      </main>
+      <ExchangeIntentSection /></main>
       
       <Script
         id="professional-service-schema"
