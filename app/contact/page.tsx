@@ -14,7 +14,7 @@ export default function ContactPage() {
           <h1 className="heading-display text-white">
             Contact Us
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/85">
             Ready to start your 1031 exchange? Our team specializes in connecting investors with compliant replacement properties.
           </p>
         </div>

@@ -13,6 +13,12 @@
   --color-accent: #D4AF37;
   --color-gold: #D4AF37;
   --color-burgundy: #1A5632;
+  --color-brand-dark: var(--color-primary);
+  --color-brand-charcoal: color-mix(in srgb, var(--color-primary) 82%, black);
+  --color-brand-copper: var(--color-accent);
+  --color-brand-copper-light: color-mix(in srgb, var(--color-accent) 82%, white);
+  --color-brand-gold: var(--color-accent);
+  --color-brand-gold-dark: color-mix(in srgb, var(--color-accent) 82%, black);
 }
 
 :root {

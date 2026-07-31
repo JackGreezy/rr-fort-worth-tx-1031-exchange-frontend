@@ -1,10 +1,5 @@
 'use client';
 
-import ExchangeIntentSection from "../components/ExchangeIntentSection";
-
-
-
-
 
 import Script from "next/script";
 import Image from "next/image";
@@ -29,34 +24,34 @@ const propertyTypes = [
 // Core 1031 Exchange Services (not location-based)
 const exchangeServices = [
   {
-    slug: "forward-exchange",
-    name: "Forward Exchange",
-    description: "Sell your property first, then acquire replacement property within 180 days.",
-  },
-  {
-    slug: "reverse-exchange",
-    name: "Reverse Exchange",
-    description: "Acquire replacement property before selling your relinquished property.",
-  },
-  {
-    slug: "delayed-exchange",
-    name: "Delayed Exchange",
-    description: "The most common type - identify replacement property within 45 days of sale.",
-  },
-  {
-    slug: "improvement-exchange",
-    name: "Improvement Exchange",
-    description: "Use exchange funds to make improvements on the replacement property.",
-  },
-  {
-    slug: "build-to-suit-exchange",
-    name: "Build-to-Suit Exchange",
-    description: "Construct new improvements on land using your exchange proceeds.",
+    slug: "nnn-retail-identification-fort-worth",
+    name: "Replacement Property Search",
+    description: "Build a Fort Worth replacement brief around equity, debt, income, control, and closing probability.",
   },
   {
     slug: "dst-placement-readiness",
-    name: "DST Placement",
-    description: "Invest in institutional-quality Delaware Statutory Trust properties.",
+    name: "DST Replacement Options",
+    description: "Compare available DST interests with direct real estate when reduced landlord work is a priority.",
+  },
+  {
+    slug: "qi-and-legal-coordination",
+    name: "QI & Advisor Coordination",
+    description: "Organize the independent intermediary, CPA, counsel, lender, broker, and closing handoffs.",
+  },
+  {
+    slug: "portfolio-exit-modeling",
+    name: "Sale & Tax-Deferral Planning",
+    description: "Start with the proposed sale, expected proceeds, basis questions, debt, and reinvestment target.",
+  },
+  {
+    slug: "fort-worth-45-day-sprint",
+    name: "45-Day Identification Plan",
+    description: "Track primary and backup candidates, financing, diligence, written identification, and deadlines.",
+  },
+  {
+    slug: "reverse-exchange-pursuit",
+    name: "Reverse Exchange Planning",
+    description: "Review parking, financing, title, and timing when the next property appears before the sale.",
   },
 ];
 
@@ -306,14 +301,14 @@ export default function Home() {
                 FORT WORTH 1031 EXCHANGE
               </h2>
               <p className="mt-5 text-sm leading-relaxed text-ink/70">
-                Founded in Fort Worth, our team represents the most experienced 1031 exchange advisors in Texas. We specialize in helping investors defer capital gains through strategic property exchanges, with deep expertise in NNN retail, medical, industrial, and residential assets.
+                Bring the proposed sale, expected equity, current debt, ownership details, and the reason the property no longer fits. We turn those facts into one working exchange plan, then help coordinate the independent qualified intermediary, tax and legal advisors, brokers, lenders, and closing professionals the transaction requires.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-ink/70">
-                Our team continues to bring in record transactions year after year, ranking among the top 1031 exchange specialists nationally. We operate under a client-first mentality, which means exceptional service is our top priority.
+                The replacement review can include another directly owned property, net-lease real estate, professionally managed options, and DST interests for eligible investors. Each path is compared against the same Fort Worth owner priorities: income, control, management workload, financing, concentration, diligence, and the ability to close on time.
               </p>
               <div className="mt-6 flex items-center gap-4">
-                <Link href="/about" className="malibu-btn-outline text-[10px]">
-                  MEET THE TEAM
+                <Link href="/contact?request=guide" className="malibu-btn-outline text-[10px]">
+                  GET THE OWNER'S GUIDE
                 </Link>
                 <Link
                   href="/contact"
@@ -443,7 +438,7 @@ export default function Home() {
                 </Link>
           </div>
         </section>
-      <ExchangeIntentSection /></main>
+      </main>
       
       <Script
         id="professional-service-schema"
