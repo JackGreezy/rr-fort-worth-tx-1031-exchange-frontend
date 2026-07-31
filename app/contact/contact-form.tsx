@@ -216,7 +216,7 @@ function ContactForm() {
             <textarea id="notes" name="notes" rows={5} value={formData.notes} onChange={handleChange("notes")} className="w-full bg-transparent border border-white/45 px-4 py-3 text-sm text-white placeholder-white/65 focus:border-brand-copper focus:outline-none transition-colors resize-none" placeholder="Share any exchange questions or context"></textarea>
           </div>
 
-          <button type="submit" className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-brand-dark transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
+          <button type="submit" className="w-full border border-brand-copper bg-brand-copper px-8 py-4 text-sm font-medium uppercase tracking-widest text-black transition-all duration-300 hover:bg-brand-copper-light disabled:opacity-50 disabled:cursor-not-allowed">
             {status === "submitting" ? "Submitting..." : "Submit →"}
           </button>
           <p className="text-xs text-white/70 text-center">Educational content only. Not tax or legal advice.</p>

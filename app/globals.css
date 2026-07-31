@@ -13,12 +13,12 @@
   --color-accent: #D4AF37;
   --color-gold: #D4AF37;
   --color-burgundy: #1A5632;
-  --color-brand-dark: var(--color-primary);
-  --color-brand-charcoal: color-mix(in srgb, var(--color-primary) 82%, black);
-  --color-brand-copper: var(--color-accent);
-  --color-brand-copper-light: color-mix(in srgb, var(--color-accent) 82%, white);
-  --color-brand-gold: var(--color-accent);
-  --color-brand-gold-dark: color-mix(in srgb, var(--color-accent) 82%, black);
+  --color-brand-dark: #1A1A1A;
+  --color-brand-charcoal: #1A1A1A;
+  --color-brand-copper: #D4AF37;
+  --color-brand-copper-light: #D4AF37;
+  --color-brand-gold: #D4AF37;
+  --color-brand-gold-dark: #D4AF37;
 }
 
 :root {
