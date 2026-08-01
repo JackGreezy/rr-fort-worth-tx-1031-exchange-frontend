@@ -15,7 +15,7 @@ import RelatedServices from "@/components/services/RelatedServices";
 import { getServiceBatchData } from "@/lib/batch-data";
 import { getShortServiceName } from "@/lib/service-names";
 
-type Params = Promise<{ slug: string }> | { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
   return servicesData.map((service) => ({ slug: service.slug }));

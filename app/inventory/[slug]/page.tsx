@@ -10,7 +10,7 @@ import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from "@/lib/constants";
 import { getInventoryBatchData } from "@/lib/batch-data";
 
-type Params = Promise<{ slug: string }> | { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
   const categorySlugs = inventoryCategories.map((cat) => ({ slug: cat.slug }));

@@ -13,7 +13,7 @@ import { getLocationBatchData } from "@/lib/batch-data";
 import { getShortServiceName } from "@/lib/service-names";
 import { locationRichContent } from "@/lib/location-content";
 
-type Params = Promise<{ slug: string }> | { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
   return locationsData.map((location) => ({ slug: location.slug }));

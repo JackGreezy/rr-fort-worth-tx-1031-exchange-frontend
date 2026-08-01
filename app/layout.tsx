@@ -22,9 +22,9 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "1031 Exchange Fort Worth | Tax-Deferred Real Estate Exchange",
+  title: "1031 Exchange Fort Worth | Replacement Property Help",
   description:
-    "1031 Exchange services in Fort Worth, TX. Expert guidance for tax-deferred real estate exchanges. Contact us at 801 Cherry St, Fort Worth, TX 76102 or call 817-985-3561.",
+    "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information.",
   alternates: {
     canonical: SITE_URL,
   },
@@ -43,6 +43,10 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/favicon/site.webmanifest",
+
+  twitter: { card: "summary_large_image", title: "1031 Exchange Fort Worth | Replacement Property Help", description: "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information." },
+
+  openGraph: { title: "1031 Exchange Fort Worth | Replacement Property Help", description: "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information." },
 };
 
 export default function RootLayout({

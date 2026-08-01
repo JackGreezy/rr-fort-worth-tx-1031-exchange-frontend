@@ -6,7 +6,7 @@ import { blogPosts } from "@/data/blog-posts";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 
-type Params = Promise<{ slug: string }> | { slug: string };
+type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }));
@@ -81,4 +81,3 @@ export default async function BlogArticle({ params }: { params: Params }) {
     </div>
   );
 }
-

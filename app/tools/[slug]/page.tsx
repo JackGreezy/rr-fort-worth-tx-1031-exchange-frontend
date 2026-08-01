@@ -13,7 +13,7 @@ import TimelineTracker from "@/components/widgets/TimelineTracker";
 import { createPageMetadata, getBreadcrumbJsonLd } from "@/lib/seo";
 import { PRIMARY_CITY } from "@/lib/constants";
 
-type Params = Promise<{ slug: string }> | { slug: string };
+type Params = Promise<{ slug: string }>;
 
 // Map tool slugs to their components
 const toolComponents: Record<string, () => ReactElement> = {
@@ -98,4 +98,3 @@ export default async function ToolPage({ params }: { params: Params }) {
     </div>
   );
 }
-
