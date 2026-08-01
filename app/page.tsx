@@ -185,9 +185,7 @@ export default function Home() {
         {/* SERVICES - 1031 Exchange Types */}
         <section className="bg-paper py-14 lg:py-18">
           <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
-            <h2 className="font-serif text-3xl italic text-primary md:text-4xl">
-              EXPLORE OUR SERVICES
-              </h2>
+            <h2 className="font-serif text-3xl italic text-primary md:text-4xl">FORT WORTH 1031 EXCHANGE SOLUTIONS</h2>
             
             <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {exchangeServices.map((service) => (
@@ -213,9 +211,7 @@ export default function Home() {
             </div>
 
             <div className="mt-8 text-center">
-              <Link href="/services" className="malibu-btn-outline text-[10px]">
-                VIEW ALL SERVICES
-              </Link>
+              <Link href="/contact?request=guide" className="malibu-btn-outline text-[10px]">Get Free Fort Worth 1031 Information</Link>
             </div>
           </div>
         </section>
@@ -300,12 +296,8 @@ export default function Home() {
               <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
                 FORT WORTH 1031 EXCHANGE
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-ink/70">
-                Bring the proposed sale, expected equity, current debt, ownership details, and the reason the property no longer fits. We turn those facts into one working exchange plan, then help coordinate the independent qualified intermediary, tax and legal advisors, brokers, lenders, and closing professionals the transaction requires.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-ink/70">
-                The replacement review can include another directly owned property, net-lease real estate, professionally managed options, and DST interests for eligible investors. Each path is compared against the same Fort Worth owner priorities: income, control, management workload, financing, concentration, diligence, and the ability to close on time.
-              </p>
+              <p className="mt-5 text-sm leading-relaxed text-ink/70">Bring the planned Fort Worth sale, expected equity, current debt, ownership details, and the reason the property no longer fits. We use those facts to shape a full 1031 exchange solution and keep the independent qualified intermediary, tax and legal advisors, brokers, lenders, and closing professionals working from the same transaction plan.</p>
+              <p className="mt-4 text-sm leading-relaxed text-ink/70">Owners who want income-focused real estate without another set of tenants, toilets, and trash can compare direct property with DST interests in professionally managed, institutional-quality assets. Some offerings may begin near $100,000, subject to current availability, income assumptions, costs, leverage, risk, illiquidity, investor eligibility, and suitability.</p>
               <div className="mt-6 flex items-center gap-4">
                 <Link href="/contact?request=guide" className="malibu-btn-outline text-[10px]">
                   GET THE OWNER'S GUIDE
@@ -349,7 +341,7 @@ export default function Home() {
               {/* Right: Rotating Benefit */}
               <div className="text-center lg:text-left">
                 <h3 className="font-serif text-xl uppercase tracking-[0.15em] text-white md:text-2xl" style={{ fontWeight: 300 }}>
-                  THE BENEFITS OF 1031 EXCHANGE
+                  No Day-to-Day Property Management
                 </h3>
                 
                 {/* Rotating benefit display */}
@@ -401,9 +393,7 @@ export default function Home() {
                 </div>
                 
                 <div className="mt-8">
-                  <Link href="/services" className="border border-white/50 px-5 py-2.5 text-[10px] font-medium tracking-[0.15em] text-white transition hover:bg-white hover:text-primary">
-                    LEARN MORE
-                    </Link>
+                  <Link href="/contact?request=properties" className="border border-white/50 px-5 py-2.5 text-[10px] font-medium tracking-[0.15em] text-white transition hover:bg-white hover:text-primary">Request the Fort Worth Property List</Link>
                 </div>
               </div>
             </div>
