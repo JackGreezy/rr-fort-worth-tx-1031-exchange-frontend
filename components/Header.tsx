@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import clsx from "clsx";
-import site from "@/content/site.json";
+import { CONTACT_PHONE, CONTACT_PHONE_DIGITS } from "@/lib/constants";
 
 // Core 1031 Exchange Services for header dropdown
 const exchangeServices = [
@@ -75,20 +76,22 @@ export default function Header() {
 
   return (
     <>
-    <header ref={headerRef} className="fixed left-0 right-0 top-0 z-50 bg-paper/90 backdrop-blur-sm">
-      <div className="mx-auto flex items-center justify-between px-4 py-3 md:px-8 lg:px-12">
+    <header ref={headerRef} className="fixed left-0 right-0 top-0 z-50 border-b border-primary/10 bg-paper/95 shadow-sm backdrop-blur-sm">
+      <div className="mx-auto flex h-20 items-center justify-between px-4 md:px-8 lg:px-12">
         {/* Logo */}
-        <Link href="/" className="flex items-baseline gap-1.5">
-          <span className="font-serif text-3xl tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
-            FW
-          </span>
-          <span className="font-serif text-lg tracking-[0.12em] text-primary/70 md:text-xl" style={{ fontWeight: 300 }}>
-            1031
-          </span>
+        <Link href="/" className="relative block h-14 w-40 shrink-0 md:w-48" aria-label="1031 Exchange Fort Worth home">
+          <Image
+            src="/1031-exchange-fort-worth-tx-logo.png"
+            alt="1031 Exchange Fort Worth"
+            fill
+            priority
+            className="object-contain object-left"
+            sizes="(max-width: 768px) 160px, 192px"
+          />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-6 lg:flex xl:gap-8">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {/* Services Dropdown */}
           <div 
             className="relative"
@@ -130,6 +133,13 @@ export default function Header() {
           <Link href="/contact" className="text-[11px] font-medium tracking-[0.18em] text-primary transition hover:text-accent">
             CONTACT
           </Link>
+
+          <a
+            href={`tel:${CONTACT_PHONE_DIGITS}`}
+            className="inline-flex shrink-0 items-center whitespace-nowrap rounded-full bg-primary px-4 py-2.5 text-[11px] font-semibold tracking-[0.06em] text-white transition hover:bg-accent hover:text-primary"
+          >
+            CALL {CONTACT_PHONE}
+          </a>
         </nav>
 
         {/* Yellow/Gold Hamburger Menu Button */}
@@ -201,7 +211,7 @@ export default function Header() {
       <div
         ref={mobileOverlayRef}
         className={clsx(
-          "fixed inset-0 z-[60] bg-paper transition-all duration-500",
+          "fixed inset-0 z-[60] overflow-y-auto bg-paper transition-all duration-500",
           mobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full pointer-events-none"
         )}
       >
@@ -217,7 +227,7 @@ export default function Header() {
           </svg>
         </button>
 
-        <nav className="flex h-full flex-col items-center justify-center gap-6">
+        <nav className="flex min-h-full flex-col items-center justify-center gap-5 px-6 py-24">
           <Link
             href="/services"
             className="font-serif text-2xl font-light tracking-[0.1em] text-primary transition hover:text-accent md:text-3xl"
@@ -262,11 +272,18 @@ export default function Header() {
           </Link>
           <Link
             href="/contact"
-            className="mt-6 border border-primary px-8 py-3 text-xs font-medium tracking-[0.2em] text-primary transition hover:bg-primary hover:text-primaryfg"
+            className="mt-4 border border-primary px-8 py-3 text-xs font-medium tracking-[0.2em] text-primary transition hover:bg-primary hover:text-primaryfg"
             onClick={() => setMobileMenuOpen(false)}
           >
-            CONTACT US
+            START MY EXCHANGE
           </Link>
+          <a
+            href={`tel:${CONTACT_PHONE_DIGITS}`}
+            className="rounded-full bg-primary px-8 py-3 text-sm font-semibold tracking-[0.08em] text-white transition hover:bg-accent hover:text-primary"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            CALL {CONTACT_PHONE}
+          </a>
         </nav>
       </div>
     </>

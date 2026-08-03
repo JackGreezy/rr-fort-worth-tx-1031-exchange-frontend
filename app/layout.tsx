@@ -22,9 +22,9 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "1031 Exchange Fort Worth | Replacement Property Help",
+  title: "1031 Exchange Fort Worth | Free Turnkey Exchange Help",
   description:
-    "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information.",
+    "Get free 1031 exchange guidance in Fort Worth. Plan your sale, compare direct and DST replacement properties, and stay on track through closing.",
   alternates: {
     canonical: SITE_URL,
   },
@@ -44,9 +44,9 @@ export const metadata: Metadata = {
   },
   manifest: "/favicon/site.webmanifest",
 
-  twitter: { card: "summary_large_image", title: "1031 Exchange Fort Worth | Replacement Property Help", description: "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information." },
+  twitter: { card: "summary_large_image", title: "1031 Exchange Fort Worth | Free Turnkey Exchange Help", description: "Get free 1031 exchange guidance in Fort Worth. Plan your sale, compare direct and DST replacement properties, and stay on track through closing." },
 
-  openGraph: { title: "1031 Exchange Fort Worth | Replacement Property Help", description: "Plan a Fort Worth 1031 exchange from sale through replacement closing. Compare property options, reduce surprises, and request free information." },
+  openGraph: { title: "1031 Exchange Fort Worth | Free Turnkey Exchange Help", description: "Get free 1031 exchange guidance in Fort Worth. Plan your sale, compare direct and DST replacement properties, and stay on track through closing." },
 };
 
 export default function RootLayout({
@@ -60,7 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} flex min-h-screen flex-col bg-paper text-ink antialiased`}>
         <Header />
-        <div className="flex-1 pt-16">{children}</div>
+        <div className="flex-1 pt-20">{children}</div>
         <Footer />
         <StickyCta />
         <Analytics />

@@ -1,440 +1,332 @@
-'use client';
-
-
 import Script from "next/script";
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { ContactFormWrapper } from "./contact/contact-form";
 import { locationsData } from "@/data";
 import type { LocationItem } from "@/data";
 import { getProfessionalServiceSchema } from "@/lib/seo";
+import { CONTACT_PHONE, CONTACT_PHONE_DIGITS } from "@/lib/constants";
 
-// Property types we handle
-const propertyTypes = [
-  "Residential",
-  "Commercial", 
-  "Industrial",
-  "Student Housing",
-  "Multi-Family",
-  "Retail",
-  "Medical",
-  "Hospitality",
-];
-
-// Core 1031 Exchange Services (not location-based)
-const exchangeServices = [
+const exchangeNeeds = [
   {
-    slug: "nnn-retail-identification-fort-worth",
-    name: "Replacement Property Search",
-    description: "Build a Fort Worth replacement brief around equity, debt, income, control, and closing probability.",
+    title: "Planning a Property Sale",
+    copy: "Build the exchange plan before proceeds are exposed and before the replacement search becomes urgent.",
+    href: "/services/forward-exchange",
   },
   {
-    slug: "dst-placement-readiness",
-    name: "DST Replacement Options",
-    description: "Compare available DST interests with direct real estate when reduced landlord work is a priority.",
+    title: "Already Under Contract",
+    copy: "Bring the expected closing date, sale price, debt, and equity so the next actions can be organized quickly.",
+    href: "/services/fort-worth-45-day-sprint",
   },
   {
-    slug: "qi-and-legal-coordination",
-    name: "QI & Advisor Coordination",
-    description: "Organize the independent intermediary, CPA, counsel, lender, broker, and closing handoffs.",
+    title: "Tired of Managing Property",
+    copy: "Compare another direct property with net-lease and professionally managed DST replacement options.",
+    href: "/services/dst-placement-readiness",
   },
   {
-    slug: "portfolio-exit-modeling",
-    name: "Sale & Tax-Deferral Planning",
-    description: "Start with the proposed sale, expected proceeds, basis questions, debt, and reinvestment target.",
-  },
-  {
-    slug: "fort-worth-45-day-sprint",
-    name: "45-Day Identification Plan",
-    description: "Track primary and backup candidates, financing, diligence, written identification, and deadlines.",
-  },
-  {
-    slug: "reverse-exchange-pursuit",
-    name: "Reverse Exchange Planning",
-    description: "Review parking, financing, title, and timing when the next property appears before the sale.",
+    title: "Selling Inherited Real Estate",
+    copy: "Sort through ownership, use, basis questions, co-owner goals, and whether an exchange may fit the sale.",
+    href: "/services/portfolio-exit-modeling",
   },
 ];
 
-// Benefits of 1031 Exchange
-const benefits = [
+const solutions = [
   {
-    title: "Defer Capital Gains Tax",
-    description: "Postpone paying federal and state capital gains taxes by reinvesting proceeds into like-kind property.",
+    title: "Start With the Sale",
+    copy: "Clarify ownership, expected proceeds, existing debt, timing, and what the next investment needs to accomplish.",
+    href: "/services/portfolio-exit-modeling",
   },
   {
-    title: "Grow Your Portfolio Faster",
-    description: "Use 100% of your sale proceeds to acquire larger or multiple replacement properties.",
+    title: "Bring the Exchange Team Together",
+    copy: "Connect the independent qualified intermediary, CPA, attorney, broker, lender, and closing professionals around one plan.",
+    href: "/services/qi-and-legal-coordination",
   },
   {
-    title: "Diversify Your Investments",
-    description: "Exchange into different property types, geographic locations, or asset classes.",
+    title: "Find Replacement Properties",
+    copy: "Search direct real estate, net-lease assets, and DST interests around income, control, workload, financing, and closing feasibility.",
+    href: "/services/nnn-retail-identification-fort-worth",
   },
   {
-    title: "Increase Your Cash Flow",
-    description: "Trade up to properties with better income potential and higher returns.",
+    title: "Build Primary and Backup Paths",
+    copy: "Keep identification choices, diligence, financing, and realistic backup candidates visible while the calendar is moving.",
+    href: "/services/fort-worth-45-day-sprint",
   },
   {
-    title: "Estate Planning Benefits",
-    description: "Pass properties to heirs with a stepped-up cost basis, potentially eliminating deferred taxes.",
+    title: "Consider Buying First",
+    copy: "Review reverse-exchange structure and financing when the right replacement appears before the current property sells.",
+    href: "/services/reverse-exchange-pursuit",
   },
   {
-    title: "Consolidate or Divide",
-    description: "Exchange multiple properties into one, or one property into several for flexibility.",
+    title: "Stay Aligned Through Closing",
+    copy: "Track open questions, documents, title, inspections, insurance, lender needs, and advisor decisions through the replacement closing.",
+    href: "/contact",
+  },
+];
+
+const ownershipPaths = [
+  {
+    title: "Direct Real Estate",
+    copy: "Keep control over leasing, financing, improvements, and disposition while taking responsibility for operations and asset decisions.",
+  },
+  {
+    title: "Net-Lease Property",
+    copy: "Own the real estate while reviewing the tenant, guaranty, lease obligations, property condition, and future reletting risk.",
+  },
+  {
+    title: "DST Interest",
+    copy: "Access professionally managed real estate without day-to-day landlord work, subject to offering terms, fees, leverage, illiquidity, risk, eligibility, and suitability.",
+  },
+];
+
+const exchangeFlow = [
+  {
+    title: "Before the Sale Closes",
+    copy: "Define the sale facts, engage the independent qualified intermediary, and set the replacement criteria before funds can reach the seller.",
+  },
+  {
+    title: "While the Property Search Is Active",
+    copy: "Compare primary and backup candidates against the same income, debt, control, management, risk, and closing priorities.",
+  },
+  {
+    title: "Through Replacement Closing",
+    copy: "Keep the intermediary, advisors, lender, title team, brokers, and other professionals working from the same transaction plan.",
   },
 ];
 
 export default function Home() {
-  const featuredMarkets = locationsData.filter((l: LocationItem) => l.type === "city").slice(0, 6);
-  const [showContactPopup, setShowContactPopup] = useState(false);
-
-  // Show popup after 5 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const hasSeenPopup = sessionStorage.getItem('hasSeenContactPopup');
-      if (!hasSeenPopup) {
-        setShowContactPopup(true);
-      }
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const closePopup = () => {
-    setShowContactPopup(false);
-    sessionStorage.setItem('hasSeenContactPopup', 'true');
-  };
-
-  // Benefits carousel state
-  const [benefitIndex, setBenefitIndex] = useState(0);
-  
-  // Auto-rotate benefits every 4 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBenefitIndex((prev) => (prev + 1) % benefits.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const nextBenefit = () => setBenefitIndex((prev) => (prev + 1) % benefits.length);
-  const prevBenefit = () => setBenefitIndex((prev) => (prev - 1 + benefits.length) % benefits.length);
+  const featuredMarkets = locationsData.filter((location: LocationItem) => location.type === "city").slice(0, 6);
 
   return (
     <div className="bg-paper text-ink">
-      {/* Contact Popup */}
-      {showContactPopup && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <div className="relative mx-4 max-w-md bg-paper p-8 shadow-2xl">
-            <button
-              onClick={closePopup}
-              className="absolute right-4 top-4 text-ink/50 hover:text-ink"
-              aria-label="Close"
-            >
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <div className="text-center">
-              <h3 className="font-serif text-2xl tracking-[0.1em] text-primary">FORT WORTH</h3>
-              <p className="font-serif text-lg tracking-[0.1em] text-accent">1031 EXCHANGE</p>
-              <p className="mt-4 text-sm text-ink/70">
-                Ready to start your 1031 exchange? Our team of experts is here to guide you through every step.
-              </p>
-              <div className="mt-6 flex flex-col gap-3">
-                <Link
-                  href="/contact"
-                  onClick={closePopup}
-                  className="bg-primary px-6 py-3 text-xs font-medium tracking-[0.15em] text-primaryfg transition hover:bg-primary/90"
-                >
-                  GET STARTED TODAY
-                </Link>
-                <button
-                  onClick={closePopup}
-                  className="text-xs tracking-[0.1em] text-ink/50 hover:text-ink"
-                >
-                  Maybe later
-                </button>
-              </div>
-            </div>
-              </div>
-            </div>
-      )}
-
       <main>
-        {/* HERO - Full Screen Video */}
-        <section className="relative h-screen overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="absolute inset-0 h-full w-full object-cover"
-          >
+        <section className="relative min-h-[760px] overflow-hidden lg:min-h-[820px]">
+          <video autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover">
             <source src="/fortworth!.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/30" />
-          
-          <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-            <h1 className="font-serif text-5xl tracking-[0.15em] text-white md:text-7xl lg:text-8xl" style={{ fontWeight: 300 }}>
-              FORT WORTH
-            </h1>
-            <h2 className="font-serif text-4xl tracking-[0.15em] text-accent md:text-6xl lg:text-7xl" style={{ fontWeight: 300 }}>
-              1031 EXCHANGE
-            </h2>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/20" />
+          <div className="relative z-10 mx-auto flex min-h-[760px] max-w-7xl items-center px-6 py-28 md:px-10 lg:min-h-[820px] lg:px-14">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">Selling investment property in Fort Worth?</p>
+              <h1 className="mt-5 font-serif text-5xl leading-[0.98] text-white md:text-6xl lg:text-[4.5rem]" style={{ fontWeight: 300 }}>
+                Turnkey 1031 Exchange Solutions in Fort Worth, Texas
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg">
+                Get free guidance from the planned sale through replacement closing. We help owners understand the next move, assemble the right exchange professionals, and compare direct property, net-lease real estate, and DST replacement options.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="inline-flex items-center justify-center bg-accent px-7 py-4 text-sm font-semibold tracking-[0.06em] text-primary transition hover:bg-white">
+                  CALL {CONTACT_PHONE}
+                </a>
+                <Link href="/contact#contact-form" className="inline-flex items-center justify-center border border-white/70 px-7 py-4 text-xs font-semibold tracking-[0.16em] text-white transition hover:bg-white hover:text-primary">
+                  START MY EXCHANGE
+                </Link>
+                <Link href="/contact?request=properties#contact-form" className="inline-flex items-center justify-center border border-white/70 px-7 py-4 text-xs font-semibold tracking-[0.16em] text-white transition hover:bg-white hover:text-primary">
+                  GET A FREE PROPERTY LIST
+                </Link>
+              </div>
+              <div className="mt-8 grid max-w-2xl gap-3 text-sm text-white/80 sm:grid-cols-3">
+                <p className="border-l-2 border-accent pl-3">Free exchange guidance</p>
+                <p className="border-l-2 border-accent pl-3">Direct and passive options</p>
+                <p className="border-l-2 border-accent pl-3">Fort Worth and nationwide search</p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* SERVICES - 1031 Exchange Types */}
-        <section className="bg-paper py-14 lg:py-18">
+        <section className="bg-primary py-8 text-white">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 md:flex-row md:items-center md:justify-between md:px-10 lg:px-14">
+            <p className="font-serif text-2xl md:text-3xl" style={{ fontWeight: 300 }}>Your exchange starts with the reason you are selling.</p>
+            <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="shrink-0 text-sm font-semibold tracking-[0.08em] text-accent transition hover:text-white">TALK IT THROUGH: {CONTACT_PHONE} →</a>
+          </div>
+        </section>
+
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-14">
+            <div className="relative min-h-[520px] overflow-hidden">
+              <Image src="/locations/fort-worth/fort-worth-tx.webp" alt="Fort Worth skyline and investment real estate" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 45vw" />
+              <div className="absolute inset-x-0 bottom-0 bg-primary/95 p-6 text-white md:p-8">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">The question after the sale</p>
+                <p className="mt-2 font-serif text-2xl leading-tight md:text-3xl" style={{ fontWeight: 300 }}>What should this equity do next?</p>
+              </div>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">One call. A clearer path.</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight text-primary md:text-5xl" style={{ fontWeight: 300 }}>
+                Sell the property without walking into the exchange alone.
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-ink/70">
+                A Fort Worth owner may be selling to retire, leave difficult tenants, simplify an inherited portfolio, improve income, diversify, or move into a property that fits the next stage of life. Those goals should shape the replacement search before listings and deadlines take control of the decision.
+              </p>
+              <p className="mt-4 text-base leading-relaxed text-ink/70">
+                Bring the sale, equity, debt, timing, ownership, and management concerns. We help turn those facts into a practical exchange plan and connect the independent professionals needed to carry it out.
+              </p>
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="bg-primary px-6 py-3.5 text-center text-xs font-semibold tracking-[0.14em] text-white transition hover:bg-accent hover:text-primary">CALL FOR FREE GUIDANCE</a>
+                <Link href="/contact#contact-form" className="border border-primary px-6 py-3.5 text-center text-xs font-semibold tracking-[0.14em] text-primary transition hover:bg-primary hover:text-white">TELL US ABOUT THE SALE</Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-secondary/50 py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
-            <h2 className="font-serif text-3xl italic text-primary md:text-4xl">FORT WORTH 1031 EXCHANGE SOLUTIONS</h2>
-            
-            <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {exchangeServices.map((service) => (
-                <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="group"
-                >
-                  <div className="border border-outline/30 bg-panel p-5 transition hover:border-primary/30">
-                    <span className="inline-block bg-accent px-2 py-1 text-[9px] font-medium tracking-[0.15em] text-primary mb-3">
-                      1031 SERVICE
-                    </span>
-                    <p className="font-serif text-lg text-primary group-hover:text-accent">{service.name}</p>
-                    <p className="mt-1 text-xs text-ink/60 line-clamp-2">
-                      {service.description}
-                    </p>
-                    <p className="mt-3 text-[10px] font-medium tracking-[0.15em] text-accent">
-                      LEARN MORE &rarr;
-                    </p>
-                  </div>
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Help for the situation you are in now</p>
+              <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl" style={{ fontWeight: 300 }}>There is more than one way into a 1031 exchange.</h2>
+            </div>
+            <div className="mt-10 grid gap-px bg-outline/30 sm:grid-cols-2 lg:grid-cols-4">
+              {exchangeNeeds.map((need) => (
+                <Link key={need.title} href={need.href} className="group bg-paper p-6 transition hover:bg-primary">
+                  <h3 className="font-serif text-2xl text-primary transition group-hover:text-white" style={{ fontWeight: 400 }}>{need.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/65 transition group-hover:text-white/75">{need.copy}</p>
+                  <p className="mt-6 text-xs font-semibold tracking-[0.14em] text-accent">EXPLORE THIS PATH →</p>
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
 
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Turnkey exchange solutions</p>
+                <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl" style={{ fontWeight: 300 }}>One place to start. Every major decision kept in view.</h2>
+              </div>
+              <p className="text-base leading-relaxed text-ink/70">
+                The exchange may involve several independent professionals, but the owner should not have to piece together the entire journey alone. We help organize the questions, property search, introductions, and handoffs from the first call through replacement closing.
+              </p>
+            </div>
+            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {solutions.map((solution) => (
+                <article key={solution.title} className="border-t-2 border-accent pt-5">
+                  <h3 className="font-serif text-2xl text-primary" style={{ fontWeight: 400 }}>{solution.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/65">{solution.copy}</p>
+                  <Link href={solution.href} className="mt-5 inline-block text-xs font-semibold tracking-[0.14em] text-accent transition hover:text-primary">LEARN MORE →</Link>
+                </article>
+              ))}
+            </div>
+            <div className="mt-12 flex flex-col gap-3 border border-primary/20 bg-panel p-6 sm:flex-row sm:items-center sm:justify-between md:p-8">
+              <div>
+                <p className="font-serif text-2xl text-primary md:text-3xl" style={{ fontWeight: 300 }}>First exchange? Start with a conversation.</p>
+                <p className="mt-1 text-sm text-ink/65">We can walk through the sale, the timing, and the replacement choices in plain language.</p>
+              </div>
+              <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="shrink-0 bg-primary px-6 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-accent hover:text-primary">CALL {CONTACT_PHONE}</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative overflow-hidden py-20 lg:py-28">
+          <Image src="/locations/arlington/arlington-tx.jpg" alt="Professionally managed commercial real estate" fill className="object-cover" sizes="100vw" />
+          <div className="absolute inset-0 bg-primary/90" />
+          <div className="relative z-10 mx-auto grid max-w-7xl gap-12 px-6 text-white md:px-10 lg:grid-cols-2 lg:items-center lg:px-14">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Move beyond tenants, toilets, and trash</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl" style={{ fontWeight: 300 }}>Find income-focused replacement property without another management job.</h2>
+              <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">
+                A Delaware Statutory Trust may give qualified investors access to professionally managed, institutional-quality real estate without personally handling leasing, maintenance, renovations, or late-night tenant calls.
+              </p>
+              <ul className="mt-6 space-y-3 text-sm text-white/85">
+                <li className="border-l-2 border-accent pl-4">No day-to-day property management</li>
+                <li className="border-l-2 border-accent pl-4">Potential access to larger institutional-quality assets</li>
+                <li className="border-l-2 border-accent pl-4">Some current offerings may accept investments beginning around $100,000</li>
+              </ul>
+            </div>
+            <div className="border border-white/20 bg-black/20 p-7 backdrop-blur-sm md:p-9">
+              <h3 className="font-serif text-3xl text-white" style={{ fontWeight: 300 }}>See current replacement options.</h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/70">
+                Request a free property list or call to compare DST interests with direct and net-lease real estate. Availability, projected income, sponsor and asset risk, fees, leverage, liquidity limits, eligibility, and suitability vary by offering.
+              </p>
+              <div className="mt-7 flex flex-col gap-3">
+                <Link href="/contact?request=properties#contact-form" className="bg-accent px-6 py-4 text-center text-xs font-semibold tracking-[0.14em] text-primary transition hover:bg-white">GET A FREE PROPERTY LIST</Link>
+                <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="border border-white/60 px-6 py-4 text-center text-xs font-semibold tracking-[0.14em] text-white transition hover:bg-white hover:text-primary">CALL FOR A FREE CONSULTATION</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Compare before you commit</p>
+              <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl" style={{ fontWeight: 300 }}>Choose the ownership path that fits life after the sale.</h2>
+            </div>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {ownershipPaths.map((path) => (
+                <article key={path.title} className="border border-outline/30 bg-panel p-7">
+                  <h3 className="font-serif text-2xl text-primary" style={{ fontWeight: 400 }}>{path.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-ink/65">{path.copy}</p>
+                </article>
+              ))}
+            </div>
             <div className="mt-8 text-center">
-              <Link href="/contact?request=guide" className="malibu-btn-outline text-[10px]">Get Free Fort Worth 1031 Information</Link>
+              <Link href="/contact#contact-form" className="malibu-btn-outline text-[10px]">HELP ME COMPARE MY OPTIONS</Link>
             </div>
           </div>
         </section>
 
-        {/* FEATURED NEIGHBORHOODS */}
-        <section className="bg-paper">
-          <h2 className="py-6 text-center font-serif text-3xl italic text-primary md:text-4xl">
-            FEATURED NEIGHBORHOODS
-              </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {featuredMarkets.map((market: LocationItem) => (
-              <Link
-                key={market.slug}
-                href={market.route}
-                className="group relative aspect-[4/3] overflow-hidden"
-              >
-                {market.heroImage && (
-                  <Image
-                    src={market.heroImage}
-                    alt={market.name}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/40" />
-                <div className="absolute inset-0 flex flex-col items-center justify-center">
-                  <h3 className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl" style={{ fontWeight: 300 }}>
-                    {market.name.toUpperCase()}
-                  </h3>
-                  <div className="mt-4 opacity-0 transition-opacity group-hover:opacity-100">
-                    <span className="border border-white px-4 py-2 text-[10px] tracking-[0.2em] text-white">
-                      LEARN MORE
-                    </span>
+        <section className="bg-secondary/50 py-16 lg:py-20">
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-[0.75fr_1.25fr] lg:px-14">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">How the exchange moves</p>
+              <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl" style={{ fontWeight: 300 }}>A clear path from planned sale to replacement closing.</h2>
+              <p className="mt-5 text-sm leading-relaxed text-ink/65">The calendar matters, but the owner’s decisions matter just as much. Start before the sale closes whenever possible.</p>
+            </div>
+            <div className="space-y-4">
+              {exchangeFlow.map((phase) => (
+                <article key={phase.title} className="grid gap-2 border-b border-outline/30 pb-5 md:grid-cols-[0.45fr_1fr] md:gap-6">
+                  <h3 className="font-serif text-xl text-primary">{phase.title}</h3>
+                  <p className="text-sm leading-relaxed text-ink/65">{phase.copy}</p>
+                </article>
+              ))}
+              <div className="pt-3">
+                <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="inline-flex bg-primary px-6 py-3.5 text-xs font-semibold tracking-[0.14em] text-white transition hover:bg-accent hover:text-primary">LET US WALK YOU THROUGH IT: {CONTACT_PHONE}</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+            <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Fort Worth roots. Nationwide possibilities.</p>
+                <h2 className="mt-4 font-serif text-4xl text-primary md:text-5xl" style={{ fontWeight: 300 }}>Explore the markets we serve.</h2>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link href="/locations" className="border border-primary px-5 py-3 text-center text-xs font-semibold tracking-[0.12em] text-primary transition hover:bg-primary hover:text-white">VIEW ALL LOCATIONS</Link>
+                <Link href="/contact?request=properties#contact-form" className="bg-primary px-5 py-3 text-center text-xs font-semibold tracking-[0.12em] text-white transition hover:bg-accent hover:text-primary">GET A FREE PROPERTY LIST</Link>
+              </div>
+            </div>
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredMarkets.map((market: LocationItem) => (
+                <Link key={market.slug} href={market.route} className="group relative aspect-[4/3] overflow-hidden">
+                  {market.heroImage && <Image src={market.heroImage} alt={`${market.name} 1031 exchange services`} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <p className="font-serif text-2xl text-white" style={{ fontWeight: 300 }}>{market.name}</p>
+                    <p className="mt-1 text-xs font-semibold tracking-[0.14em] text-accent">EXPLORE THIS MARKET →</p>
                   </div>
-            </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* PROPERTY TYPES - Luxurious Marquee */}
-        <section className="overflow-hidden border-y border-primary/10 bg-paper py-8">
-          <div className="flex animate-scroll items-center gap-16 whitespace-nowrap">
-            {[...propertyTypes, ...propertyTypes, ...propertyTypes].map((type, i) => (
-              <span key={i} className="flex items-center gap-16">
-                <span className="font-serif text-2xl italic tracking-[0.1em] text-primary/40 md:text-3xl" style={{ fontWeight: 300 }}>
-                  {type}
-                </span>
-                <span className="text-sm text-accent">&#9830;</span>
-                        </span>
-            ))}
-                      </div>
-        </section>
-
-        {/* WHY FORT WORTH 1031 EXCHANGE */}
-        <section className="bg-paper py-14 lg:py-18">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 md:px-10 lg:grid-cols-2 lg:gap-14 lg:px-14">
-            <div className="flex gap-4">
-              <div className="relative mt-10 aspect-[3/4] w-1/2 overflow-hidden">
-                <Image
-                  src="/locations/fort-worth/fort-worth-tx.webp"
-                  alt="Fort Worth skyline"
-                  fill
-                  className="object-cover"
-                  sizes="25vw"
-                />
-                    </div>
-              <div className="relative aspect-[3/4] w-1/2 overflow-hidden">
-                <Image
-                  src="/locations/dallas/dallas-tx.webp"
-                  alt="Fort Worth real estate"
-                  fill
-                  className="object-cover"
-                  sizes="25vw"
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col justify-center">
-              <h2 className="font-serif text-3xl uppercase tracking-[0.08em] text-primary md:text-4xl" style={{ fontWeight: 300 }}>
-                FORT WORTH 1031 EXCHANGE
-              </h2>
-              <p className="mt-5 text-sm leading-relaxed text-ink/70">Bring the planned Fort Worth sale, expected equity, current debt, ownership details, and the reason the property no longer fits. We use those facts to shape a full 1031 exchange solution and keep the independent qualified intermediary, tax and legal advisors, brokers, lenders, and closing professionals working from the same transaction plan.</p>
-              <p className="mt-4 text-sm leading-relaxed text-ink/70">Owners who want income-focused real estate without another set of tenants, toilets, and trash can compare direct property with DST interests in professionally managed, institutional-quality assets. Some offerings may begin near $100,000, subject to current availability, income assumptions, costs, leverage, risk, illiquidity, investor eligibility, and suitability.</p>
-              <div className="mt-6 flex items-center gap-4">
-                <Link href="/contact?request=guide" className="malibu-btn-outline text-[10px]">
-                  GET THE OWNER'S GUIDE
                 </Link>
-                <Link
-                  href="/contact"
-                  className="bg-primary px-5 py-3 text-[10px] font-medium tracking-[0.15em] text-primaryfg transition hover:bg-primary/90"
-                >
-                  INQUIRE NOW
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* BENEFITS OF 1031 EXCHANGE - Rotating Carousel */}
-        <section className="relative py-20 lg:py-28">
-          <div className="absolute inset-0">
-            <Image
-              src="/locations/arlington/arlington-tx.jpg"
-              alt="Fort Worth"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-black/60" />
-            </div>
-
-          <div className="relative z-10 mx-auto max-w-5xl px-6 md:px-10 lg:px-14">
-            <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
-              {/* Left: Branding */}
-              <div className="text-center lg:text-left">
-                <div className="mb-4 flex items-baseline gap-2 justify-center lg:justify-start">
-                  <span className="font-serif text-5xl tracking-[0.08em] text-white opacity-60 md:text-6xl" style={{ fontWeight: 300 }}>FW</span>
-                  <span className="font-serif text-2xl tracking-[0.12em] text-white/50 md:text-3xl" style={{ fontWeight: 300 }}>1031</span>
-                </div>
-                <p className="font-serif text-2xl tracking-[0.15em] text-white md:text-3xl" style={{ fontWeight: 300 }}>FORT WORTH</p>
-                <p className="font-serif text-xl tracking-[0.15em] text-accent md:text-2xl" style={{ fontWeight: 300 }}>1031 EXCHANGE</p>
-              </div>
-              
-              {/* Right: Rotating Benefit */}
-              <div className="text-center lg:text-left">
-                <h3 className="font-serif text-xl uppercase tracking-[0.15em] text-white md:text-2xl" style={{ fontWeight: 300 }}>
-                  No Day-to-Day Property Management
-                </h3>
-                
-                {/* Rotating benefit display */}
-                <div className="mt-8 min-h-[140px]">
-                  <div className="transition-opacity duration-500">
-                    <p className="font-serif text-2xl text-accent md:text-3xl" style={{ fontWeight: 300 }}>
-                      {benefits[benefitIndex].title}
-                    </p>
-                    <p className="mt-4 text-sm leading-relaxed text-white/80 md:text-base">
-                      {benefits[benefitIndex].description}
-                    </p>
-            </div>
-          </div>
-                
-                {/* Navigation dots and arrows */}
-                <div className="mt-6 flex items-center justify-center gap-4 lg:justify-start">
-                  <button 
-                    onClick={prevBenefit}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-white transition hover:bg-white hover:text-primary"
-                    aria-label="Previous benefit"
-                  >
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                  
-                  <div className="flex gap-2">
-                    {benefits.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setBenefitIndex(index)}
-                        className={`h-2 w-2 rounded-full transition-all ${
-                          index === benefitIndex ? 'bg-accent w-4' : 'bg-white/40 hover:bg-white/60'
-                        }`}
-                        aria-label={`Go to benefit ${index + 1}`}
-                      />
               ))}
             </div>
-
-                  <button 
-                    onClick={nextBenefit}
-                    className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 text-white transition hover:bg-white hover:text-primary"
-                    aria-label="Next benefit"
-                  >
-                    <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </div>
-                
-                <div className="mt-8">
-                  <Link href="/contact?request=properties" className="border border-white/50 px-5 py-2.5 text-[10px] font-medium tracking-[0.15em] text-white transition hover:bg-white hover:text-primary">Request the Fort Worth Property List</Link>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="relative py-24 lg:py-36">
-          <div className="absolute inset-0">
-            <Image
-              src="/locations/plano/plano-tx.webp"
-              alt="Fort Worth"
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-          
-          <div className="relative z-10 flex flex-col items-center justify-center px-6 text-center">
-            <h2 className="font-serif text-5xl tracking-[0.15em] text-white md:text-7xl lg:text-8xl" style={{ fontWeight: 200 }}>
-              FORT WORTH
-              </h2>
-            <p className="font-serif text-4xl tracking-[0.15em] text-accent md:text-6xl lg:text-7xl" style={{ fontWeight: 200 }}>
-              1031 EXCHANGE
-            </p>
-                <Link
-              href="/contact"
-              className="mt-10 border border-white/70 px-7 py-3 text-[10px] font-medium tracking-[0.2em] text-white transition hover:bg-white hover:text-primary"
-                >
-              WORK WITH US
-                </Link>
+        <section className="bg-primary py-16 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-12 px-6 md:px-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start lg:px-14">
+            <div className="text-white">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-accent">Free Fort Worth exchange guidance</p>
+              <h2 className="mt-4 font-serif text-4xl leading-tight md:text-5xl" style={{ fontWeight: 300 }}>Tell us what you are selling and what you want next.</h2>
+              <p className="mt-5 text-base leading-relaxed text-white/75">Use the short form for exchange guidance, a current property list, or help thinking through a planned sale. Prefer to talk now?</p>
+              <a href={`tel:${CONTACT_PHONE_DIGITS}`} className="mt-7 inline-flex bg-accent px-6 py-4 text-sm font-semibold tracking-[0.06em] text-primary transition hover:bg-white">CALL {CONTACT_PHONE}</a>
+            </div>
+            <ContactFormWrapper />
           </div>
         </section>
       </main>
-      
-      <Script
-        id="professional-service-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(getProfessionalServiceSchema()) }}
-      />
+
+      <Script id="professional-service-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getProfessionalServiceSchema()) }} />
     </div>
   );
 }

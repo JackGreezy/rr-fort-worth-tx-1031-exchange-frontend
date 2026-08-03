@@ -1,11 +1,9 @@
 import Link from "next/link";
-import site from "@/content/site.json";
-import { resources, toolsData, locationsData } from "@/data";
+import { toolsData, locationsData } from "@/data";
 import type { LocationItem } from "@/data/types";
 import {
   COMPANY_NAME,
   CONTACT_ADDRESS,
-  CONTACT_EMAIL,
   CONTACT_PHONE,
   CONTACT_PHONE_DIGITS,
   PRIMARY_CITY,
@@ -36,8 +34,6 @@ const sitemapLinks = [
   { label: "Terms", href: "/terms" },
   { label: "Sitemap", href: "/sitemap.xml" },
 ];
-
-const complianceLinks = resources.slice(0, 4);
 
 // Sort locations: Fort Worth first, then other cities, then districts/suburbs
 function sortLocations(locations: LocationItem[]): LocationItem[] {
@@ -95,7 +91,7 @@ export default function Footer() {
               <span className="text-xs">We help Fort Worth investors find replacement properties across all 50 states.</span>
             </p>
             <div className="space-y-1 text-xs text-primaryfg/80">
-              <p>Hours: Monday-Friday: 8am-6pm</p>
+              <p>Phone guidance available 24/7</p>
             </div>
             <div className="flex flex-wrap gap-2 pt-2">
               <a
@@ -179,7 +175,7 @@ export default function Footer() {
         </div>
 
         {/* Secondary links and tools */}
-        <div className="grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-3">
+        <div className="grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-2">
           <section className="space-y-3">
             <h5 className="text-sm font-semibold text-white">Quick links</h5>
             <nav className="grid grid-cols-2 gap-1.5 text-xs">
@@ -205,31 +201,13 @@ export default function Footer() {
             </div>
           </section>
 
-          <section className="space-y-3">
-            <h5 className="text-sm font-semibold text-white">Compliance & IRS guidance</h5>
-            <div className="grid gap-1.5 text-xs">
-              {complianceLinks.map((link) => (
-                <a
-                  key={link.key}
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-1.5 text-primaryfg/80 transition hover:text-white"
-                >
-                  <span className="h-1 w-1 rounded-full bg-gold" aria-hidden />
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </section>
         </div>
 
         {/* Map and disclaimer */}
         <div className="grid gap-6 border-t border-white/10 pt-8 lg:grid-cols-[2fr_1fr] lg:items-start">
           <div className="space-y-2 text-xs text-primaryfg/75">
-            <p>This platform connects investors with Fort Worth 1031 exchange specialists for property identification, timeline coordination, and reporting support.</p>
-            <p>We are not a Qualified Intermediary, law firm, broker, or CPA. Verify strategy with your advisory team before executing an exchange.</p>
-            <p className="pt-2 text-primaryfg/70">“A 1031 exchange defers federal and Texas income tax on qualifying real property. Texas does not levy a state income tax, but transfer and recording fees may apply.”</p>
+            <p>Get free help organizing a Fort Worth property sale, exchange timeline, replacement-property search, and introductions to the independent professionals the transaction requires.</p>
+            <p>Educational information only. Tax, legal, qualified-intermediary, brokerage, lending, and securities work must be handled by the appropriate independent professionals. DST interests are securities and involve risk, fees, illiquidity, eligibility, and suitability considerations.</p>
           </div>
           <div className="h-48 overflow-hidden rounded-2xl border border-white/15 shadow-[0_12px_24px_rgba(10,16,28,0.35)]">
             <iframe
@@ -256,4 +234,3 @@ export default function Footer() {
     </footer>
   );
 }
-
