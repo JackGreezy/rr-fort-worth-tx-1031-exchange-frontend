@@ -1,5 +1,20 @@
 import { NextResponse } from "next/server";
 
+function isBlockedContactName(body: unknown): boolean {
+  const source = body instanceof FormData
+    ? Object.fromEntries(body.entries())
+    : body && typeof body === "object"
+      ? body as Record<string, unknown>
+      : {};
+  const first = String(source.firstName ?? source.first_name ?? source.first ?? "");
+  const last = String(source.lastName ?? source.last_name ?? source.last ?? "");
+  const candidates = [source.name, source.fullName, source.full_name, source.contactName, [first, last].filter(Boolean).join(" ")];
+  return candidates.some((value) => {
+    const normalized = String(value ?? "").toLowerCase().replace(/[^a-z]+/g, " ").trim();
+    return normalized === "joanna riggs" || normalized === "trey webb" || normalized === "trey web";
+  });
+}
+
 export const runtime = "nodejs";
 
 type ExchangeLead = {
@@ -194,6 +209,10 @@ export async function POST(request: Request) {
     const raw = wantsJson
       ? ((await request.json()) as Record<string, unknown>)
       : Object.fromEntries((await request.formData()).entries());
+    if (isBlockedContactName(raw)) {
+      if (!wantsJson) return NextResponse.redirect(new URL("/contact?submitted=1", request.url), 303);
+      return NextResponse.json({ ok: true, success: true });
+    }
     const lead = normalizeLead(raw);
     const requestContext = (() => {
       try {
