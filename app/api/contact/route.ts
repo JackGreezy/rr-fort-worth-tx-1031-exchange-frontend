@@ -67,7 +67,7 @@ function normalizeLead(body: Record<string, unknown>): ExchangeLead {
   };
 }
 
-const BLOCKED_INQUIRY_TERMS = /(?:\b(?:domain|index)\w*|\bseo\b)/i;
+const BLOCKED_INQUIRY_TERMS = /(?:\b(?:domain|index)\w*|\bseo\b|\borganic\s+traffic\b)/i;
 const EMOJI_PATTERN = /(?:\p{Extended_Pictographic}|\p{Regional_Indicator}|[#*0-9]\uFE0F?\u20E3)/u;
 
 function containsBlockedInquiryMessage(message: string) {
