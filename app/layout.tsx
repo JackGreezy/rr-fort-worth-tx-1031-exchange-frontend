@@ -69,6 +69,7 @@ export default function RootLayout({
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
+              <script src="/turnstile-contact.js" defer></script>
       </body>
     </html>
   );
